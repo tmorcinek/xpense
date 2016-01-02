@@ -5,13 +5,13 @@ import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
+import kotlinx.android.synthetic.main.home.*
+import kotlinx.android.synthetic.main.home_content.*
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
@@ -26,14 +26,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         prepareViews()
         prepareFAB()
 
-        (findViewById(R.id.nav_view) as NavigationView).setNavigationItemSelectedListener(this)
+        navigationView.setNavigationItemSelectedListener(this)
     }
 
     private fun prepareViews() {
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.setDrawerListener(toggle)
@@ -46,7 +44,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
@@ -73,7 +70,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
