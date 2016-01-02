@@ -34,6 +34,7 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
     testCompile 'junit:junit:4.11'
+    testCompile 'com.github.tsuharesu:expect-kt:0.5.1'
 }
 
 kapt {
