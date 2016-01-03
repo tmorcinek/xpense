@@ -1,7 +1,6 @@
 package com.morcinek.xpense.home
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
@@ -23,24 +22,29 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.home)
         (application as Application).component.inject(this)
 
-        prepareViews()
-        prepareFAB()
-
-        navigationView.setNavigationItemSelectedListener(this)
+        setupToolbar()
+        setupToggle()
+        setupActionButton()
+        setupNavigationView()
     }
 
-    private fun prepareViews() {
+    private fun setupToolbar() {
         setSupportActionBar(toolbar)
+    }
 
+    private fun setupToggle() {
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.setDrawerListener(toggle)
         toggle.syncState()
     }
 
-    private fun prepareFAB() {
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+    private fun setupActionButton() {
         fab.setOnClickListener({ view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() })
+    }
+
+    private fun setupNavigationView() {
+        navigationView.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
@@ -51,23 +55,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        val id = item.itemId
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        when (item.itemId) {
+            R.id.nav_gallery -> TODO()
         }
 
         drawer.closeDrawer(GravityCompat.START)
