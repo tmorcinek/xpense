@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.home_content.*
  */
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    val homeContentController: HomeContentController = HomeContentController(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)

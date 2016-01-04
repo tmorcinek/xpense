@@ -14,11 +14,13 @@
         android:layout_height="match_parent"
         tools:openDrawer="start">
 
+        <!-- The Main Content View -->
         <include
             layout="@layout/home_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <!-- The Navigation View -->
         <android.support.design.widget.NavigationView
             android:id="@+id/navigationView"
             android:layout_width="wrap_content"
