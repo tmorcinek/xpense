@@ -8,9 +8,11 @@ import java.util.*
  */
 class ExpenseManager {
 
-    val expenses: MutableList<Expense> = ArrayList()
+    private val expenses: MutableList<Expense> = ArrayList()
 
     fun addExpense(expense: Expense) {
         expenses.add(expense)
     }
+
+    fun getExpenses(): List<Expense> = expenses
 }

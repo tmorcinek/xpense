@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
+import com.morcinek.xpense.home.history.HistoryFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 
@@ -28,6 +29,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setupToggle()
         setupActionButton()
         setupNavigationView()
+
+        if (savedInstanceState == null) {
+            homeContentController.addFragment(HistoryFragment())
+        }
     }
 
     private fun setupToolbar() {

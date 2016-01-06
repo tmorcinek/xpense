@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ItemTitle">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/contact_list_title_text_size</item>
+    </style>
+
+    <style name="ItemSubtitle">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/contact_list_subtitle_text_size</item>
+    </style>
+</resources>

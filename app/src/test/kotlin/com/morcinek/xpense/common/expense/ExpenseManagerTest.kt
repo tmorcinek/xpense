@@ -35,7 +35,7 @@ class ExpenseManagerTest {
         // given
         // when
         expenseManager.addExpense(exampleExpense())
-        val expenses = expenseManager.expenses
+        val expenses = expenseManager.getExpenses()
 
         // then
         expenses.should.notBeNull().and.haveSize(1)
