@@ -9,14 +9,21 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
+import com.morcinek.xpense.common.expense.ExpenseManager
+import com.morcinek.xpense.common.expense.model.Expense
 import com.morcinek.xpense.home.history.HistoryFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
+import java.util.*
+import javax.inject.Inject
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    @Inject
+    lateinit var expenseManager: ExpenseManager
 
     val homeContentController: HomeContentController = HomeContentController(this)
 
@@ -47,7 +54,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setupActionButton() {
-        fab.setOnClickListener({ view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() })
+        fab.setOnClickListener({
+            val expense = Expense(120f, "GBP", "Pranie", setOf<String>(), Date())
+            expenseManager.addExpense(expense)
+        })
     }
 
     private fun setupNavigationView() {

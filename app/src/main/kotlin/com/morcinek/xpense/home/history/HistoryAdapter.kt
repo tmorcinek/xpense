@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.expense.ExpenseManagerListener
 import com.morcinek.xpense.common.expense.model.Expense
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context) {
-
+class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context), ExpenseManagerListener {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val (value, currency, title, tags, date) = getItem(position)
         holder.titleView.text = title
@@ -34,5 +34,18 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
             titleView = view.findViewById(R.id.title) as TextView
             subtitleView = view.findViewById(R.id.subtitle) as TextView
         }
+    }
+
+    override fun expenseAdded(expense: Expense) {
+        items.add(expense)
+        notifyItemInserted(items.size -1 )
+    }
+
+    override fun expenseDeleted(expense: Expense) {
+        throw UnsupportedOperationException()
+    }
+
+    override fun expenseChanged(expense: Expense) {
+        throw UnsupportedOperationException()
     }
 }

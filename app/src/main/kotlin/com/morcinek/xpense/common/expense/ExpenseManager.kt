@@ -12,7 +12,18 @@ class ExpenseManager {
 
     fun addExpense(expense: Expense) {
         expenses.add(expense)
+        listeners.map { it.expenseAdded(expense) }
     }
 
     fun getExpenses(): List<Expense> = expenses
+
+    private val listeners: MutableList<ExpenseManagerListener> = ArrayList()
+
+    fun registerListener(expenseManagerListener: ExpenseManagerListener) {
+        listeners.add(expenseManagerListener)
+    }
+
+    fun unregisterListener(expenseManagerListener: ExpenseManagerListener) {
+        listeners.remove(expenseManagerListener)
+    }
 }
