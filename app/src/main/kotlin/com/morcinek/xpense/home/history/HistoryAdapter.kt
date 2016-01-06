@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.common.expense.ExpenseManagerListener
-import com.morcinek.xpense.common.expense.model.Expense
+import com.morcinek.xpense.expense.ExpenseManagerListener
+import com.morcinek.xpense.expense.model.Expense
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

@@ -1,6 +1,6 @@
-package com.morcinek.xpense.common.expense
+package com.morcinek.xpense.expense
 
-import com.morcinek.xpense.common.expense.model.Expense
+import com.morcinek.xpense.expense.model.Expense
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

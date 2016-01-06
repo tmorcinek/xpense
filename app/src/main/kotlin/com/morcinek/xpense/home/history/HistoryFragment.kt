@@ -11,7 +11,7 @@ import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
-import com.morcinek.xpense.common.expense.ExpenseManager
+import com.morcinek.xpense.expense.ExpenseManager
 import kotlinx.android.synthetic.main.default_list.*
 import javax.inject.Inject
 
@@ -60,7 +60,7 @@ class HistoryFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun createLayoutAnimation(): Animation {
         val fadeInAnimation = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
-        fadeInAnimation.setDuration(resources.getInteger(android.R.integer.config_mediumAnimTime) as Long)
+        fadeInAnimation.setDuration(resources.getInteger(android.R.integer.config_mediumAnimTime).toLong())
         return fadeInAnimation
     }
 

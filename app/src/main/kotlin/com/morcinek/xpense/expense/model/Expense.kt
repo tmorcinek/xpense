@@ -1,4 +1,4 @@
-package com.morcinek.xpense.common.expense.model
+package com.morcinek.xpense.expense.model
 
 import java.util.*
 
