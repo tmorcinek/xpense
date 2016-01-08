@@ -11,7 +11,7 @@ import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
-import com.morcinek.xpense.expense.ExpenseManager
+import com.morcinek.xpense.expense.common.ExpenseManager
 import kotlinx.android.synthetic.main.default_list.*
 import javax.inject.Inject
 

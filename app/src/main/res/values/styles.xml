@@ -2,11 +2,21 @@
 <resources>
     <style name="ItemTitle">
         <item name="android:textColor">@color/text</item>
-        <item name="android:textSize">@dimen/contact_list_title_text_size</item>
+        <item name="android:textSize">@dimen/item_title_text_size</item>
     </style>
 
     <style name="ItemSubtitle">
         <item name="android:textColor">@color/text_secondary</item>
-        <item name="android:textSize">@dimen/contact_list_subtitle_text_size</item>
+        <item name="android:textSize">@dimen/item_subtitle_text_size</item>
+    </style>
+
+    <style name="ExpenseTitle">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/expense_item_title_text_size</item>
+    </style>
+    <style name="ExpenseValue">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/expense_item_value_text_size</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

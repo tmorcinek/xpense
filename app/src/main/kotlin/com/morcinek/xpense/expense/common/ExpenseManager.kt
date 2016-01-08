@@ -1,6 +1,6 @@
-package com.morcinek.xpense.expense
+package com.morcinek.xpense.expense.common
 
-import com.morcinek.xpense.expense.model.Expense
+import com.morcinek.xpense.expense.common.model.Expense
 import java.util.*
 
 /**

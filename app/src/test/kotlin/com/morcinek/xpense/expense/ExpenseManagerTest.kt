@@ -1,6 +1,7 @@
 package com.morcinek.xpense.expense
 
-import com.morcinek.xpense.expense.model.Expense
+import com.morcinek.xpense.expense.common.ExpenseManager
+import com.morcinek.xpense.expense.common.model.Expense
 import org.junit.Before
 import org.junit.Test
 import java.util.*

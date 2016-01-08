@@ -2,7 +2,7 @@ package com.morcinek.xpense.dagger.modules
 
 import android.content.Context
 import com.morcinek.xpense.Application
-import com.morcinek.xpense.expense.ExpenseManager
+import com.morcinek.xpense.expense.common.ExpenseManager
 import com.morcinek.xpense.dagger.ForApplication
 import dagger.Module
 import dagger.Provides

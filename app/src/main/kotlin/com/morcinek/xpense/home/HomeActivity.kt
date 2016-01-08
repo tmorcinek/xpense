@@ -1,20 +1,19 @@
 package com.morcinek.xpense.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.expense.ExpenseManager
-import com.morcinek.xpense.expense.model.Expense
+import com.morcinek.xpense.expense.ExpenseActivity
+import com.morcinek.xpense.expense.common.ExpenseManager
 import com.morcinek.xpense.home.history.HistoryFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -55,8 +54,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setupActionButton() {
         fab.setOnClickListener({
-            val expense = Expense(120f, "GBP", "Pranie", setOf<String>(), Date())
-            expenseManager.addExpense(expense)
+            startActivity(Intent(this, ExpenseActivity::class.java))
         })
     }
 

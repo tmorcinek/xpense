@@ -11,6 +11,9 @@
     <dimen name="item_height">72dp</dimen>
     <dimen name="item_image_height">30dp</dimen>
     <dimen name="item_text_margin">72dp</dimen>
-    <dimen name="contact_list_title_text_size">17sp</dimen>
-    <dimen name="contact_list_subtitle_text_size">11sp</dimen>
+
+    <dimen name="item_title_text_size">17sp</dimen>
+    <dimen name="item_subtitle_text_size">11sp</dimen>
+    <dimen name="expense_item_title_text_size">17sp</dimen>
+    <dimen name="expense_item_value_text_size">24sp</dimen>
 </resources>
