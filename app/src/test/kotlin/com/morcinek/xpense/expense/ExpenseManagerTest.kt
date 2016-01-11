@@ -42,6 +42,6 @@ class ExpenseManagerTest {
         expenses.should.notBeNull().and.haveSize(1)
         val expense = expenses.elementAt(0)
         expense.should.notBeNull()
-        expense.title.should.be("Pranie")
+        expense.note.should.be("Pranie")
     }
 }

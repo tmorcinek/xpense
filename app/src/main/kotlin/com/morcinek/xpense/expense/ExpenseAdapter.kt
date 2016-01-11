@@ -2,37 +2,61 @@ package com.morcinek.xpense.expense
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.expense.ExpenseItem
+import com.morcinek.xpense.expense.common.model.Expense
 import java.util.*
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<ExpenseItem, ExpenseAdapter.ViewHolder>(context) {
+class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
+
+    val expense = Expense()
 
     init {
-        val expenseItems = ArrayList<ExpenseItem>()
-        expenseItems.add(ExpenseItem("Amount", ""))
-        expenseItems.add(ExpenseItem("Category", ""))
-        expenseItems.add(ExpenseItem("Note", ""))
-        expenseItems.add(ExpenseItem("Date", ""))
-        setList(expenseItems)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (title, value) = getItem(position)
-        holder.titleView.text = title
-        holder.valueView.text = value
+        setList(listOf(R.string.title_amount, R.string.title_category, R.string.title_note, R.string.title_date))
+        setItemClickListener(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.expense_item, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        initializeOnClickListener(holder, item)
+        holder.titleView.text = context.getString(item)
+        when (item) {
+            R.string.title_amount -> holder.valueView.text = "$ ${expense.value}"
+            R.string.title_category -> holder.valueView.text = expense.category
+            R.string.title_note -> holder.valueView.text = expense.note
+            R.string.title_date -> holder.valueView.text = getRelativeDay(expense.date)
+        }
+    }
+
+    private fun getRelativeDay(date: Date): String {
+        return DateUtils.getRelativeDateTimeString(context,
+                date.time - DateUtils.DAY_IN_MILLIS * 3,
+                DateUtils.DAY_IN_MILLIS,
+                DateUtils.DAY_IN_MILLIS * 3,
+                DateUtils.FORMAT_NUMERIC_DATE ).toString();
+    }
+
+    override fun onItemClicked(item: Int) {
+        when (item) {
+            R.string.title_amount -> TODO() //start amount activity
+            R.string.title_category -> TODO() // start category picker activity
+            R.string.title_note -> TODO() // start text activity
+            R.string.title_date -> TODO() // start date picker
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,3 +70,4 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<ExpenseItem
         }
     }
 }
+

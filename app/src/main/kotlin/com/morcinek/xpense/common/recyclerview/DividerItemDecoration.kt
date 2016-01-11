@@ -10,20 +10,17 @@ import android.view.View
 import com.morcinek.xpense.R
 
 
-class DividerItemDecoration(context: Context, dividerDrawableId: Int = R.drawable.default_divider) : RecyclerView.ItemDecoration() {
+class DividerItemDecoration(context: Context, dividerDrawableId: Int = R.drawable.default_divider,
+                            var showFirst: Boolean = false, var showLast: Boolean = false) : RecyclerView.ItemDecoration() {
 
     private val divider: Drawable?
     private val dividerHeight: Int
     private val dividerWidth: Int
-    private var first = false
-    private var last = false
 
     init {
         divider = context.resources.getDrawable(dividerDrawableId)
         dividerHeight = if (divider == null) 0 else divider.intrinsicHeight
         dividerWidth = if (divider == null) 0 else divider.intrinsicWidth
-        first = true
-        last = false
     }
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
@@ -36,8 +33,8 @@ class DividerItemDecoration(context: Context, dividerDrawableId: Int = R.drawabl
         val position = (view.layoutParams as RecyclerView.LayoutParams).viewLayoutPosition
         val firstItem = position == 0
         val lastItem = position == parent.adapter.itemCount - 1
-        val dividerBefore = first || !firstItem
-        val dividerAfter = last && lastItem
+        val dividerBefore = showFirst || !firstItem
+        val dividerAfter = showLast && lastItem
 
         if (getOrientation(parent) == LinearLayoutManager.VERTICAL) {
             outRect.top = if (dividerBefore) dividerHeight else 0
@@ -81,7 +78,7 @@ class DividerItemDecoration(context: Context, dividerDrawableId: Int = R.drawabl
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
             val position = params.viewLayoutPosition
-            if (position == 0 && !first) {
+            if (position == 0 && !showFirst) {
                 continue
             }
             if (vertical) {
@@ -95,7 +92,7 @@ class DividerItemDecoration(context: Context, dividerDrawableId: Int = R.drawabl
             divider.draw(c)
         }
 
-        if (last && childCount > 0) {
+        if (showLast && childCount > 0) {
             val child = parent.getChildAt(childCount - 1)
             val params = child.layoutParams as RecyclerView.LayoutParams
             val position = params.viewLayoutPosition

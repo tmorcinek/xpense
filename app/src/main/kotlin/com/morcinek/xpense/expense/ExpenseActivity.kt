@@ -36,7 +36,7 @@ class ExpenseActivity : AppCompatActivity() {
         recyclerView.adapter = expenseAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.addItemDecoration(DividerItemDecoration(this))
+        recyclerView.addItemDecoration(DividerItemDecoration(context = this, showLast = true))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

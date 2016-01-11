@@ -4,4 +4,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="done">Done</string>
+
+    <string name="title_amount">Amount</string>
+    <string name="title_category">Category</string>
+    <string name="title_note">Note</string>
+    <string name="title_date">Date</string>
 </resources>
