@@ -19,4 +19,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="BetterPickersTheme">
+        <item name="bpMainColor1">@color/primary</item>
+        <item name="bpMainColor2">@color/background</item>
+        <item name="bpAccentColor">@color/accent</item>
+        <item name="bpMainTextColor">@color/text_white</item>
+        <item name="bpDoneTextColor">@color/text_white</item>
+        <item name="bpLineColor">@color/primary_dark</item>
+        <item name="bpDoneBackgroundColor">@color/background</item>
+        <item name="bpSelectionAlpha">102</item>
+    </style>
+
 </resources>

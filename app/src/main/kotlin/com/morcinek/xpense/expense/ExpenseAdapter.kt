@@ -15,13 +15,12 @@ import java.util.*
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
+class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context) {
 
     val expense = Expense()
 
     init {
         setList(listOf(R.string.title_amount, R.string.title_category, R.string.title_note, R.string.title_date))
-        setItemClickListener(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
@@ -36,20 +35,11 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
             R.string.title_amount -> holder.valueView.text = "$ ${expense.value}"
             R.string.title_category -> holder.valueView.text = expense.category
             R.string.title_note -> holder.valueView.text = expense.note
-            R.string.title_date -> holder.valueView.text = dateFormatForTime(expense.date.time)
+            R.string.title_date -> holder.valueView.text = dateFormatForTime(expense.date.timeInMillis)
         }
     }
 
     private fun dateFormatForTime(time: Long) = DateUtils.getRelativeTimeSpanString(time, Date().time, DateUtils.DAY_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR)
-
-    override fun onItemClicked(item: Int) {
-        when (item) {
-            R.string.title_amount -> TODO() //start amount activity
-            R.string.title_category -> TODO() // start category picker activity
-            R.string.title_note -> TODO() // start text activity
-            R.string.title_date -> TODO() // start date picker
-        }
-    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -62,4 +52,3 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         }
     }
 }
-
