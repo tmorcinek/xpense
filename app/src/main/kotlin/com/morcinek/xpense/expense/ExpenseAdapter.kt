@@ -11,8 +11,6 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.expense.common.model.Expense
 import java.util.*
-import kotlin.properties.ReadOnlyProperty
-import kotlin.reflect.KProperty
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -38,17 +36,11 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
             R.string.title_amount -> holder.valueView.text = "$ ${expense.value}"
             R.string.title_category -> holder.valueView.text = expense.category
             R.string.title_note -> holder.valueView.text = expense.note
-            R.string.title_date -> holder.valueView.text = getRelativeDay(expense.date)
+            R.string.title_date -> holder.valueView.text = dateFormatForTime(expense.date.time)
         }
     }
 
-    private fun getRelativeDay(date: Date): String {
-        return DateUtils.getRelativeDateTimeString(context,
-                date.time - DateUtils.DAY_IN_MILLIS * 3,
-                DateUtils.DAY_IN_MILLIS,
-                DateUtils.DAY_IN_MILLIS * 3,
-                DateUtils.FORMAT_NUMERIC_DATE ).toString();
-    }
+    private fun dateFormatForTime(time: Long) = DateUtils.getRelativeTimeSpanString(time, Date().time, DateUtils.DAY_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR)
 
     override fun onItemClicked(item: Int) {
         when (item) {
