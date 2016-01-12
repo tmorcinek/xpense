@@ -6,11 +6,15 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment
+import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.betterpickers.setCurrentNumberAsInteger
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
+import com.morcinek.xpense.expense.common.model.Expense
 import kotlinx.android.synthetic.main.expense.*
 import java.util.*
 
@@ -59,11 +63,25 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
 
     override fun onItemClicked(item: Int) {
         when (item) {
-            R.string.title_amount -> TODO() //start amount activity
+            R.string.title_amount -> startAmountPicker(expenseAdapter.expense)
             R.string.title_category -> TODO() // start category picker activity
             R.string.title_note -> TODO() // start text activity
             R.string.title_date -> startDatePicker(expenseAdapter.expense.date)
         }
+    }
+
+    private fun startAmountPicker(expense: Expense) {
+        val numberPickerBuilder = NumberPickerBuilder()
+                .setFragmentManager(getSupportFragmentManager())
+                .setStyleResId(R.style.BetterPickersDialogFragment)
+                .setPlusMinusVisibility(View.GONE)
+                .setLabelText("$")
+                .addNumberPickerDialogHandler { reference, number, decimal, isNegative, fullNumber ->
+                    expense.value = fullNumber
+                    expenseAdapter.notifyDataSetChanged()
+                }
+        numberPickerBuilder.setCurrentNumberAsInteger(expense.value)
+        numberPickerBuilder.show()
     }
 
     private fun startDatePicker(calendar: Calendar) {
@@ -72,8 +90,8 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
                     calendar.set(year, month, day)
                     expenseAdapter.notifyDataSetChanged()
                 },
-                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        calendarDatePickerDialogFragment.setThemeCustom(R.style.BetterPickersTheme);
-        calendarDatePickerDialogFragment.show(supportFragmentManager, "");
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+        calendarDatePickerDialogFragment.setThemeCustom(R.style.BetterPickersTheme)
+        calendarDatePickerDialogFragment.show(supportFragmentManager, CalendarDatePickerDialogFragment::class.java.name)
     }
 }
