@@ -16,4 +16,7 @@
     <dimen name="item_subtitle_text_size">11sp</dimen>
     <dimen name="expense_item_title_text_size">17sp</dimen>
     <dimen name="expense_item_value_text_size">24sp</dimen>
+
+    <dimen name="dialog_header_height">30dp</dimen>
+    <dimen name="dialog_item_height">54sp</dimen>
 </resources>

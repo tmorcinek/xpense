@@ -20,7 +20,7 @@ class ExpenseManagerTest {
         expenseManager = ExpenseManager()
     }
 
-    private fun exampleExpense() = Expense(120f, "GBP", "Pranie", setOf<String>(), Date())
+    private fun exampleExpense() = Expense(120.0, "GBP", "Pranie", setOf<String>(), Calendar.getInstance())
 
     @Test
     fun addExpenseTest() {

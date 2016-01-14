@@ -13,6 +13,7 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.betterpickers.setCurrentNumberAsInteger
+import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.expense.common.model.Expense
 import kotlinx.android.synthetic.main.expense.*
@@ -22,6 +23,7 @@ import java.util.*
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
+
     private lateinit var expenseAdapter: ExpenseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,8 +67,8 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         when (item) {
             R.string.title_amount -> startAmountPicker(expenseAdapter.expense)
             R.string.title_category -> TODO() // start category picker activity
-            R.string.title_note -> TODO() // start text activity
-            R.string.title_date -> startDatePicker(expenseAdapter.expense.date)
+            R.string.title_note -> startTextPicker(expenseAdapter.expense)
+            R.string.title_date -> startDatePicker(expenseAdapter.expense)
         }
     }
 
@@ -84,7 +86,18 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         numberPickerBuilder.show()
     }
 
-    private fun startDatePicker(calendar: Calendar) {
+    private fun startTextPicker(expense: Expense) {
+        val textPickerFragment = TextPickerDialogFragment()
+        textPickerFragment.text = expense.note
+        textPickerFragment.onTextSetListener = { textPickerFragment, text ->
+            expense.note = text
+            expenseAdapter.notifyDataSetChanged()
+        }
+        textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
+    }
+
+    private fun startDatePicker(expense: Expense) {
+        val calendar = expense.date
         val calendarDatePickerDialogFragment = CalendarDatePickerDialogFragment.newInstance(
                 { dialogFragment, year, month, day ->
                     calendar.set(year, month, day)

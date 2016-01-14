@@ -19,4 +19,21 @@
         <item name="android:textSize">@dimen/expense_item_value_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="DialogHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dialog_header_height</item>
+        <item name="android:background">?colorPrimaryDark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+    <style name="DialogItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dialog_item_height</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:textColor">?colorAccent</item>
+        <item name="android:paddingLeft">@dimen/medium_font_padding</item>
+        <item name="android:paddingRight">@dimen/medium_font_padding</item>
+    </style>
 </resources>
