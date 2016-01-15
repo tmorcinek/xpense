@@ -13,16 +13,22 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.betterpickers.setCurrentNumberAsInteger
+import com.morcinek.xpense.common.hint.HintProvider
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.expense.common.model.Expense
+import com.morcinek.xpense.expense.note.NoteAdapter
 import kotlinx.android.synthetic.main.expense.*
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
+
+    @Inject
+    lateinit var hintProvider: HintProvider
 
     private lateinit var expenseAdapter: ExpenseAdapter
 
@@ -88,6 +94,8 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
 
     private fun startTextPicker(expense: Expense) {
         val textPickerFragment = TextPickerDialogFragment()
+        textPickerFragment.adapter = NoteAdapter(this)
+        textPickerFragment.items = hintProvider.provideNoteList()
         textPickerFragment.text = expense.note
         textPickerFragment.onTextSetListener = { textPickerFragment, text ->
             expense.note = text

@@ -12,8 +12,8 @@
 
     <EditText
         android:id="@+id/editText"
-        style="@style/DialogItem"
-        android:inputType="textCapWords" />
+        style="@style/DialogItem.EditText"
+        android:inputType="textCapSentences" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
