@@ -37,9 +37,17 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         setContentView(R.layout.expense)
         (application as Application).component.inject(this)
 
-        setSupportActionBar(toolbar)
+        setupToolbar()
         setupAdapter()
         setupRecyclerView()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationIcon(R.drawable.ic_action_cancel)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupAdapter() {
@@ -61,12 +69,17 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
             R.id.action_done -> {
                 setResult(RESULT_OK)
                 finish()
+                return true
             }
+            else -> return super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onItemClicked(item: Int) {
