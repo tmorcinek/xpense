@@ -16,7 +16,7 @@ import com.morcinek.xpense.expense.common.model.Expense
  */
 class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context), ExpenseManagerListener {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (value, currency, title, tags, date) = getItem(position)
+        val (value, category, title, date) = getItem(position)
         holder.titleView.text = title
         holder.subtitleView.text = "${value}"
     }

@@ -1,6 +1,7 @@
 package com.morcinek.xpense.expense
 
 import com.morcinek.xpense.expense.common.ExpenseManager
+import com.morcinek.xpense.expense.common.model.Category
 import com.morcinek.xpense.expense.common.model.Expense
 import org.junit.Before
 import org.junit.Test
@@ -20,7 +21,7 @@ class ExpenseManagerTest {
         expenseManager = ExpenseManager()
     }
 
-    private fun exampleExpense() = Expense(120.0, "GBP", "Pranie", setOf<String>(), Calendar.getInstance())
+    private fun exampleExpense() = Expense(120.0, Category("Food and Drinks", 0), "Pranie")
 
     @Test
     fun addExpenseTest() {
@@ -43,5 +44,6 @@ class ExpenseManagerTest {
         val expense = expenses.elementAt(0)
         expense.should.notBeNull()
         expense.note.should.be("Pranie")
+        expense.date.should.notBeNull()
     }
 }

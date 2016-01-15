@@ -33,7 +33,7 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         holder.titleView.text = context.getString(item)
         when (item) {
             R.string.title_amount -> holder.valueView.text = "$ ${expense.value}"
-            R.string.title_category -> holder.valueView.text = expense.category
+            R.string.title_category -> holder.valueView.text = expense.category?.name
             R.string.title_note -> holder.valueView.text = expense.note
             R.string.title_date -> holder.valueView.text = dateFormatForTime(expense.date.timeInMillis)
         }
