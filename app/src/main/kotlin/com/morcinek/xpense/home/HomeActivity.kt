@@ -15,6 +15,7 @@ import com.morcinek.xpense.home.history.HistoryFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import javax.inject.Inject
+import org.jetbrains.anko.*
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
@@ -53,9 +54,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setupActionButton() {
-        fab.setOnClickListener({
-            startActivity(Intent(this, ExpenseActivity::class.java))
-        })
+        fab.setOnClickListener {
+            startActivity<ExpenseActivity>()
+        }
     }
 
     private fun setupNavigationView() {
