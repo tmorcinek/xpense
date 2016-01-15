@@ -1,4 +1,4 @@
-package com.morcinek.xpense.common.hint
+package com.morcinek.xpense.hint
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

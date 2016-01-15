@@ -2,7 +2,7 @@ package com.morcinek.xpense.dagger.modules
 
 import android.content.Context
 import com.morcinek.xpense.Application
-import com.morcinek.xpense.common.hint.HintProvider
+import com.morcinek.xpense.hint.HintProvider
 import com.morcinek.xpense.dagger.ForApplication
 import com.morcinek.xpense.expense.common.ExpenseManager
 import dagger.Module

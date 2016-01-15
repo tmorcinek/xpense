@@ -13,11 +13,11 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.betterpickers.setCurrentNumberAsInteger
-import com.morcinek.xpense.common.hint.HintProvider
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.expense.common.model.Expense
 import com.morcinek.xpense.expense.note.NoteAdapter
+import com.morcinek.xpense.hint.HintProvider
 import kotlinx.android.synthetic.main.expense.*
 import java.util.*
 import javax.inject.Inject
@@ -45,9 +45,6 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_action_cancel)
-        toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
     }
 
     private fun setupAdapter() {
