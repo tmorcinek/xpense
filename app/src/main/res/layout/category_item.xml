@@ -10,6 +10,7 @@
 
     <View
         android:id="@+id/icon"
+        android:background="@drawable/color_icon"
         android:layout_width="@dimen/item_image_height"
         android:layout_height="@dimen/item_image_height" />
 

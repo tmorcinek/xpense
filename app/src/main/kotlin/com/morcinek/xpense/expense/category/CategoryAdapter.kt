@@ -1,8 +1,7 @@
 package com.morcinek.xpense.expense.category
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,6 @@ import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.expense.common.model.Category
-import kotlinx.android.synthetic.main.navigation_header.view.*
-import org.jetbrains.anko.backgroundColor
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -25,9 +22,9 @@ class CategoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Category, 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.textView.text = item.name
-        holder.iconView.backgroundColor = item.color
         initializeOnClickListener(holder, item)
+        holder.textView.text = item.name
+        (holder.iconView.background as GradientDrawable).setColor(item.color)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
