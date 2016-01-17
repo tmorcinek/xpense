@@ -14,16 +14,20 @@ import kotlinx.android.synthetic.main.text_picker.*
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
+class NotePickerDialogFragment : TextPickerDialogFragment<String>(), TextView.OnEditorActionListener {
 
     override fun getLayoutId() = R.layout.text_picker
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dialog.window.showSoftInput()
+        setupEditText()
+    }
 
-        setEditText(selectedItem)
+    private fun setupEditText() {
+        dialog.window.showSoftInput()
+        editText.setOnEditorActionListener(this)
+        setEditText(selectedItem!!)
     }
 
     private fun setEditText(text: String) {
@@ -37,7 +41,7 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
 
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
-            onTextSetListener(this, editText.text.toString())
+            onItemSetListener(this, editText.text.toString())
             dialog.window.hideSoftInput()
             dialog.dismiss()
             return true

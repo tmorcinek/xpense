@@ -15,7 +15,7 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 class NoteAdapter(context: Context) : AbstractRecyclerViewAdapter<String, NoteAdapter.ViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.string_item, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.note_item, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

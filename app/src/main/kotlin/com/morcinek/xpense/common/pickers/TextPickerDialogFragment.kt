@@ -20,15 +20,15 @@ import kotlinx.android.synthetic.main.text_picker.*
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T>, TextView.OnEditorActionListener, TextWatcher {
+abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T>, TextWatcher {
 
-    lateinit var onTextSetListener: (TextPickerDialogFragment<T>, String) -> Unit
+    lateinit var onItemSetListener: (TextPickerDialogFragment<T>, T) -> Unit
 
     lateinit var adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
 
     lateinit var items: List<T>
 
-    lateinit var selectedItem: T
+    var selectedItem: T? = null
 
     abstract fun getLayoutId(): Int
 
@@ -63,7 +63,6 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
 
     private fun setupEditText() {
         editText.addTextChangedListener(this)
-        editText.setOnEditorActionListener(this)
     }
 
     override fun onDestroyView() {
