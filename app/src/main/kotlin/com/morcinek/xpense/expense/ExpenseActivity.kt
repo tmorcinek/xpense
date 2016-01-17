@@ -12,7 +12,7 @@ import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.common.betterpickers.setCurrentNumberAsInteger
+import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration

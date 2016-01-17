@@ -1,7 +1,7 @@
-package com.morcinek.xpense.common.betterpickers
+package com.morcinek.xpense.common.utils.betterpickers
 
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
-import com.morcinek.xpense.common.types.isInteger
+import com.morcinek.xpense.common.utils.isInteger
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

@@ -1,4 +1,4 @@
-package com.morcinek.xpense.common.types
+package com.morcinek.xpense.common.utils
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
