@@ -13,6 +13,7 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.betterpickers.setCurrentNumberAsInteger
+import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.expense.common.model.Expense
@@ -49,7 +50,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
 
     private fun setupAdapter() {
         expenseAdapter = ExpenseAdapter(this)
-        expenseAdapter.setItemClickListener(this)
+        expenseAdapter.itemClickListener = this
     }
 
     private fun setupRecyclerView() {
@@ -82,7 +83,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     override fun onItemClicked(item: Int) {
         when (item) {
             R.string.title_amount -> startAmountPicker(expenseAdapter.expense)
-            R.string.title_category -> TODO() // start category picker activity
+            R.string.title_category -> startCategoryPicker(expenseAdapter.expense)
             R.string.title_note -> startTextPicker(expenseAdapter.expense)
             R.string.title_date -> startDatePicker(expenseAdapter.expense)
         }
@@ -102,11 +103,23 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         numberPickerBuilder.show()
     }
 
+    private fun startCategoryPicker(expense: Expense) {
+//        val textPickerFragment = TextPickerDialogFragment()
+//        textPickerFragment.adapter = NoteAdapter(this)
+//        textPickerFragment.items = hintProvider.provideNoteList()
+//        textPickerFragment.text = expense.note
+//        textPickerFragment.onTextSetListener = { textPickerFragment, text ->
+//            expense.note = text
+//            expenseAdapter.notifyDataSetChanged()
+//        }
+//        textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
+    }
+
     private fun startTextPicker(expense: Expense) {
-        val textPickerFragment = TextPickerDialogFragment()
+        val textPickerFragment = NotePickerDialogFragment()
         textPickerFragment.adapter = NoteAdapter(this)
         textPickerFragment.items = hintProvider.provideNoteList()
-        textPickerFragment.text = expense.note
+        textPickerFragment.selectedItem = expense.note
         textPickerFragment.onTextSetListener = { textPickerFragment, text ->
             expense.note = text
             expenseAdapter.notifyDataSetChanged()

@@ -11,11 +11,7 @@ abstract class AbstractRecyclerViewAdapter<T, H : RecyclerView.ViewHolder>(prote
 
     protected val items = ArrayList<T>()
 
-    private var itemClickListener: OnItemClickListener<T>? = null
-
-    fun setItemClickListener(itemClickListener: OnItemClickListener<T>) {
-        this.itemClickListener = itemClickListener
-    }
+    var itemClickListener: OnItemClickListener<T>? = null
 
     protected fun getItem(position: Int): T {
         return items[position]

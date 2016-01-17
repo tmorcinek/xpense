@@ -7,8 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
-import android.view.inputmethod.EditorInfo
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
@@ -19,18 +20,20 @@ import kotlinx.android.synthetic.main.text_picker.*
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class TextPickerDialogFragment : DialogFragment(), OnItemClickListener<Any>, TextView.OnEditorActionListener, TextWatcher {
+abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T>, TextView.OnEditorActionListener, TextWatcher {
 
-    lateinit var onTextSetListener: (TextPickerDialogFragment, String) -> Unit
+    lateinit var onTextSetListener: (TextPickerDialogFragment<T>, String) -> Unit
 
     lateinit var adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
 
-    lateinit var items: List<Any>
+    lateinit var items: List<T>
 
-    lateinit var text: String
+    lateinit var selectedItem: T
+
+    abstract fun getLayoutId(): Int
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.text_picker, container)
+        return inflater.inflate(getLayoutId(), container)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +43,6 @@ class TextPickerDialogFragment : DialogFragment(), OnItemClickListener<Any>, Tex
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dialog.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
 
         setupAdapter()
         setupRecyclerView()
@@ -49,43 +51,24 @@ class TextPickerDialogFragment : DialogFragment(), OnItemClickListener<Any>, Tex
 
     private fun setupAdapter() {
         adapter.setList(items)
-        adapter.setItemClickListener(this)
+        adapter.itemClickListener = this
     }
 
     private fun setupRecyclerView() {
-        recyclerView.setLayoutManager(LinearLayoutManager(activity))
-        recyclerView.setItemAnimator(DefaultItemAnimator())
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(DividerItemDecoration(context, R.drawable.string_divider, showLast = true))
-        recyclerView.setAdapter(adapter)
     }
 
     private fun setupEditText() {
         editText.addTextChangedListener(this)
         editText.setOnEditorActionListener(this)
-        setEditText(text)
-    }
-
-    private fun setEditText(text: String) {
-        editText.setText(text)
-        editText.setSelection(text.length)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         editText.removeTextChangedListener(this)
-    }
-
-    override fun onItemClicked(item: Any) {
-        setEditText(item.toString())
-    }
-
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
-            onTextSetListener(this, editText.text.toString())
-            dialog.dismiss()
-            return true
-        }
-        return false
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

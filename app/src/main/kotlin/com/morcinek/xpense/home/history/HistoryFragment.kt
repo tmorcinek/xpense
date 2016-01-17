@@ -5,7 +5,6 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
@@ -52,17 +51,13 @@ class HistoryFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupRecyclerView() {
-        recyclerView.setLayoutManager(LinearLayoutManager(activity))
-        recyclerView.setItemAnimator(DefaultItemAnimator())
-        recyclerView.setAdapter(historyAdapter)
-        recyclerView.setLayoutAnimation(LayoutAnimationController(createLayoutAnimation()))
+        recyclerView.adapter = historyAdapter
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
     }
 
-    private fun createLayoutAnimation(): Animation {
-        val fadeInAnimation = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
-        fadeInAnimation.setDuration(resources.getInteger(android.R.integer.config_mediumAnimTime).toLong())
-        return fadeInAnimation
-    }
+    private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
 
     private fun setupSwipeRefreshLayout() {
         swipeRefreshLayout.setColorSchemeColors(resources.getColor(R.color.accent))
