@@ -16,11 +16,10 @@ import kotlinx.android.synthetic.main.text_picker.*
  */
 class NotePickerDialogFragment : TextPickerDialogFragment<String>(), TextView.OnEditorActionListener {
 
-    override fun getLayoutId() = R.layout.text_picker
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setTitle(R.string.title_note)
         setupEditText()
     }
 

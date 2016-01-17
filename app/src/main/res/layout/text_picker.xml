@@ -7,8 +7,8 @@
     android:orientation="vertical">
 
     <TextView
-        style="@style/DialogHeader"
-        android:text="@string/title_note" />
+        android:id="@+id/titleView"
+        style="@style/DialogHeader" />
 
     <EditText
         android:id="@+id/editText"

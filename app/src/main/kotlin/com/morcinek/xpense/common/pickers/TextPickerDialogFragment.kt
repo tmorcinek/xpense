@@ -10,7 +10,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter.OnItemClickListener
@@ -30,10 +29,8 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
 
     var selectedItem: T? = null
 
-    abstract fun getLayoutId(): Int
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getLayoutId(), container)
+        return inflater.inflate(R.layout.text_picker, container)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +44,10 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
         setupAdapter()
         setupRecyclerView()
         setupEditText()
+    }
+
+    protected fun setTitle(title: Int) {
+        titleView.setText(title)
     }
 
     private fun setupAdapter() {
