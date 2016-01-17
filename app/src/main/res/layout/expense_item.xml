@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_height"
+    android:background="@drawable/list_item_background"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="@dimen/horizontal_margin"
     android:paddingRight="@dimen/horizontal_margin"
-    tools:showIn="@layout/expense"
-    android:background="@drawable/list_item_background">
+    tools:showIn="@layout/expense">
 
     <TextView
         android:id="@+id/title"
@@ -23,5 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end" />
+
+    <View
+        android:id="@+id/icon"
+        android:layout_width="@dimen/expense_item_image_height"
+        android:layout_height="@dimen/expense_item_image_height"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:background="@drawable/color_icon"
+        android:visibility="gone" />
 </LinearLayout>
 

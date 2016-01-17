@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.expense.common.model.Expense
 import java.util.*
 
@@ -31,9 +32,16 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.titleView.text = context.getString(item)
+        holder.iconView.visibility = View.GONE
         when (item) {
             R.string.title_amount -> holder.valueView.text = "$ ${expense.value}"
-            R.string.title_category -> holder.valueView.text = expense.category?.name
+            R.string.title_category -> {
+                holder.valueView.text = expense.category?.name
+                if (expense.category != null) {
+                    holder.iconView.setDrawableColor(expense.category!!.color)
+                    holder.iconView.visibility = View.VISIBLE
+                }
+            }
             R.string.title_note -> holder.valueView.text = expense.note
             R.string.title_date -> holder.valueView.text = dateFormatForTime(expense.date.timeInMillis)
         }
@@ -45,10 +53,12 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
 
         val titleView: TextView
         val valueView: TextView
+        val iconView: View
 
         init {
             titleView = view.findViewById(R.id.title) as TextView
             valueView = view.findViewById(R.id.value) as TextView
+            iconView = view.findViewById(R.id.icon)
         }
     }
 }

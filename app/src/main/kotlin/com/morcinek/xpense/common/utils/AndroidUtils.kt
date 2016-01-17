@@ -1,5 +1,7 @@
 package com.morcinek.xpense.common.utils
 
+import android.graphics.drawable.GradientDrawable
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 
@@ -13,4 +15,8 @@ fun Window.showSoftInput() {
 
 fun Window.hideSoftInput() {
     setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+}
+
+fun View.setDrawableColor(color: Int) {
+    (background as GradientDrawable).setColor(color)
 }

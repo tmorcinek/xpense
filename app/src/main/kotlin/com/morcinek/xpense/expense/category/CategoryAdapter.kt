@@ -1,7 +1,6 @@
 package com.morcinek.xpense.expense.category
 
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.expense.common.model.Category
 
 /**
@@ -24,7 +24,7 @@ class CategoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Category, 
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.textView.text = item.name
-        (holder.iconView.background as GradientDrawable).setColor(item.color)
+        holder.iconView.setDrawableColor(item.color)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
