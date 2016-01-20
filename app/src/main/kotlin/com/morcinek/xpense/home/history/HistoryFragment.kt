@@ -1,7 +1,6 @@
 package com.morcinek.xpense.home.history
 
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -17,7 +16,7 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class HistoryFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+class HistoryFragment : BaseFragment() {
 
     @Inject
     lateinit var expenseManager: ExpenseManager
@@ -32,7 +31,6 @@ class HistoryFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
         setupAdapter()
         setupRecyclerView()
-        setupSwipeRefreshLayout()
 
         expenseManager.registerListener(historyAdapter)
     }
@@ -55,13 +53,4 @@ class HistoryFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
-
-    private fun setupSwipeRefreshLayout() {
-        swipeRefreshLayout.setColorSchemeColors(resources.getColor(R.color.accent))
-        swipeRefreshLayout.setOnRefreshListener(this)
-    }
-
-    override fun onRefresh() {
-
-    }
 }
