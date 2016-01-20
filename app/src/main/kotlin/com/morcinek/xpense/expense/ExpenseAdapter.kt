@@ -18,7 +18,11 @@ import java.util.*
  */
 class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context) {
 
-    val expense = Expense()
+    var expense: Expense = Expense()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     init {
         setList(listOf(R.string.title_amount, R.string.title_category, R.string.title_note, R.string.title_date))

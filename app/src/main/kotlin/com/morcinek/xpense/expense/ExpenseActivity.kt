@@ -12,15 +12,17 @@ import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
-import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
+import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
+import com.morcinek.xpense.common.utils.getParcelable
+import com.morcinek.xpense.common.utils.putParcelable
 import com.morcinek.xpense.data.CategoryManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.common.model.Expense
 import com.morcinek.xpense.expense.note.NoteAdapter
+import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.hint.HintProvider
 import kotlinx.android.synthetic.main.expense.*
 import java.util.*
@@ -47,6 +49,16 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         setupToolbar()
         setupAdapter()
         setupRecyclerView()
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        expenseAdapter.expense = savedInstanceState!!.getParcelable()!!
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState!!.putParcelable(expenseAdapter.expense)
     }
 
     private fun setupToolbar() {
