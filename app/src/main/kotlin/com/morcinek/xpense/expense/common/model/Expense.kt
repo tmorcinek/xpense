@@ -3,7 +3,9 @@ package com.morcinek.xpense.expense.common.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.morcinek.xpense.common.utils.createParcel
+import com.morcinek.xpense.common.utils.readCalendar
 import com.morcinek.xpense.common.utils.readParcelable
+import com.morcinek.xpense.common.utils.writeCalendar
 import java.util.*
 
 /**
@@ -20,11 +22,12 @@ data class Expense(var value: Double = 0.0, var category: Category? = null, var 
         dest.writeDouble(value)
         dest.writeParcelable(category, 0)
         dest.writeString(note)
+        dest.writeCalendar(date)
     }
 
     override fun describeContents() = 0
 
     companion object {
-        val CREATOR = createParcel { Expense(it.readDouble(), it.readParcelable(Category.CREATOR), it.readString()) }
+        val CREATOR = createParcel { Expense(it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar()) }
     }
 }

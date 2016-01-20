@@ -2,6 +2,7 @@ package com.morcinek.xpense.common.utils
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.util.*
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -18,3 +19,11 @@ fun <T : Parcelable> Parcel.readParcelable(creator: Parcelable.Creator<T>): T? {
     if (readString() != null) return creator.createFromParcel(this) else return null
 }
 
+// Calendar
+fun Parcel.readCalendar(): Calendar {
+    val instance = Calendar.getInstance()
+    instance.timeInMillis = readLong()
+    return instance
+}
+
+fun Parcel.writeCalendar(calendar: Calendar) = writeLong(calendar.timeInMillis)
