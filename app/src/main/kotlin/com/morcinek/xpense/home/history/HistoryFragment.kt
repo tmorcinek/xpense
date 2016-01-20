@@ -33,15 +33,12 @@ class HistoryFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         setupAdapter()
         setupRecyclerView()
         setupSwipeRefreshLayout()
-    }
 
-    override fun onResume() {
-        super.onResume()
         expenseManager.registerListener(historyAdapter)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroyView() {
+        super.onDestroyView()
         expenseManager.unregisterListener(historyAdapter)
     }
 

@@ -1,6 +1,5 @@
 package com.morcinek.xpense.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -14,8 +13,8 @@ import com.morcinek.xpense.expense.common.ExpenseManager
 import com.morcinek.xpense.home.history.HistoryFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
-import org.jetbrains.anko.*
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.

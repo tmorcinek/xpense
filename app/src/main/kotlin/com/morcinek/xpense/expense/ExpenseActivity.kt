@@ -20,6 +20,7 @@ import com.morcinek.xpense.common.utils.putParcelable
 import com.morcinek.xpense.data.CategoryManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
+import com.morcinek.xpense.expense.common.ExpenseManager
 import com.morcinek.xpense.expense.common.model.Expense
 import com.morcinek.xpense.expense.note.NoteAdapter
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
@@ -38,6 +39,9 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
 
     @Inject
     lateinit var categoryManager: CategoryManager
+
+    @Inject
+    lateinit var expenseManager: ExpenseManager
 
     private lateinit var expenseAdapter: ExpenseAdapter
 
@@ -90,7 +94,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
                 return true
             }
             R.id.action_done -> {
-                setResult(RESULT_OK)
+                expenseManager.addExpense(expenseAdapter.expense)
                 finish()
                 return true
             }
