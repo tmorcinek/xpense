@@ -22,15 +22,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="end" />
+        android:gravity="end"
+        android:paddingLeft="@dimen/horizontal_margin"
+        android:paddingRight="@dimen/horizontal_margin" />
 
-    <View
-        android:id="@+id/icon"
-        android:layout_width="@dimen/expense_item_image_height"
-        android:layout_height="@dimen/expense_item_image_height"
-        android:layout_marginLeft="@dimen/horizontal_margin"
-        android:layout_marginStart="@dimen/horizontal_margin"
-        android:background="@drawable/color_icon"
+    <include
+        layout="@layout/category_icon"
         android:visibility="gone" />
 </LinearLayout>
 

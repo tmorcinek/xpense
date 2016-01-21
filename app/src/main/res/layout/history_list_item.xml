@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/item_height"
     android:background="@drawable/list_item_background"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/vertical_margin"
+    android:paddingRight="@dimen/vertical_margin">
 
-    <View
-        android:id="@+id/icon"
-        android:layout_width="@dimen/item_image_height"
-        android:layout_height="@dimen/item_image_height"
-        android:layout_marginLeft="@dimen/horizontal_margin"
-        android:layout_marginStart="@dimen/horizontal_margin"
-        android:background="@drawable/color_icon" />
+    <include layout="@layout/category_icon" />
 
     <LinearLayout
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="@dimen/item_height"
-        android:layout_marginLeft="@dimen/vertical_margin"
-        android:layout_marginStart="@dimen/vertical_margin"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/vertical_margin"
+        android:paddingRight="@dimen/vertical_margin">
 
         <TextView
             android:id="@+id/title"
@@ -38,7 +34,7 @@
 
     <TextView
         android:id="@+id/value"
-        style="@style/ItemTitle"
+        style="@style/ItemValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

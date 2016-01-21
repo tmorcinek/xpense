@@ -8,11 +8,10 @@
     android:paddingLeft="@dimen/vertical_margin"
     android:paddingRight="@dimen/vertical_margin">
 
-    <View
-        android:id="@+id/icon"
-        android:background="@drawable/color_icon"
-        android:layout_width="@dimen/item_image_height"
-        android:layout_height="@dimen/item_image_height" />
+    <include
+        layout="@layout/category_icon"
+        android:layout_width="@dimen/dialog_item_image_height"
+        android:layout_height="@dimen/dialog_item_image_height" />
 
     <TextView
         android:id="@+id/text"
