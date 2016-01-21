@@ -14,7 +14,7 @@ import com.morcinek.xpense.expense.ExpenseActivity
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.expense.Expense
 import kotlinx.android.synthetic.main.default_list.*
-import org.jetbrains.anko.startActivity
+import com.morcinek.xpense.common.utils.*
 import javax.inject.Inject
 
 /**
@@ -59,6 +59,6 @@ class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickL
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
 
     override fun onItemClicked(item: Expense) {
-        activity.startActivity<ExpenseActivity>("expense" to item)
+        activity.startActivity<ExpenseActivity>(item)
     }
 }

@@ -16,15 +16,16 @@ import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
 import com.morcinek.xpense.common.utils.getParcelable
+import com.morcinek.xpense.common.utils.getParcelableExtra
 import com.morcinek.xpense.common.utils.putParcelable
 import com.morcinek.xpense.data.category.CategoryManager
+import com.morcinek.xpense.data.expense.Expense
+import com.morcinek.xpense.data.expense.ExpenseManager
+import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
-import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.expense.note.NoteAdapter
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
-import com.morcinek.xpense.data.note.NoteManager
 import kotlinx.android.synthetic.main.expense.*
 import java.util.*
 import javax.inject.Inject
@@ -67,7 +68,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     }
 
     private fun setupExpense() {
-        val expense = intent.getParcelableExtra<Expense>("expense")
+        val expense = intent.getParcelableExtra<Expense>()
         if (expense != null) {
             setTitle(R.string.edit_expense_label)
             expenseAdapter.expense = expense
@@ -103,11 +104,20 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
                 return true
             }
             R.id.action_done -> {
-                expenseManager.addExpense(expenseAdapter.expense)
-                finish()
+                handleDoneAction()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun handleDoneAction() {
+        val validation = ExpenseValidator().validate(expenseAdapter.expense)
+        if (validation.isEmpty()) {
+            expenseManager.addExpense(expenseAdapter.expense)
+            finish()
+        } else {
+            expenseAdapter.invalidItems = validation
         }
     }
 
@@ -128,6 +138,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
                 .setLabelText("$")
                 .addNumberPickerDialogHandler { reference, number, decimal, isNegative, fullNumber ->
                     expense.value = fullNumber
+                    expenseAdapter.invalidItems = expenseAdapter.invalidItems.minus(R.string.title_amount)
                     expenseAdapter.notifyDataSetChanged()
                 }
         numberPickerBuilder.setCurrentNumberAsInteger(expense.value)
@@ -141,6 +152,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         textPickerFragment.selectedItem = expense.category
         textPickerFragment.onItemSetListener = { textPickerFragment, item ->
             expense.category = item
+            expenseAdapter.invalidItems = expenseAdapter.invalidItems.minus(R.string.title_category)
             expenseAdapter.notifyDataSetChanged()
         }
         textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)

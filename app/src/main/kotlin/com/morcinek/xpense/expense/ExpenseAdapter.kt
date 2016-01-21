@@ -11,6 +11,7 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
+import com.morcinek.xpense.common.utils.startWarningAnimation
 import com.morcinek.xpense.data.expense.Expense
 import java.util.*
 
@@ -18,6 +19,12 @@ import java.util.*
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context) {
+
+    var invalidItems = setOf<Int>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     var expense: Expense = Expense()
         set(value) {
@@ -37,6 +44,10 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.titleView.text = context.getString(item)
+        holder.itemView.isActivated = invalidItems.contains(item)
+        if (invalidItems.contains(item)) {
+            holder.itemView.startWarningAnimation()
+        }
         holder.iconView.visibility = View.GONE
         when (item) {
             R.string.title_amount -> holder.valueView.text = CurrencyFormatter().format(expense.value)
@@ -55,9 +66,9 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
     private fun dateFormatForTime(time: Long) = DateUtils.getRelativeTimeSpanString(time, Date().time, DateUtils.DAY_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR)
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
         val titleView: TextView
         val valueView: TextView
+
         val iconView: View
 
         init {

@@ -13,6 +13,7 @@
     <TextView
         android:id="@+id/title"
         style="@style/ExpenseTitle"
+        android:textColor="@color/validation_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
