@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="ItemTitle">
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/item_title_text_size</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:singleLine">true</item>
     </style>
+
     <style name="ItemValue">
         <item name="android:textColor">@color/value</item>
         <item name="android:textStyle">bold</item>
@@ -13,12 +17,15 @@
     <style name="ItemSubtitle">
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">@dimen/item_subtitle_text_size</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="ExpenseTitle">
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">@dimen/expense_item_title_text_size</item>
     </style>
+
     <style name="ExpenseValue">
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/expense_item_value_text_size</item>
@@ -33,6 +40,7 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/text_white</item>
     </style>
+
     <style name="DialogItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dialog_item_height</item>
@@ -42,10 +50,18 @@
         <item name="android:paddingLeft">@dimen/medium_font_padding</item>
         <item name="android:paddingRight">@dimen/medium_font_padding</item>
     </style>
+
     <style name="DialogItem.EditText">
         <item name="android:textColor">@color/accent</item>
         <item name="android:background">?colorPrimary</item>
         <item name="android:singleLine">true</item>
         <item name="android:imeOptions">actionDone</item>
+    </style>
+
+    <style name="CategoryIcon">
+        <item name="android:background">@drawable/color_icon</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

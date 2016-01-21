@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.formatters.CurrencyFormatter
+import com.morcinek.xpense.common.formatters.ShortDateFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.expense.common.ExpenseManagerListener
 import com.morcinek.xpense.expense.common.model.Expense
@@ -21,9 +23,10 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.iconView.setDrawableColor(item.category!!.color)
+        holder.iconView.text = ShortDateFormatter().format(item.date.time)
         holder.titleView.text = item.category!!.name
         holder.subtitleView.text = item.note
-        holder.valueView.text = "${item.value}"
+        holder.valueView.text = CurrencyFormatter().format(item.value)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
@@ -32,13 +35,13 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val iconView: View
+        val iconView: TextView
         val titleView: TextView
         val subtitleView: TextView
         val valueView: TextView
 
         init {
-            iconView = view.findViewById(R.id.icon)
+            iconView = view.findViewById(R.id.icon) as TextView
             titleView = view.findViewById(R.id.title) as TextView
             subtitleView = view.findViewById(R.id.subtitle) as TextView
             valueView = view.findViewById(R.id.value) as TextView

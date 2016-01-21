@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.expense.common.model.Expense
 import java.util.*
@@ -38,7 +39,7 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         holder.titleView.text = context.getString(item)
         holder.iconView.visibility = View.GONE
         when (item) {
-            R.string.title_amount -> holder.valueView.text = "$ ${expense.value}"
+            R.string.title_amount -> holder.valueView.text = CurrencyFormatter().format(expense.value)
             R.string.title_category -> {
                 holder.valueView.text = expense.category?.name
                 if (expense.category != null) {
