@@ -24,7 +24,7 @@ import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.expense.note.NoteAdapter
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
-import com.morcinek.xpense.hint.HintProvider
+import com.morcinek.xpense.data.note.NoteManager
 import kotlinx.android.synthetic.main.expense.*
 import java.util.*
 import javax.inject.Inject
@@ -35,7 +35,7 @@ import javax.inject.Inject
 class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
 
     @Inject
-    lateinit var hintProvider: HintProvider
+    lateinit var noteManager: NoteManager
 
     @Inject
     lateinit var categoryManager: CategoryManager
@@ -149,7 +149,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     private fun startTextPicker(expense: Expense) {
         val textPickerFragment = NotePickerDialogFragment()
         textPickerFragment.adapter = NoteAdapter(this)
-        textPickerFragment.items = hintProvider.provideNoteList()
+        textPickerFragment.items = noteManager.getNotes()
         textPickerFragment.selectedItem = expense.note
         textPickerFragment.onItemSetListener = { textPickerFragment, text ->
             expense.note = text
