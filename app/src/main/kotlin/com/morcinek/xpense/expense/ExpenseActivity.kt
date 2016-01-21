@@ -53,6 +53,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         setupToolbar()
         setupAdapter()
         setupRecyclerView()
+        setupExpense()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -63,6 +64,14 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         outState!!.putParcelable(expenseAdapter.expense)
+    }
+
+    private fun setupExpense() {
+        val expense = intent.getParcelableExtra<Expense>("expense")
+        if (expense != null) {
+            setTitle(R.string.edit_expense_label)
+            expenseAdapter.expense = expense
+        }
     }
 
     private fun setupToolbar() {

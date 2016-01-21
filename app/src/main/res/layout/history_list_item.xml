@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/list_item_background"
+    android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <ImageView
+    <View
         android:id="@+id/icon"
         android:layout_width="@dimen/item_image_height"
         android:layout_height="@dimen/item_image_height"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/horizontal_margin"
         android:layout_marginStart="@dimen/horizontal_margin"
-        android:scaleType="centerInside"
-        tools:ignore="ContentDescription" />
+        android:background="@drawable/color_icon" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="@dimen/item_height"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/item_text_margin"
-        android:layout_marginStart="@dimen/item_text_margin"
-        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/vertical_margin"
+        android:layout_marginStart="@dimen/vertical_margin"
         android:orientation="vertical">
 
         <TextView
@@ -38,4 +35,10 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/value"
+        style="@style/ItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

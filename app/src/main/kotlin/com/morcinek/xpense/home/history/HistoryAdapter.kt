@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.expense.common.ExpenseManagerListener
 import com.morcinek.xpense.expense.common.model.Expense
 
@@ -15,10 +16,14 @@ import com.morcinek.xpense.expense.common.model.Expense
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context), ExpenseManagerListener {
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (value, category, title, date) = getItem(position)
-        holder.titleView.text = title
-        holder.subtitleView.text = "${value}"
+        val item = getItem(position)
+        initializeOnClickListener(holder, item)
+        holder.iconView.setDrawableColor(item.category!!.color)
+        holder.titleView.text = item.category!!.name
+        holder.subtitleView.text = item.note
+        holder.valueView.text = "${item.value}"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
@@ -27,18 +32,22 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        val iconView: View
         val titleView: TextView
         val subtitleView: TextView
+        val valueView: TextView
 
         init {
+            iconView = view.findViewById(R.id.icon)
             titleView = view.findViewById(R.id.title) as TextView
             subtitleView = view.findViewById(R.id.subtitle) as TextView
+            valueView = view.findViewById(R.id.value) as TextView
         }
     }
 
     override fun expenseAdded(expense: Expense) {
         items.add(expense)
-        notifyItemInserted(items.size -1 )
+        notifyItemInserted(items.size - 1)
     }
 
     override fun expenseDeleted(expense: Expense) {

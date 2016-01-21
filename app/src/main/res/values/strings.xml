@@ -11,4 +11,5 @@
     <string name="title_date">Date</string>
 
     <string name="expense_label">Add expense</string>
+    <string name="edit_expense_label">Edit expense</string>
 </resources>
