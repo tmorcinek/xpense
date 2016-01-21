@@ -11,8 +11,8 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.formatters.ShortDateFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
-import com.morcinek.xpense.expense.common.ExpenseManagerListener
-import com.morcinek.xpense.expense.common.model.Expense
+import com.morcinek.xpense.data.expense.ExpenseManagerListener
+import com.morcinek.xpense.data.expense.Expense
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

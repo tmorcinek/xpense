@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.utils.setDrawableColor
-import com.morcinek.xpense.expense.common.model.Category
+import com.morcinek.xpense.data.category.Category
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

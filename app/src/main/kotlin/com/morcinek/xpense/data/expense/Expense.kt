@@ -1,4 +1,4 @@
-package com.morcinek.xpense.expense.common.model
+package com.morcinek.xpense.data.expense
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -6,6 +6,7 @@ import com.morcinek.xpense.common.utils.createParcel
 import com.morcinek.xpense.common.utils.readCalendar
 import com.morcinek.xpense.common.utils.readParcelable
 import com.morcinek.xpense.common.utils.writeCalendar
+import com.morcinek.xpense.data.category.Category
 import java.util.*
 
 /**

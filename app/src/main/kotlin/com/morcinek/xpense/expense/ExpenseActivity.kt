@@ -17,11 +17,11 @@ import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
 import com.morcinek.xpense.common.utils.getParcelable
 import com.morcinek.xpense.common.utils.putParcelable
-import com.morcinek.xpense.data.CategoryManager
+import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
-import com.morcinek.xpense.expense.common.ExpenseManager
-import com.morcinek.xpense.expense.common.model.Expense
+import com.morcinek.xpense.data.expense.ExpenseManager
+import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.expense.note.NoteAdapter
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.hint.HintProvider

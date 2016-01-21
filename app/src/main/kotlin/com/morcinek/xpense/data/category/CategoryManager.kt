@@ -1,6 +1,6 @@
-package com.morcinek.xpense.data
+package com.morcinek.xpense.data.category
 
-import com.morcinek.xpense.expense.common.model.Category
+import com.morcinek.xpense.data.category.Category
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

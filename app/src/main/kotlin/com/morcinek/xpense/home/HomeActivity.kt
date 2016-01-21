@@ -9,7 +9,7 @@ import android.view.MenuItem
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.expense.ExpenseActivity
-import com.morcinek.xpense.expense.common.ExpenseManager
+import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.home.history.HistoryFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*

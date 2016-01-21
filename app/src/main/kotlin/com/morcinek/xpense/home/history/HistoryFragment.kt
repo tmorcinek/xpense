@@ -11,8 +11,8 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.expense.ExpenseActivity
-import com.morcinek.xpense.expense.common.ExpenseManager
-import com.morcinek.xpense.expense.common.model.Expense
+import com.morcinek.xpense.data.expense.ExpenseManager
+import com.morcinek.xpense.data.expense.Expense
 import kotlinx.android.synthetic.main.default_list.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject

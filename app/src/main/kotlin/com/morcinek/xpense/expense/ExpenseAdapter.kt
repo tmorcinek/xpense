@@ -11,7 +11,7 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
-import com.morcinek.xpense.expense.common.model.Expense
+import com.morcinek.xpense.data.expense.Expense
 import java.util.*
 
 /**

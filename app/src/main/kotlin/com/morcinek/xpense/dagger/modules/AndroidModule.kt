@@ -4,8 +4,8 @@ import android.content.Context
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.hint.HintProvider
 import com.morcinek.xpense.dagger.ForApplication
-import com.morcinek.xpense.data.CategoryManager
-import com.morcinek.xpense.expense.common.ExpenseManager
+import com.morcinek.xpense.data.category.CategoryManager
+import com.morcinek.xpense.data.expense.ExpenseManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

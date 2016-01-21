@@ -1,4 +1,4 @@
-package com.morcinek.xpense.expense.common.model
+package com.morcinek.xpense.data.category
 
 import android.os.Parcel
 import android.os.Parcelable

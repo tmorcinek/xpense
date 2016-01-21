@@ -5,7 +5,7 @@ import android.view.View
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.utils.hideSoftInput
-import com.morcinek.xpense.expense.common.model.Category
+import com.morcinek.xpense.data.category.Category
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
