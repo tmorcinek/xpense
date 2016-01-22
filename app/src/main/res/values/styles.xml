@@ -59,9 +59,17 @@
     </style>
 
     <style name="CategoryIcon">
-        <item name="android:background">@drawable/color_icon</item>
+        <item name="android:background">@drawable/category_icon</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DialogOvalButton">
+        <item name="android:layout_width">@dimen/dialog_item_button_height</item>
+        <item name="android:layout_height">@dimen/dialog_item_button_height</item>
+        <item name="android:layout_margin">@dimen/dialog_item_button_margin</item>
+        <item name="android:background">@drawable/oval_background</item>
+        <item name="android:padding">@dimen/dialog_item_button_padding</item>
     </style>
 </resources>

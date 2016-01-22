@@ -19,6 +19,9 @@
     <dimen name="expense_item_value_text_size">24sp</dimen>
 
     <dimen name="dialog_header_height">30dp</dimen>
-    <dimen name="dialog_item_height">54sp</dimen>
-    <dimen name="dialog_item_image_height">30sp</dimen>
+    <dimen name="dialog_item_height">54dp</dimen>
+    <dimen name="dialog_item_image_height">30dp</dimen>
+    <dimen name="dialog_item_button_height">40dp</dimen>
+    <dimen name="dialog_item_button_margin">7dp</dimen>
+    <dimen name="dialog_item_button_padding">10dp</dimen>
 </resources>

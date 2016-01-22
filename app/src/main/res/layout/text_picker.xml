@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?background"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
     <TextView
         android:id="@+id/titleView"
@@ -13,11 +13,22 @@
     <EditText
         android:id="@+id/editText"
         style="@style/DialogItem.EditText"
+        android:layout_below="@id/titleView"
         android:inputType="textCapSentences" />
+
+    <ImageView
+        android:id="@+id/button"
+        style="@style/DialogOvalButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/titleView"
+        android:src="@drawable/ic_action_new"
+        tools:ignore="ContentDescription" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/editText"
         android:orientation="vertical" />
-</LinearLayout>
+</RelativeLayout>
