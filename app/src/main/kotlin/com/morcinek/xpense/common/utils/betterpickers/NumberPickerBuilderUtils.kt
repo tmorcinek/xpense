@@ -6,10 +6,10 @@ import com.morcinek.xpense.common.utils.isInteger
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-fun NumberPickerBuilder.setCurrentNumberAsInteger(number: Double) {
+fun NumberPickerBuilder.setCurrentNumberAsInteger(number: Double): NumberPickerBuilder {
     if (number.isInteger()) {
-        setCurrentNumber(number.toInt())
+        return setCurrentNumber(number.toInt())
     } else {
-        setCurrentNumber(number)
+        return setCurrentNumber(number)
     }
 }

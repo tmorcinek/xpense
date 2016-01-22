@@ -67,14 +67,6 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         outState!!.putParcelable(expenseAdapter.expense)
     }
 
-    private fun setupExpense() {
-        val expense = intent.getParcelableExtra<Expense>()
-        if (expense != null) {
-            setTitle(R.string.edit_expense_label)
-            expenseAdapter.expense = expense
-        }
-    }
-
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_action_cancel)
@@ -90,6 +82,14 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(DividerItemDecoration(context = this, showLast = true))
+    }
+
+    private fun setupExpense() {
+        val expense = intent.getParcelableExtra<Expense>()
+        if (expense != null) {
+            setTitle(R.string.edit_expense_label)
+            expenseAdapter.expense = expense
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -112,21 +112,20 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     }
 
     private fun handleDoneAction() {
-        val validation = ExpenseValidator().validate(expenseAdapter.expense)
-        if (validation.isEmpty()) {
+        if (expenseAdapter.isExpenseValid()) {
             expenseManager.addExpense(expenseAdapter.expense)
             finish()
         } else {
-            expenseAdapter.invalidItems = validation
+            expenseAdapter.notifyDataSetChanged()
         }
     }
 
     override fun onItemClicked(item: Int) {
         when (item) {
-            R.string.title_amount -> startAmountPicker(expenseAdapter.expense)
-            R.string.title_category -> startCategoryPicker(expenseAdapter.expense)
-            R.string.title_note -> startTextPicker(expenseAdapter.expense)
-            R.string.title_date -> startDatePicker(expenseAdapter.expense)
+            AMOUNT_ITEM -> startAmountPicker(expenseAdapter.expense)
+            CATEGORY_ITEM -> startCategoryPicker(expenseAdapter.expense)
+            NOTE_ITEM -> startTextPicker(expenseAdapter.expense)
+            DATE_ITEM -> startDatePicker(expenseAdapter.expense)
         }
     }
 
@@ -136,12 +135,11 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
                 .setStyleResId(R.style.BetterPickersDialogFragment)
                 .setPlusMinusVisibility(View.GONE)
                 .setLabelText("$")
+                .setCurrentNumberAsInteger(expense.value)
                 .addNumberPickerDialogHandler { reference, number, decimal, isNegative, fullNumber ->
                     expense.value = fullNumber
-                    expenseAdapter.invalidItems = expenseAdapter.invalidItems.minus(R.string.title_amount)
-                    expenseAdapter.notifyDataSetChanged()
+                    expenseAdapter.notifyDataItemChanged(AMOUNT_ITEM)
                 }
-        numberPickerBuilder.setCurrentNumberAsInteger(expense.value)
         numberPickerBuilder.show()
     }
 
@@ -152,8 +150,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         textPickerFragment.selectedItem = expense.category
         textPickerFragment.onItemSetListener = { textPickerFragment, item ->
             expense.category = item
-            expenseAdapter.invalidItems = expenseAdapter.invalidItems.minus(R.string.title_category)
-            expenseAdapter.notifyDataSetChanged()
+            expenseAdapter.notifyDataItemChanged(CATEGORY_ITEM)
         }
         textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
     }
@@ -165,7 +162,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         textPickerFragment.selectedItem = expense.note
         textPickerFragment.onItemSetListener = { textPickerFragment, text ->
             expense.note = text
-            expenseAdapter.notifyDataSetChanged()
+            expenseAdapter.notifyDataItemChanged(NOTE_ITEM)
         }
         textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
     }
@@ -175,7 +172,7 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         val calendarDatePickerDialogFragment = CalendarDatePickerDialogFragment.newInstance(
                 { dialogFragment, year, month, day ->
                     calendar.set(year, month, day)
-                    expenseAdapter.notifyDataSetChanged()
+                    expenseAdapter.notifyDataItemChanged(DATE_ITEM)
                 },
                 calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
         calendarDatePickerDialogFragment.setThemeCustom(R.style.BetterPickersTheme)

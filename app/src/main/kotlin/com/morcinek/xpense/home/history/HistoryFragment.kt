@@ -10,17 +10,18 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.expense.ExpenseActivity
-import com.morcinek.xpense.data.expense.ExpenseManager
+import com.morcinek.xpense.common.utils.startActivity
 import com.morcinek.xpense.data.expense.Expense
+import com.morcinek.xpense.data.expense.ExpenseManager
+import com.morcinek.xpense.expense.ExpenseActivity
 import kotlinx.android.synthetic.main.default_list.*
-import com.morcinek.xpense.common.utils.*
 import javax.inject.Inject
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickListener<Expense> {
+
     @Inject
     lateinit var expenseManager: ExpenseManager
 

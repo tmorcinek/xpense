@@ -15,16 +15,18 @@ import com.morcinek.xpense.common.utils.startWarningAnimation
 import com.morcinek.xpense.data.expense.Expense
 import java.util.*
 
+val AMOUNT_ITEM = R.string.title_amount
+val CATEGORY_ITEM = R.string.title_category
+val NOTE_ITEM = R.string.title_note
+val DATE_ITEM = R.string.title_date
+
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context) {
 
-    var invalidItems = setOf<Int>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private val invalidItems: Set<Int>
+        get() = ExpenseValidator().validate(expense)
 
     var expense: Expense = Expense()
         set(value) {
@@ -33,7 +35,13 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         }
 
     init {
-        setList(listOf(R.string.title_amount, R.string.title_category, R.string.title_note, R.string.title_date))
+        setList(listOf(AMOUNT_ITEM, CATEGORY_ITEM, NOTE_ITEM, DATE_ITEM))
+    }
+
+    fun isExpenseValid() = invalidItems.isEmpty()
+
+    fun notifyDataItemChanged(item: Int) {
+        notifyItemChanged(items.indexOf(item))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
@@ -44,10 +52,18 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.titleView.text = context.getString(item)
-        holder.itemView.isActivated = invalidItems.contains(item)
+        setupWarning(holder, item, invalidItems)
+        setupValue(holder, item)
+    }
+
+    private fun setupWarning(holder: ViewHolder, item: Int, invalidItems: Set<Int>) {
+        holder.titleView.isActivated = invalidItems.contains(item)
         if (invalidItems.contains(item)) {
             holder.itemView.startWarningAnimation()
         }
+    }
+
+    private fun setupValue(holder: ViewHolder, item: Int) {
         holder.iconView.visibility = View.GONE
         when (item) {
             R.string.title_amount -> holder.valueView.text = CurrencyFormatter().format(expense.value)
@@ -63,18 +79,20 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         }
     }
 
-    private fun dateFormatForTime(time: Long) = DateUtils.getRelativeTimeSpanString(time, Date().time, DateUtils.DAY_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR)
+    private fun dateFormatForTime(time: Long): CharSequence {
+        return DateUtils.getRelativeTimeSpanString(time, Date().time, DateUtils.DAY_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR)
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        val iconView: View
         val titleView: TextView
         val valueView: TextView
 
-        val iconView: View
-
         init {
+            iconView = view.findViewById(R.id.icon)
             titleView = view.findViewById(R.id.title) as TextView
             valueView = view.findViewById(R.id.value) as TextView
-            iconView = view.findViewById(R.id.icon)
         }
     }
 }
