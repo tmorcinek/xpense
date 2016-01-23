@@ -18,10 +18,8 @@ import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
 import com.morcinek.xpense.common.utils.getParcelable
 import com.morcinek.xpense.common.utils.getParcelableExtra
 import com.morcinek.xpense.common.utils.putParcelable
-import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NoteAdapter
@@ -34,9 +32,6 @@ import javax.inject.Inject
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
-
-    @Inject
-    lateinit var categoryManager: CategoryManager
 
     @Inject
     lateinit var expenseManager: ExpenseManager
@@ -143,7 +138,6 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     private fun startCategoryPicker(expense: Expense) {
         val textPickerFragment = CategoryPickerDialogFragment()
         textPickerFragment.adapter = CategoryAdapter(this)
-        textPickerFragment.items = categoryManager.getCategories()
         textPickerFragment.selectedItem = expense.category
         textPickerFragment.onItemSetListener = {
             expense.category = it
