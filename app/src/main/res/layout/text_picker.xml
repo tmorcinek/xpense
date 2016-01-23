@@ -22,7 +22,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@id/titleView"
-        android:src="@drawable/ic_action_new"
         tools:ignore="ContentDescription" />
 
     <android.support.v7.widget.RecyclerView

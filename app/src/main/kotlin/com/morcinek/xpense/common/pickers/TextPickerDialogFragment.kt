@@ -21,13 +21,15 @@ import kotlinx.android.synthetic.main.text_picker.*
  */
 abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T>, TextWatcher {
 
-    lateinit var onItemSetListener: (TextPickerDialogFragment<T>, T) -> Unit
+    lateinit var onItemSetListener: (T) -> Unit
 
     lateinit var adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
 
     lateinit var items: List<T>
 
     var selectedItem: T? = null
+
+    lateinit var isButtonVisible: (String) -> Boolean
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.text_picker, container)
@@ -73,6 +75,7 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         adapter.setList(items.filter { it.toString().startsWith(s!!, false) })
+        button.isEnabled = isButtonVisible.invoke(s.toString())
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

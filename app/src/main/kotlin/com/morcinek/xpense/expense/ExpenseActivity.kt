@@ -148,8 +148,8 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         textPickerFragment.adapter = CategoryAdapter(this)
         textPickerFragment.items = categoryManager.getCategories()
         textPickerFragment.selectedItem = expense.category
-        textPickerFragment.onItemSetListener = { textPickerFragment, item ->
-            expense.category = item
+        textPickerFragment.onItemSetListener = {
+            expense.category = it
             expenseAdapter.notifyDataItemChanged(CATEGORY_ITEM)
         }
         textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
@@ -160,8 +160,8 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         textPickerFragment.adapter = NoteAdapter(this)
         textPickerFragment.items = noteManager.getNotes()
         textPickerFragment.selectedItem = expense.note
-        textPickerFragment.onItemSetListener = { textPickerFragment, text ->
-            expense.note = text
+        textPickerFragment.onItemSetListener = {
+            expense.note = it
             expenseAdapter.notifyDataItemChanged(NOTE_ITEM)
         }
         textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)

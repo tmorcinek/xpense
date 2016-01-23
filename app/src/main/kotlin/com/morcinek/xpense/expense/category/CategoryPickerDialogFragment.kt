@@ -6,6 +6,7 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.utils.hideSoftInput
 import com.morcinek.xpense.data.category.Category
+import kotlinx.android.synthetic.main.text_picker.*
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -16,10 +17,13 @@ class CategoryPickerDialogFragment : TextPickerDialogFragment<Category>() {
         super.onViewCreated(view, savedInstanceState)
 
         setTitle(R.string.title_category)
+        button.setImageResource(R.drawable.ic_action_new)
+
+        isButtonVisible = { false }
     }
 
     override fun onItemClicked(item: Category) {
-        onItemSetListener(this, item)
+        onItemSetListener(item)
         dialog.window.hideSoftInput()
         dialog.dismiss()
     }
