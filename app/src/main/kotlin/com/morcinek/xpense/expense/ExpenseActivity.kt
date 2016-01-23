@@ -36,9 +36,6 @@ import javax.inject.Inject
 class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
 
     @Inject
-    lateinit var noteManager: NoteManager
-
-    @Inject
     lateinit var categoryManager: CategoryManager
 
     @Inject
@@ -158,7 +155,6 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     private fun startTextPicker(expense: Expense) {
         val textPickerFragment = NotePickerDialogFragment()
         textPickerFragment.adapter = NoteAdapter(this)
-        textPickerFragment.items = noteManager.getNotes()
         textPickerFragment.selectedItem = expense.note
         textPickerFragment.onItemSetListener = {
             expense.note = it

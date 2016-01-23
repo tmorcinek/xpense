@@ -53,7 +53,6 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
     }
 
     private fun setupAdapter() {
-        adapter.setList(items)
         adapter.itemClickListener = this
     }
 
