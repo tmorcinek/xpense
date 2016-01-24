@@ -2,10 +2,12 @@ package com.morcinek.xpense.expense.category
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
+import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.utils.getTrimString
 import com.morcinek.xpense.common.utils.startActivityFromFragment
@@ -23,6 +25,10 @@ class CategoryPickerDialogFragment : TextPickerDialogFragment<Category>() {
 
     @Inject
     lateinit var categoryManager: CategoryManager
+
+    override val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder> by lazy {
+        CategoryAdapter(context)
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

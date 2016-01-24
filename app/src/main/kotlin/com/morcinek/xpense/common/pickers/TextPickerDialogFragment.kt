@@ -21,9 +21,9 @@ import kotlinx.android.synthetic.main.text_picker.*
  */
 abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T>, TextWatcher {
 
-    lateinit var onItemSetListener: (T) -> Unit
+    protected abstract val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
 
-    lateinit var adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
+    lateinit var onItemSetListener: (T) -> Unit
 
     lateinit var items: List<T>
 

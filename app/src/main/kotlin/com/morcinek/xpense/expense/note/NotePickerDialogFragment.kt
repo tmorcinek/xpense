@@ -1,9 +1,11 @@
 package com.morcinek.xpense.expense.note
 
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
+import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.utils.setTextWithSelection
 import com.morcinek.xpense.common.utils.showSoftInput
@@ -18,6 +20,10 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
 
     @Inject
     lateinit var noteManager: NoteManager
+
+    override val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder> by lazy {
+        NoteAdapter(context)
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
