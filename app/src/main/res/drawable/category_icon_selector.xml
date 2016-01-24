@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/category_icon_highlighted" android:state_selected="true" />
+    <item android:drawable="@drawable/category_icon_highlighted" android:state_pressed="true" />
+    <item android:drawable="@drawable/ic_action_accept" android:state_activated="true" />
+    <item android:drawable="@android:color/transparent" />
+</selector>
