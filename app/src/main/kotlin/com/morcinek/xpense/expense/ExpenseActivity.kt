@@ -105,7 +105,6 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun startCategoryPicker(expense: Expense) {
         val textPickerFragment = CategoryPickerDialogFragment()
-        textPickerFragment.adapter = CategoryAdapter(this)
         textPickerFragment.selectedItem = expense.category
         textPickerFragment.onItemSetListener = {
             expense.category = it
@@ -116,7 +115,6 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun startTextPicker(expense: Expense) {
         val textPickerFragment = NotePickerDialogFragment()
-        textPickerFragment.adapter = NoteAdapter(this)
         textPickerFragment.selectedItem = expense.note
         textPickerFragment.onItemSetListener = {
             expense.note = it

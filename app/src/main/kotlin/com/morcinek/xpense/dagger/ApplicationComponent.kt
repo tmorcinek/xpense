@@ -5,6 +5,7 @@ import com.morcinek.xpense.expense.ExpenseActivity
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.home.HomeActivity
+import com.morcinek.xpense.home.category.CategoryActivity
 import com.morcinek.xpense.home.history.HistoryFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -18,6 +19,7 @@ interface ApplicationComponent {
 
     fun inject(homeActivity: HomeActivity)
     fun inject(expenseActivity: ExpenseActivity)
+    fun inject(categoryActivity: CategoryActivity)
 
     fun inject(historyFragment: HistoryFragment)
 
