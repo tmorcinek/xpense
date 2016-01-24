@@ -5,6 +5,7 @@ import android.view.View
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
+import com.morcinek.xpense.common.utils.setTextWithSelection
 import com.morcinek.xpense.common.utils.showSoftInput
 import com.morcinek.xpense.data.note.NoteManager
 import kotlinx.android.synthetic.main.text_picker.*
@@ -46,15 +47,10 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
 
     private fun setupEditText() {
         dialog.window.showSoftInput()
-        setEditText(selectedItem!!)
-    }
-
-    private fun setEditText(text: String) {
-        editText.setText(text)
-        editText.setSelection(text.length)
+        editText.setTextWithSelection(selectedItem!!)
     }
 
     override fun onItemClicked(item: String) {
-        setEditText(item.toString())
+        editText.setTextWithSelection(item.toString())
     }
 }

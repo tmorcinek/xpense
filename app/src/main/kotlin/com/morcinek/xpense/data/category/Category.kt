@@ -8,7 +8,7 @@ import com.morcinek.xpense.common.utils.createParcel
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 
-data class Category(val name: String, val color: Int) : Comparable<Category>, Parcelable {
+data class Category(val name: String, val color: Int = 0) : Comparable<Category>, Parcelable {
 
     override fun compareTo(other: Category) = name.compareTo(other.name)
 

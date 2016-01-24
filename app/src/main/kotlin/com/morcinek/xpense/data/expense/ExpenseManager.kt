@@ -12,7 +12,7 @@ class ExpenseManager {
 
     fun addExpense(expense: Expense) {
         expenses.add(expense)
-        listeners.map { it.expenseAdded(expense) }
+        listeners.forEach { it.expenseAdded(expense) }
     }
 
     fun getExpenses(): List<Expense> = expenses

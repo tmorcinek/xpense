@@ -12,4 +12,5 @@
 
     <string name="expense_label">Add expense</string>
     <string name="edit_expense_label">Edit expense</string>
+    <string name="category_label">New Category</string>
 </resources>

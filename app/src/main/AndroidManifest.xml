@@ -25,6 +25,11 @@
             android:label="@string/expense_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".home.category.CategoryActivity"
+            android:label="@string/category_label"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
