@@ -2,12 +2,10 @@ package com.morcinek.xpense.common
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.utils.finishOk
 import com.morcinek.xpense.common.utils.putParcelable
 import kotlinx.android.synthetic.main.expense.*
 
@@ -31,10 +29,10 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        item = restoreItem(savedInstanceState!!)
+        item = restoreItem(savedInstanceState!!)!!
     }
 
-    abstract fun restoreItem(bundle: Bundle): T
+    abstract fun restoreItem(bundle: Bundle): T?
 
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
@@ -42,11 +40,13 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
     }
 
     private fun restoreIntentItem() {
-        item = restoreItem(intent.extras)
+        if (intent.extras != null) {
+            item = restoreItem(intent.extras)!!
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.expense, menu)
+        menuInflater.inflate(R.menu.create, menu)
         return true
     }
 
@@ -58,7 +58,6 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
             }
             R.id.action_done -> {
                 onDoneItemSelected()
-                finishOk()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

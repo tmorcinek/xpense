@@ -1,23 +1,20 @@
 package com.morcinek.xpense.expense
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
+import com.morcinek.xpense.common.CreateActivity
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
+import com.morcinek.xpense.common.utils.finishOk
 import com.morcinek.xpense.common.utils.getParcelable
-import com.morcinek.xpense.common.utils.getParcelableExtra
-import com.morcinek.xpense.common.utils.putParcelable
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
@@ -31,7 +28,13 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
+class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
+
+    override var item: Expense
+        get() = expenseAdapter.expense
+        set(value) {
+            expenseAdapter.expense = value
+        }
 
     @Inject
     lateinit var expenseManager: ExpenseManager
@@ -43,26 +46,12 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
         setContentView(R.layout.expense)
         (application as Application).component.inject(this)
 
-        setupToolbar()
         setupAdapter()
         setupRecyclerView()
         setupExpense()
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        expenseAdapter.expense = savedInstanceState!!.getParcelable()!!
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState!!.putParcelable(expenseAdapter.expense)
-    }
-
-    private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationIcon(R.drawable.ic_action_cancel)
-    }
+    override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Expense>()
 
     private fun setupAdapter() {
         expenseAdapter = ExpenseAdapter(this)
@@ -77,36 +66,15 @@ class ExpenseActivity : AppCompatActivity(), AbstractRecyclerViewAdapter.OnItemC
     }
 
     private fun setupExpense() {
-        val expense = intent.getParcelableExtra<Expense>()
-        if (expense != null) {
+        if (intent.extras != null) {
             setTitle(R.string.edit_expense_label)
-            expenseAdapter.expense = expense
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.expense, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-            R.id.action_done -> {
-                handleDoneAction()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun handleDoneAction() {
+    override fun onDoneItemSelected() {
         if (expenseAdapter.isExpenseValid()) {
             expenseManager.addExpense(expenseAdapter.expense)
-            finish()
+            finishOk()
         } else {
             expenseAdapter.notifyDataSetChanged()
         }

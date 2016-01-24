@@ -31,7 +31,7 @@ class CategoryActivity : CreateActivity<Category>() {
         setupRecyclerView()
     }
 
-    override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Category>()!!
+    override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Category>()
 
     private fun setupAdapter() {
         //        expenseAdapter = ExpenseAdapter(this)
