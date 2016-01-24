@@ -22,7 +22,7 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         initializeOnClickListener(holder, item)
-        holder.iconView.setDrawableColor(item.category!!.color)
+        holder.iconView.setDrawableColor(item.category!!.color!!)
         holder.iconView.text = ShortDateFormatter().format(item.date.time)
         holder.titleView.text = item.category!!.name
         holder.subtitleView.text = item.note

@@ -70,7 +70,7 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
             R.string.title_category -> {
                 holder.valueView.text = expense.category?.name
                 if (expense.category != null) {
-                    holder.iconView.setDrawableColor(expense.category!!.color)
+                    holder.iconView.setDrawableColor(expense.category!!.color!!)
                     holder.iconView.visibility = View.VISIBLE
                 }
             }

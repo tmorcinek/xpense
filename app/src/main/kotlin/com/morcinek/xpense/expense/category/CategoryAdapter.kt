@@ -24,7 +24,7 @@ class CategoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Category, 
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.textView.text = item.name
-        holder.iconView.setDrawableColor(item.color)
+        holder.iconView.setDrawableColor(item.color!!)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

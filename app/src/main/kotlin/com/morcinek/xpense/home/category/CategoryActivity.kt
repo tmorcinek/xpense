@@ -58,12 +58,11 @@ class CategoryActivity : CreateActivity<Category>() {
     private fun setupEditText() {
         editText.setOnEditorActionListener { textView, actionId, keyEvent ->
             when (actionId) {
-                EditorInfo.IME_ACTION_NEXT -> {
+                EditorInfo.IME_ACTION_DONE -> {
                     window.hideSoftInput()
-                    true
                 }
-                else -> false
             }
+            false
         }
     }
 

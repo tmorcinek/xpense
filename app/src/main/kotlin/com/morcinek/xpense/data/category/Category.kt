@@ -8,7 +8,7 @@ import com.morcinek.xpense.common.utils.createParcel
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 
-data class Category(val name: String, val color: Int = 0) : Comparable<Category>, Parcelable {
+data class Category(val name: String, val color: Int? = null) : Comparable<Category>, Parcelable {
 
     override fun compareTo(other: Category) = name.compareTo(other.name)
 
@@ -16,12 +16,12 @@ data class Category(val name: String, val color: Int = 0) : Comparable<Category>
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(name)
-        dest.writeInt(color)
+        dest.writeValue(color)
     }
 
     override fun describeContents() = 0
 
     companion object {
-        val CREATOR = createParcel { Category(it.readString(), it.readInt()) }
+        val CREATOR = createParcel { Category(it.readString(), it.readValue(null) as Int?) }
     }
 }

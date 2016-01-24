@@ -14,7 +14,7 @@ import com.morcinek.xpense.common.utils.setDrawableColor
  */
 class ColorAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ColorAdapter.ViewHolder>(context), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
 
-    var selectedItem: Int = 0
+    var selectedItem: Int? = null
         set(value) {
             field = value
             notifyDataSetChanged()

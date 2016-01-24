@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/view_margin"
             android:inputType="textCapWords"
+            android:imeOptions="actionDone"
             android:textSize="24sp" />
 
         <android.support.v7.widget.RecyclerView
