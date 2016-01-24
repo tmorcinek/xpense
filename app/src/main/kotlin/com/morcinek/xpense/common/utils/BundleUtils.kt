@@ -14,7 +14,7 @@ import org.jetbrains.anko.internals.AnkoInternals
  */
 inline fun <reified T : Parcelable> Bundle.getParcelable(): T? = getParcelable(T::class.java.name)
 
-inline fun <reified T : Parcelable> Bundle.putParcelable(value: T?) = putParcelable(T::class.java.name, value)
+fun <T : Parcelable> Bundle.putParcelable(value: T) = putParcelable(value.javaClass.getName(), value)
 
 inline fun <reified T : Parcelable> Intent.getParcelableExtra() = getParcelableExtra<T>(T::class.java.name)
 
