@@ -12,7 +12,17 @@ import com.morcinek.xpense.common.utils.setDrawableColor
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class ColorAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ColorAdapter.ViewHolder>(context) {
+class ColorAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ColorAdapter.ViewHolder>(context), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
+
+    var selectedItem: Int = 0
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    init {
+        itemClickListener = this
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.color_item, parent, false))
@@ -22,6 +32,12 @@ class ColorAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ColorAda
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.iconView.setDrawableColor(item)
+        holder.itemView.setActivated(item == selectedItem)
+    }
+
+    override fun onItemClicked(item: Int) {
+        notifyItemChanged(items.indexOf(selectedItem))
+        selectedItem = item
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
