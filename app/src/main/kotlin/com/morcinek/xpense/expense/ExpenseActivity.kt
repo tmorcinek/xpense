@@ -97,6 +97,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
                 .addNumberPickerDialogHandler { reference, number, decimal, isNegative, fullNumber ->
                     expense.value = fullNumber
                     expenseAdapter.notifyDataItemChanged(AMOUNT_ITEM)
+                    invalidateItem()
                 }
         numberPickerBuilder.show()
     }
@@ -107,6 +108,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         textPickerFragment.onItemSetListener = {
             expense.category = it
             expenseAdapter.notifyDataItemChanged(CATEGORY_ITEM)
+            invalidateItem()
         }
         textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
     }
