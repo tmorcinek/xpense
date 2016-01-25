@@ -11,7 +11,6 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
-import com.morcinek.xpense.common.utils.startWarningAnimation
 import com.morcinek.xpense.data.expense.Expense
 import java.util.*
 
@@ -25,9 +24,6 @@ val DATE_ITEM = R.string.title_date
  */
 class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context) {
 
-    private val invalidItems: Set<Int>
-        get() = setOf()
-
     var expense: Expense = Expense()
         set(value) {
             field = value
@@ -37,8 +33,6 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
     init {
         setList(listOf(AMOUNT_ITEM, CATEGORY_ITEM, NOTE_ITEM, DATE_ITEM))
     }
-
-    fun isExpenseValid() = invalidItems.isEmpty()
 
     fun notifyDataItemChanged(item: Int) {
         notifyItemChanged(items.indexOf(item))
@@ -52,15 +46,7 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.titleView.text = context.getString(item)
-        setupWarning(holder, item, invalidItems)
         setupValue(holder, item)
-    }
-
-    private fun setupWarning(holder: ViewHolder, item: Int, invalidItems: Set<Int>) {
-        holder.titleView.isActivated = invalidItems.contains(item)
-        if (invalidItems.contains(item)) {
-            holder.itemView.startWarningAnimation()
-        }
     }
 
     private fun setupValue(holder: ViewHolder, item: Int) {

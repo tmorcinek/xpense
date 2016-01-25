@@ -75,12 +75,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     }
 
     override fun onDoneItemSelected() {
-        if (expenseAdapter.isExpenseValid()) {
-            expenseManager.addExpense(expenseAdapter.expense)
-            finishOk()
-        } else {
-            expenseAdapter.notifyDataSetChanged()
-        }
+        expenseManager.addExpense(expenseAdapter.expense)
     }
 
     override fun onItemClicked(item: Int) {
