@@ -24,6 +24,8 @@
     <color name="text_white_disabled">#4CFFFFFF</color>
     <color name="text_white_secondary">#B2FFFFFF</color>
 
+    <color name="shadow">#66000000</color>
+
     <color name="value">#377706</color>
 
     <color name="warning_text">#FC0F1D</color>

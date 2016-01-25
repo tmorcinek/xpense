@@ -7,10 +7,7 @@ import android.view.inputmethod.EditorInfo
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.CreateActivity
-import com.morcinek.xpense.common.utils.getParcelable
-import com.morcinek.xpense.common.utils.getTrimString
-import com.morcinek.xpense.common.utils.hideSoftInput
-import com.morcinek.xpense.common.utils.setTextWithSelection
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.category.ColorManager
@@ -31,7 +28,7 @@ class CategoryActivity : CreateActivity<Category>() {
     private lateinit var colorAdapter: ColorAdapter
 
     override var item: Category
-        get() = Category(editText.getTrimString(), 0)
+        get() = Category(editText.getTrimString(), colorAdapter.selectedItem)
         set(value) {
             editText.setTextWithSelection(value.name)
             colorAdapter.selectedItem = value.color
@@ -51,8 +48,10 @@ class CategoryActivity : CreateActivity<Category>() {
 
     private fun setupAdapter() {
         colorAdapter = ColorAdapter(this)
-        colorAdapter.setList(colorManager.colors)
+        colorAdapter.setList(colorManager.colors.minus(disabledColors()))
     }
+
+    private fun disabledColors() = categoryManager.getCategories().map { it.color!! }
 
     private fun setupRecyclerView() {
         recyclerView.adapter = colorAdapter
@@ -71,7 +70,12 @@ class CategoryActivity : CreateActivity<Category>() {
         }
     }
 
+    protected fun isItemValid() = editText.getTrimString().isNotEmpty() && colorAdapter.selectedItem != null
+
     override fun onDoneItemSelected() {
-        TODO()
+        if (isItemValid()) {
+            categoryManager.addCategory(item)
+            finishOk()
+        }
     }
 }

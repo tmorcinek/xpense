@@ -1,5 +1,6 @@
 package com.morcinek.xpense.expense.category
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -41,7 +42,9 @@ class CategoryPickerDialogFragment : TextPickerDialogFragment<Category>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Toast.makeText(activity, "Show category fragment", Toast.LENGTH_SHORT).show()
+        if (resultCode == Activity.RESULT_OK) {
+            setupItems()
+        }
     }
 
     private fun setupItems() {

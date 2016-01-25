@@ -9,15 +9,14 @@
         android:id="@+id/icon"
         android:layout_width="@dimen/color_image_height"
         android:layout_height="@dimen/color_image_height"
-        android:background="@drawable/category_icon"
-        android:layout_marginBottom="@dimen/vertical_margin"
         android:layout_marginTop="@dimen/vertical_margin"
+        android:background="@drawable/category_icon"
         tools:ignore="ContentDescription" />
 
     <View
-        android:layout_alignTop="@id/icon"
-        android:background="@drawable/category_icon_selector"
         android:layout_width="@dimen/color_image_height"
-        android:layout_height="@dimen/color_image_height"/>
+        android:layout_height="@dimen/color_image_height"
+        android:layout_alignTop="@id/icon"
+        android:background="@drawable/category_icon_selector" />
 
 </RelativeLayout>
