@@ -26,7 +26,7 @@ val DATE_ITEM = R.string.title_date
 class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context) {
 
     private val invalidItems: Set<Int>
-        get() = ExpenseValidator().validate(expense)
+        get() = setOf()
 
     var expense: Expense = Expense()
         set(value) {

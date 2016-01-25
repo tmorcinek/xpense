@@ -20,10 +20,6 @@ class ColorAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ColorAda
             notifyDataSetChanged()
         }
 
-    init {
-        itemClickListener = this
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.color_item, parent, false))
     }

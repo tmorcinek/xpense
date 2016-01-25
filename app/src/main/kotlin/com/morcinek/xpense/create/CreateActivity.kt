@@ -1,4 +1,4 @@
-package com.morcinek.xpense.common
+package com.morcinek.xpense.create
 
 import android.os.Bundle
 import android.os.Parcelable
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.morcinek.xpense.R
+import com.morcinek.xpense.common.utils.finishOk
 import com.morcinek.xpense.common.utils.putParcelable
 import kotlinx.android.synthetic.main.expense.*
 
@@ -15,6 +16,8 @@ import kotlinx.android.synthetic.main.expense.*
 abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     protected abstract var item: T
+
+    protected abstract val validator: Validator<T>
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -34,6 +37,10 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     abstract fun restoreItem(bundle: Bundle): T?
 
+    protected fun invalidateItem(){
+        supportInvalidateOptionsMenu()
+    }
+
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_action_cancel)
@@ -50,6 +57,11 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu!!.findItem(R.id.action_done).setEnabled(validator.isValid(item))
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -58,6 +70,7 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
             }
             R.id.action_done -> {
                 onDoneItemSelected()
+                finishOk()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

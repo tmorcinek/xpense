@@ -8,13 +8,14 @@ import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialo
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.CreateActivity
+import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
 import com.morcinek.xpense.common.utils.finishOk
 import com.morcinek.xpense.common.utils.getParcelable
+import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
@@ -35,6 +36,8 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         set(value) {
             expenseAdapter.expense = value
         }
+
+    override val validator: Validator<Expense> by lazy { ExpenseValidator() }
 
     @Inject
     lateinit var expenseManager: ExpenseManager

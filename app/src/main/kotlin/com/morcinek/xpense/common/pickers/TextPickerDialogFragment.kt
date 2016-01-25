@@ -5,8 +5,6 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +13,12 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter.OnItemClickListener
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import kotlinx.android.synthetic.main.text_picker.*
+import org.jetbrains.anko.textChangedListener
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T>, TextWatcher {
+abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T> {
 
     protected abstract val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
 
@@ -64,22 +63,11 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
     }
 
     private fun setupEditText() {
-        editText.addTextChangedListener(this)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        editText.removeTextChangedListener(this)
-    }
-
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        adapter.setList(items.filter { it.toString().startsWith(s!!, false) })
-        button.isEnabled = isButtonVisible.invoke(s.toString())
-    }
-
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-    }
-
-    override fun afterTextChanged(s: Editable?) {
+        editText.textChangedListener {
+            onTextChanged { charSequence, start, before, count ->
+                adapter.setList(items.filter { it.toString().startsWith(charSequence!!, false) })
+                button.isEnabled = isButtonVisible.invoke(charSequence.toString())
+            }
+        }
     }
 }
