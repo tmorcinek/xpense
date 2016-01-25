@@ -18,4 +18,6 @@
     <string name="project_location_hint">Location</string>
     <string name="project_currency_hint">Currency (1-3 Characters)</string>
     <string name="category_name_hint">Name</string>
+
+    <string name="google_play_services_error">There is a problem with Google Play Services</string>
 </resources>

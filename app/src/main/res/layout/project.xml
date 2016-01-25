@@ -9,46 +9,46 @@
     tools:context=".project.ProjectActivity">
 
 
-    <ScrollView
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="@color/background">
 
-            <android.support.design.widget.AppBarLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay">
+                android:background="@color/background"
+                android:orientation="vertical">
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
+                <android.support.design.widget.AppBarLayout
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+                    android:layout_height="wrap_content"
+                    android:theme="@style/AppTheme.AppBarOverlay">
 
-            </android.support.design.widget.AppBarLayout>
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="?attr/colorPrimary"
+                        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/vertical_margin"
-                android:background="@color/primary">
+                </android.support.design.widget.AppBarLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/title_margin"
-                    android:layout_marginEnd="@dimen/view_margin"
-                    android:layout_marginLeft="@dimen/title_margin_left"
-                    android:layout_marginRight="@dimen/view_margin"
-                    android:layout_marginStart="@dimen/title_margin_left"
-                    android:layout_marginTop="@dimen/view_margin"
+                    android:layout_marginBottom="@dimen/vertical_margin"
+                    android:background="@color/primary"
+                    android:paddingBottom="@dimen/title_margin"
+                    android:paddingEnd="@dimen/view_margin"
+                    android:paddingLeft="@dimen/title_margin_left"
+                    android:paddingRight="@dimen/view_margin"
+                    android:paddingStart="@dimen/title_margin_left"
+                    android:paddingTop="@dimen/view_margin"
                     app:counterEnabled="true"
                     app:counterMaxLength="@integer/max_title_length">
 
@@ -63,34 +63,52 @@
                     </EditText>
 
                 </android.support.design.widget.TextInputLayout>
-            </RelativeLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/locationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_height"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/background_gray">
 
-                <EditText
-                    android:id="@+id/locationEditText"
-                    style="@style/DefaultEditText"
-                    android:hint="@string/project_location_hint"
-                    android:imeOptions="actionDone"
-                    android:inputType="textCapWords" />
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="@dimen/item_image_height"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_menu_camera" />
 
-            </android.support.design.widget.TextInputLayout>
+                    <TextView
+                        android:id="@+id/value"
+                        style="@style/ItemValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/icon"
+                        android:text="Chiang Main" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:counterEnabled="true"
-                app:counterMaxLength="3">
+                    <TextView
+                        android:id="@+id/title"
+                        style="@style/ItemTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/value"
+                        android:layout_toRightOf="@id/icon"
+                        android:text="Location" />
+                </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/currencyEditText"
-                    style="@style/DefaultEditText"
-                    android:hint="@string/project_currency_hint"
-                    android:inputType="text"
-                    android:maxLength="3" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-    </ScrollView>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="3">
+
+                    <EditText
+                        android:id="@+id/currencyEditText"
+                        style="@style/DefaultEditText"
+                        android:hint="@string/project_currency_hint"
+                        android:inputType="text"
+                        android:maxLength="3" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.design.widget.CoordinatorLayout>
 </FrameLayout>
