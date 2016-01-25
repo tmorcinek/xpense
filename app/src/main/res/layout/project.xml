@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?colorPrimaryDark"
+    android:fitsSystemWindows="true"
+    tools:context=".project.ProjectActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </android.support.design.widget.AppBarLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/vertical_margin"
+                android:background="@color/primary">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/title_margin"
+                    android:layout_marginEnd="@dimen/view_margin"
+                    android:layout_marginLeft="@dimen/title_margin_left"
+                    android:layout_marginRight="@dimen/view_margin"
+                    android:layout_marginStart="@dimen/title_margin_left"
+                    android:layout_marginTop="@dimen/view_margin"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="@integer/max_title_length">
+
+                    <EditText
+                        android:id="@+id/nameEditText"
+                        style="@style/DefaultEditText.Title"
+                        android:hint="@string/project_name_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="textCapWords">
+
+                        <requestFocus />
+                    </EditText>
+
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/locationEditText"
+                    style="@style/DefaultEditText"
+                    android:hint="@string/project_location_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapWords" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="3">
+
+                <EditText
+                    android:id="@+id/currencyEditText"
+                    style="@style/DefaultEditText"
+                    android:hint="@string/project_currency_hint"
+                    android:inputType="text"
+                    android:maxLength="3" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

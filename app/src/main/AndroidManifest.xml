@@ -30,6 +30,11 @@
             android:label="@string/category_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".project.ProjectActivity"
+            android:label="@string/project_label"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

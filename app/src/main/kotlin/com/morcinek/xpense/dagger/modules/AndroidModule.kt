@@ -7,6 +7,7 @@ import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.category.ColorManager
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.NoteManager
+import com.morcinek.xpense.data.project.ProjectManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -46,5 +47,11 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideColorManager(): ColorManager {
         return ColorManager()
+    }
+
+    @Provides
+    @Singleton
+    fun provideProjectManager(): ProjectManager {
+        return ProjectManager()
     }
 }

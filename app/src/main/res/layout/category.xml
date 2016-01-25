@@ -18,6 +18,7 @@
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/vertical_margin"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
@@ -29,14 +30,19 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <EditText
-            android:id="@+id/editText"
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/view_margin"
-            android:inputType="textCapWords"
-            android:imeOptions="actionDone"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editText"
+                style="@style/DefaultEditText"
+                android:hint="@string/category_name_hint"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

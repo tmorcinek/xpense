@@ -12,6 +12,6 @@ class CategoryValidator(private val categoryManager: CategoryManager) : Validato
     override fun isValid(item: Category): Boolean {
         return item.color != null
                 && item.name.isNotEmpty()
-                && !categoryManager.getCategories().map { it.name }.contains(item.name)
+                && categoryManager.getCategories().none { it.name.equals(item.name, ignoreCase = true) }
     }
 }
