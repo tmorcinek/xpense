@@ -64,50 +64,14 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-                <RelativeLayout
+                <include
                     android:id="@+id/locationButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/item_height"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/background_gray">
+                    layout="@layout/button_item" />
 
-                    <ImageView
-                        android:id="@+id/icon"
-                        android:layout_width="@dimen/item_image_height"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_menu_camera" />
+                <include
+                    android:id="@+id/currencyButton"
+                    layout="@layout/button_item" />
 
-                    <TextView
-                        android:id="@+id/value"
-                        style="@style/ItemValue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/icon"
-                        android:text="Chiang Main" />
-
-                    <TextView
-                        android:id="@+id/title"
-                        style="@style/ItemTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/value"
-                        android:layout_toRightOf="@id/icon"
-                        android:text="Location" />
-                </RelativeLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="3">
-
-                    <EditText
-                        android:id="@+id/currencyEditText"
-                        style="@style/DefaultEditText"
-                        android:hint="@string/project_currency_hint"
-                        android:inputType="text"
-                        android:maxLength="3" />
-                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
         </ScrollView>
     </android.support.design.widget.CoordinatorLayout>

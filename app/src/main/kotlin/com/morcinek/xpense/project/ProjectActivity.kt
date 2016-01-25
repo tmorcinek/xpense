@@ -14,26 +14,27 @@ import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.project.Project
 import com.morcinek.xpense.data.project.ProjectManager
+import kotlinx.android.synthetic.main.button_item.view.*
 import kotlinx.android.synthetic.main.project.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.__TextWatcher
+import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.textChangedListener
+import org.jetbrains.anko.textResource
 import javax.inject.Inject
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class ProjectActivity : CreateActivity<Project>() {
+class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
 
     @Inject
     lateinit var projectManager: ProjectManager
 
     override var item: Project
-        get() = Project(nameEditText.getTrimString(), "", currencyEditText.getTrimString())
+        get() = Project(nameEditText.getTrimString(), "")
         set(value) {
             nameEditText.setText(value.name)
             //            locationEditText.setText(value.location)
-            currencyEditText.setText(value.currency)
+            //            currencyEditText.setText(value.currency)
         }
 
     override val validator: Validator<Project> by lazy { ProjectValidator(projectManager) }
@@ -44,31 +45,47 @@ class ProjectActivity : CreateActivity<Project>() {
         (application as Application).component.inject(this)
 
         setupProject()
-        setupEditTextViews()
+        setupEditText()
+        setupButtons()
     }
 
     private fun setupProject() {
         item = Project("", "")
     }
 
-    private fun setupEditTextViews() {
-        val init: __TextWatcher.() -> Unit = {
+    private fun setupEditText() {
+        nameEditText.textChangedListener({
             onTextChanged { charSequence, start, before, count ->
                 invalidateItem()
             }
-        }
-        nameEditText.textChangedListener(init)
-        currencyEditText.textChangedListener(init)
-        locationButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                try {
-                    val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).setFilter(autocompleteFilter()).build(this@ProjectActivity)
-                    startActivityForResult(intent, 0)
-                } catch (e: Exception) {
-                    Snackbar.make(view, R.string.google_play_services_error, Snackbar.LENGTH_LONG).show()
-                }
-            }
         })
+    }
+
+    private fun setupButtons() {
+        setupButton(locationButton, R.drawable.ic_pin_black, R.string.project_location_hint)
+        setupButton(currencyButton, R.drawable.ic_money_black, R.string.project_currency_hint)
+    }
+
+    private fun setupButton(button: View, icon: Int, title: Int) {
+        button.icon.imageResource = icon
+        button.title.textResource = title
+        button.subtitle.text = "None"
+        button.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.locationButton -> handleLocationButton(view)
+        }
+    }
+
+    private fun handleLocationButton(view: View?) {
+        try {
+            val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).setFilter(autocompleteFilter()).build(this@ProjectActivity)
+            startActivityForResult(intent, 0)
+        } catch (e: Exception) {
+            Snackbar.make(view, R.string.google_play_services_error, Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun autocompleteFilter() = AutocompleteFilter.Builder().setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES).build()
@@ -77,6 +94,7 @@ class ProjectActivity : CreateActivity<Project>() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             val place = PlaceAutocomplete.getPlace(this, data);
+            locationButton.subtitle.setText(place.address)
         }
     }
 

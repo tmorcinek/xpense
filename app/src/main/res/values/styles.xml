@@ -8,17 +8,17 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="ItemValue">
-        <item name="android:textColor">@color/value</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/item_value_text_size</item>
-    </style>
-
     <style name="ItemSubtitle">
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">@dimen/item_subtitle_text_size</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="ItemValue">
+        <item name="android:textColor">@color/value</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/item_value_text_size</item>
     </style>
 
     <style name="ExpenseTitle">
