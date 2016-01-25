@@ -45,7 +45,7 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
         button.setImageResource(R.drawable.ic_action_accept)
         button.setOnClickListener({
             val text = editText.text.toString().trim()
-            onItemSetListener.invoke(text)
+            onItemSetListener?.invoke(text)
             noteManager.addNote(text)
             dialog.dismiss()
         })

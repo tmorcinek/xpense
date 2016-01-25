@@ -22,7 +22,7 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
 
     protected abstract val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
 
-    lateinit var onItemSetListener: (T) -> Unit
+    var onItemSetListener: ((T) -> Unit)? = null
 
     lateinit var items: List<T>
 

@@ -61,7 +61,7 @@ class CategoryPickerDialogFragment : TextPickerDialogFragment<Category>() {
     }
 
     override fun onItemClicked(item: Category) {
-        onItemSetListener(item)
+        onItemSetListener?.invoke(item)
         dialog.dismiss()
     }
 }
