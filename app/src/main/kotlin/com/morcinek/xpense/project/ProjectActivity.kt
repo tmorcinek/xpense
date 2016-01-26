@@ -30,11 +30,11 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
     lateinit var projectManager: ProjectManager
 
     override var item: Project
-        get() = Project(nameEditText.getTrimString(), "")
+        get() = Project(nameEditText.getTrimString(), locationButton.subtitle.text.toString(), currencyButton.subtitle.text.toString())
         set(value) {
             nameEditText.setText(value.name)
-            //            locationEditText.setText(value.location)
-            //            currencyEditText.setText(value.currency)
+            locationButton.subtitle.setText(value.location)
+            currencyButton.subtitle.setText(value.currency)
         }
 
     override val validator: Validator<Project> by lazy { ProjectValidator(projectManager) }
@@ -50,7 +50,7 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
     }
 
     private fun setupProject() {
-        item = Project("", "")
+        item = Project(getString(R.string.default_value_empty), getString(R.string.default_value_none), getString(R.string.default_value_currency))
     }
 
     private fun setupEditText() {
@@ -69,19 +69,30 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
     private fun setupButton(button: View, icon: Int, title: Int) {
         button.icon.imageResource = icon
         button.title.textResource = title
-        button.subtitle.text = "None"
         button.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
         when (view.id) {
+            R.id.currencyButton -> handleCurrencyButton()
             R.id.locationButton -> handleLocationButton(view)
         }
+        nameEditText.clearFocus()
+        view.requestFocus()
     }
+
+    private fun handleCurrencyButton() {
+        val textPickerFragment = CurrencyPickerDialogFragment()
+        textPickerFragment.onItemSetListener = {
+            currencyButton.subtitle.setText(it)
+        }
+        textPickerFragment.show(supportFragmentManager, CurrencyPickerDialogFragment::class.java.name)
+    }
+
 
     private fun handleLocationButton(view: View?) {
         try {
-            val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).setFilter(autocompleteFilter()).build(this@ProjectActivity)
+            val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).setFilter(autocompleteFilter()).build(this@ProjectActivity)
             startActivityForResult(intent, 0)
         } catch (e: Exception) {
             Snackbar.make(view, R.string.google_play_services_error, Snackbar.LENGTH_LONG).show()

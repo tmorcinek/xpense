@@ -9,6 +9,7 @@
     <string name="title_category">Category</string>
     <string name="title_note">Note</string>
     <string name="title_date">Date</string>
+    <string name="title_currency">Currency</string>
 
     <string name="expense_label">Add expense</string>
     <string name="edit_expense_label">Edit expense</string>
@@ -20,4 +21,8 @@
     <string name="category_name_hint">Name</string>
 
     <string name="google_play_services_error">There is a problem with Google Play Services</string>
+
+    <string name="default_value_empty"></string>
+    <string name="default_value_none">None</string>
+    <string name="default_value_currency">$</string>
 </resources>

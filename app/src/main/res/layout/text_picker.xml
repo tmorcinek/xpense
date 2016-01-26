@@ -29,5 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/editText"
-        android:orientation="vertical" />
+        android:fadeScrollbars="true"
+        android:orientation="vertical"
+        android:scrollbarDefaultDelayBeforeFade="@android:integer/config_longAnimTime"
+        android:scrollbars="vertical" />
 </RelativeLayout>

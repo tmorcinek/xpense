@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_height"
     android:background="@drawable/list_item_background"
+    android:focusable="true"
     tools:showIn="@layout/project">
 
     <ImageView
@@ -33,7 +34,7 @@
         android:layout_alignStart="@id/title"
         android:layout_below="@id/title"
         android:layout_marginEnd="@dimen/horizontal_margin"
-        android:layout_marginRight="@dimen/horizontal_margin"/>
+        android:layout_marginRight="@dimen/horizontal_margin" />
 </RelativeLayout>
 
                 

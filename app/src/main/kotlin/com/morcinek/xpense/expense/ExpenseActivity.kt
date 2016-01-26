@@ -110,7 +110,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
             expenseAdapter.notifyDataItemChanged(CATEGORY_ITEM)
             invalidateItem()
         }
-        textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
+        textPickerFragment.show(supportFragmentManager, CategoryPickerDialogFragment::class.java.name)
     }
 
     private fun startTextPicker(expense: Expense) {
@@ -120,7 +120,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
             expense.note = it
             expenseAdapter.notifyDataItemChanged(NOTE_ITEM)
         }
-        textPickerFragment.show(supportFragmentManager, TextPickerDialogFragment::class.java.name)
+        textPickerFragment.show(supportFragmentManager, NotePickerDialogFragment::class.java.name)
     }
 
     private fun startDatePicker(expense: Expense) {

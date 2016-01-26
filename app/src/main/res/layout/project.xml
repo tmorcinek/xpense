@@ -22,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true"
                 android:orientation="vertical">
 
                 <android.support.design.widget.AppBarLayout
@@ -57,19 +59,16 @@
                         style="@style/DefaultEditText.Title"
                         android:hint="@string/project_name_hint"
                         android:imeOptions="actionDone"
-                        android:inputType="textCapWords">
-
-                        <requestFocus />
-                    </EditText>
+                        android:inputType="textCapWords"/>
 
                 </android.support.design.widget.TextInputLayout>
 
                 <include
-                    android:id="@+id/locationButton"
+                    android:id="@+id/currencyButton"
                     layout="@layout/button_item" />
 
                 <include
-                    android:id="@+id/currencyButton"
+                    android:id="@+id/locationButton"
                     layout="@layout/button_item" />
 
             </LinearLayout>
