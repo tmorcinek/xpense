@@ -10,6 +10,7 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.getParcelable
 import com.morcinek.xpense.common.utils.getTrimString
+import com.morcinek.xpense.common.utils.show
 import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.project.Project
@@ -86,7 +87,7 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
         textPickerFragment.onItemSetListener = {
             currencyButton.subtitle.setText(it)
         }
-        textPickerFragment.show(supportFragmentManager, CurrencyPickerDialogFragment::class.java.name)
+        textPickerFragment.show(supportFragmentManager)
     }
 
 

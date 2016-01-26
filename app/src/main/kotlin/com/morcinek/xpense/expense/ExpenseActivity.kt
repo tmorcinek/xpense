@@ -8,19 +8,16 @@ import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialo
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
-import com.morcinek.xpense.common.utils.finishOk
 import com.morcinek.xpense.common.utils.getParcelable
+import com.morcinek.xpense.common.utils.show
+import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.expense.category.CategoryAdapter
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
-import com.morcinek.xpense.expense.note.NoteAdapter
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
 import java.util.*
@@ -110,7 +107,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
             expenseAdapter.notifyDataItemChanged(CATEGORY_ITEM)
             invalidateItem()
         }
-        textPickerFragment.show(supportFragmentManager, CategoryPickerDialogFragment::class.java.name)
+        textPickerFragment.show(supportFragmentManager)
     }
 
     private fun startTextPicker(expense: Expense) {
@@ -120,7 +117,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
             expense.note = it
             expenseAdapter.notifyDataItemChanged(NOTE_ITEM)
         }
-        textPickerFragment.show(supportFragmentManager, NotePickerDialogFragment::class.java.name)
+        textPickerFragment.show(supportFragmentManager)
     }
 
     private fun startDatePicker(expense: Expense) {
@@ -132,6 +129,6 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
                 },
                 calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
         calendarDatePickerDialogFragment.setThemeCustom(R.style.BetterPickersTheme)
-        calendarDatePickerDialogFragment.show(supportFragmentManager, CalendarDatePickerDialogFragment::class.java.name)
+        calendarDatePickerDialogFragment.show(supportFragmentManager)
     }
 }

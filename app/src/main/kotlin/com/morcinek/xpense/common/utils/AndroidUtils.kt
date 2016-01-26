@@ -3,6 +3,8 @@ package com.morcinek.xpense.common.utils
 import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
+import android.support.v4.app.DialogFragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
@@ -42,4 +44,8 @@ fun EditText.getTrimString() = getText().toString().trim()
 fun EditText.setTextWithSelection(text: CharSequence) {
     setText(text)
     setSelection(text.length)
+}
+
+fun DialogFragment.show(fragmentManager: FragmentManager){
+    show(fragmentManager, javaClass.name)
 }
