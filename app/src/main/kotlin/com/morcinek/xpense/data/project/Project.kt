@@ -8,7 +8,11 @@ import com.orm.SugarRecord
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class Project(var name: String = "", var location: String = "", var currency: String = "") : SugarRecord(), Parcelable {
+class Project(var name: String = "", var location: String = "", var currency: String = "", id: Long? = null) : SugarRecord(), Parcelable {
+
+    init {
+        setId(id)
+    }
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(name)
@@ -21,9 +25,7 @@ class Project(var name: String = "", var location: String = "", var currency: St
 
     companion object {
         val CREATOR = createParcel {
-            val project = Project(it.readString(), it.readString(), it.readString())
-            project.id = it.readValue(null) as Long?
-            project
+            Project(it.readString(), it.readString(), it.readString(), it.readValue(null) as Long?)
         }
     }
 }

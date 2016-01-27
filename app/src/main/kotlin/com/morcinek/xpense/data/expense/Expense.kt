@@ -7,13 +7,19 @@ import com.morcinek.xpense.common.utils.readCalendar
 import com.morcinek.xpense.common.utils.readParcelable
 import com.morcinek.xpense.common.utils.writeCalendar
 import com.morcinek.xpense.data.category.Category
+import com.morcinek.xpense.data.project.Project
+import com.orm.SugarRecord
 import java.util.*
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
-data class Expense(var value: Double = 0.0, var category: Category? = null, var note: String = "",
-                   val date: Calendar = Calendar.getInstance()) : Comparable<Expense>, Parcelable {
+class Expense(var project: Project? = null, var value: Double = 0.0, var category: Category? = null, var note: String = "",
+              val date: Calendar = Calendar.getInstance(), id: Long? = null) : SugarRecord(), Comparable<Expense>, Parcelable {
+
+    init {
+        setId(id)
+    }
 
     override fun compareTo(other: Expense) = (value - other.value + 0.5).toInt()
 
@@ -24,11 +30,14 @@ data class Expense(var value: Double = 0.0, var category: Category? = null, var 
         dest.writeParcelable(category, 0)
         dest.writeString(note)
         dest.writeCalendar(date)
+        dest.writeValue(id)
     }
 
     override fun describeContents() = 0
 
     companion object {
-        val CREATOR = createParcel { Expense(it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar()) }
+        val CREATOR = createParcel {
+            Expense(null, it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar(), it.readValue(null) as Long?)
+        }
     }
 }
