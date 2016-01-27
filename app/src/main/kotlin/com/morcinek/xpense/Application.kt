@@ -4,6 +4,7 @@ import android.app.Application
 import com.morcinek.xpense.dagger.modules.AndroidModule
 import com.morcinek.xpense.dagger.ApplicationComponent
 import com.morcinek.xpense.dagger.DaggerApplicationComponent
+import com.orm.SugarContext
 
 
 /**
@@ -16,5 +17,11 @@ class Application : Application() {
     override fun onCreate() {
         super.onCreate()
         this.component = DaggerApplicationComponent.builder().androidModule(AndroidModule(this)).build()
+        SugarContext.init(this);
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        SugarContext.terminate();
     }
 }

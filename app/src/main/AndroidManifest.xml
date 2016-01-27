@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.morcinek.xpense">
 
+
     <application
         android:name="com.morcinek.xpense.Application"
         android:allowBackup="true"
@@ -12,6 +13,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAH1a6ws-97mih90wNgMoY_yKNMwGo8sNU"/>
+
+        <meta-data android:name="DATABASE" android:value="xpense.db" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.morcinek.xpense" />
 
         <activity
             android:name=".home.HomeActivity"

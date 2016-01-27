@@ -1,7 +1,10 @@
 package com.morcinek.xpense.dagger.modules
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import com.morcinek.xpense.Application
+import com.morcinek.xpense.common.helpers.PreferencesHelper
 import com.morcinek.xpense.dagger.ForApplication
 import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.category.ColorManager
@@ -49,9 +52,21 @@ class AndroidModule(private val application: Application) {
         return ColorManager()
     }
 
+    @Singleton
+    @Provides
+    fun provideSharedPreferences(): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(application)
+    }
+
     @Provides
     @Singleton
-    fun provideProjectManager(): ProjectManager {
-        return ProjectManager()
+    fun providePreferencesHelper(sharedPreferences: SharedPreferences): PreferencesHelper {
+        return PreferencesHelper(sharedPreferences)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProjectManager(preferencesHelper: PreferencesHelper): ProjectManager {
+        return ProjectManager(preferencesHelper)
     }
 }

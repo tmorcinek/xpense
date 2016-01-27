@@ -113,6 +113,7 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
     override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Project>()
 
     override fun onDoneItemSelected() {
-        projectManager.addProject(item)
+        val project = item
+        projectManager.addProject(project)
     }
 }

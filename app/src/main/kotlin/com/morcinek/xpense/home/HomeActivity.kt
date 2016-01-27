@@ -71,7 +71,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setupProject() {
-        if (projectManager.getCurrentProject() == null) {
+        if (projectManager.currentProject == null) {
             startActivityForResult<ProjectActivity>()
         }
     }
