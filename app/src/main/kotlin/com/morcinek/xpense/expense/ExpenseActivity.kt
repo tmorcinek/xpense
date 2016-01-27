@@ -17,6 +17,7 @@ import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
+import com.morcinek.xpense.data.project.ProjectManager
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
@@ -32,9 +33,13 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         get() = expenseAdapter.expense
         set(value) {
             expenseAdapter.expense = value
+            expenseAdapter.notifyDataSetChanged()
         }
 
     override val validator: Validator<Expense> by lazy { ExpenseValidator() }
+
+    @Inject
+    lateinit var projectManager: ProjectManager
 
     @Inject
     lateinit var expenseManager: ExpenseManager
@@ -55,6 +60,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun setupAdapter() {
         expenseAdapter = ExpenseAdapter(this)
+        expenseAdapter.expense = Expense(projectManager.currentProject)
         expenseAdapter.itemClickListener = this
     }
 

@@ -24,11 +24,7 @@ val DATE_ITEM = R.string.title_date
  */
 class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, ExpenseAdapter.ViewHolder>(context) {
 
-    var expense: Expense = Expense()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    lateinit var expense: Expense
 
     init {
         setList(listOf(AMOUNT_ITEM, CATEGORY_ITEM, NOTE_ITEM, DATE_ITEM))
