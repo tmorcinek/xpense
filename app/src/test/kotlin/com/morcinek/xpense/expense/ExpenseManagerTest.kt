@@ -3,6 +3,7 @@ package com.morcinek.xpense.expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
+import com.morcinek.xpense.data.project.ProjectManager
 import org.junit.Before
 import org.junit.Test
 import java.util.*
@@ -18,7 +19,7 @@ class ExpenseManagerTest {
 
     @Before
     fun setUp() {
-        expenseManager = ExpenseManager()
+        expenseManager = ExpenseManager(null)
     }
 
     private fun exampleExpense() = Expense(null, 120.0, Category("Food and Drinks", 0), "Pranie")

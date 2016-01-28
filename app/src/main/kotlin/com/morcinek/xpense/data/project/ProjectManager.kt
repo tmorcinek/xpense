@@ -10,7 +10,7 @@ class ProjectManager(private val preferencesHelper: PreferencesHelper) {
 
     private val projects: MutableList<Project> = SugarRecord.listAll(Project::class.java)
 
-    var currentProject: Project? = SugarRecord.findById(Project::class.java, preferencesHelper.getCurrentProjectId())
+    var currentProject: Project? = null
         set(value) {
             field = value
             if (value != null) {
@@ -18,13 +18,15 @@ class ProjectManager(private val preferencesHelper: PreferencesHelper) {
             }
         }
 
+    init {
+        currentProject = SugarRecord.findById(Project::class.java, preferencesHelper.getCurrentProjectId())
+    }
+
     fun getProjects(): List<Project> = projects
 
     fun addProject(project: Project) {
         project.save()
-        if (projects.isEmpty()) {
-            currentProject = project
-        }
+        currentProject = project
         projects.add(project)
     }
 }

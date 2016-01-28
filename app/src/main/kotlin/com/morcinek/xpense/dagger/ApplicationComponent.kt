@@ -8,6 +8,7 @@ import com.morcinek.xpense.home.HomeActivity
 import com.morcinek.xpense.home.category.CategoryActivity
 import com.morcinek.xpense.home.history.HistoryFragment
 import com.morcinek.xpense.project.ProjectActivity
+import com.morcinek.xpense.splash.SplashActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,6 +19,7 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AndroidModule::class))
 interface ApplicationComponent {
 
+    fun inject(splashActivity: SplashActivity)
     fun inject(homeActivity: HomeActivity)
     fun inject(expenseActivity: ExpenseActivity)
     fun inject(categoryActivity: CategoryActivity)

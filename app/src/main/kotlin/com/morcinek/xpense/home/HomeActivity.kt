@@ -24,9 +24,6 @@ import javax.inject.Inject
  */
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    @Inject
-    lateinit var projectManager: ProjectManager
-
     val homeContentController: HomeContentController = HomeContentController(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +36,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setupActionButton()
         setupNavigationView()
         setupFragment(savedInstanceState)
-
-        setupProject()
     }
 
     private fun setupFragment(savedInstanceState: Bundle?) {
@@ -68,19 +63,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setupNavigationView() {
         navigationView.setNavigationItemSelectedListener(this)
-    }
-
-    private fun setupProject() {
-        if (projectManager.currentProject == null) {
-            startActivityForResult<ProjectActivity>()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_CANCELED) {
-            finish()
-        }
     }
 
     override fun onBackPressed() {

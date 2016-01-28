@@ -2,6 +2,7 @@ package com.morcinek.xpense.common.helpers
 
 import android.content.SharedPreferences
 import com.morcinek.xpense.common.utils.getLong
+import com.morcinek.xpense.common.utils.putBoolean
 import com.morcinek.xpense.common.utils.putLong
 
 /**
@@ -10,7 +11,11 @@ import com.morcinek.xpense.common.utils.putLong
 class PreferencesHelper(private val sharedPreferences: SharedPreferences) {
 
     private val CURRENT_PROJECT = "currentProject"
+    private val DATABASE_INITIALIZED = "databaseInitialize"
 
     fun getCurrentProjectId() = sharedPreferences.getLong(CURRENT_PROJECT)
     fun putCurrentProjectId(id: Long) = sharedPreferences.putLong(CURRENT_PROJECT, id)
+
+    fun isDatabaseInitialized() = sharedPreferences.getBoolean(DATABASE_INITIALIZED, false)
+    fun setDatabaseInitialized() = sharedPreferences.putBoolean(DATABASE_INITIALIZED, true)
 }

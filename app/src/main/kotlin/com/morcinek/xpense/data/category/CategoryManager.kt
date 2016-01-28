@@ -1,21 +1,40 @@
 package com.morcinek.xpense.data.category
 
-import java.util.*
+import com.morcinek.xpense.common.helpers.PreferencesHelper
+import com.orm.SugarRecord
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CategoryManager {
+class CategoryManager(private val preferencesHelper: PreferencesHelper) {
 
-    private val categories: MutableList<Category> = ArrayList()
+    private val categories: MutableList<Category> = SugarRecord.listAll(Category::class.java)
 
     init {
-        categories.addAll(listOf(Category("Food and Drinks", 0xFFFF0000.toInt()), Category("Alcohol", 0xAAFFBB00.toInt()), Category("Apartment", 0xff00ff00.toInt())))
+        if (!preferencesHelper.isDatabaseInitialized()) {
+            initializeCategories()
+            preferencesHelper.setDatabaseInitialized()
+        }
+    }
+
+    private fun initializeCategories() {
+        var initialCategories = listOf(
+                Category("Food and Drinks", 0xFF000000.toInt()),
+                Category("Accommodation", 0xFFff0000.toInt()),
+                Category("Health", 0xFFffc0cb.toInt()),
+                Category("Transportation", 0xFF0000ff.toInt()),
+                Category("Leisure", 0xFF008080.toInt())
+        )
+        initialCategories.forEach {
+            it.save()
+            categories.add(it)
+        }
     }
 
     fun getCategories(): List<Category> = categories
 
     fun addCategory(category: Category) {
+        category.save()
         categories.add(category)
     }
 }

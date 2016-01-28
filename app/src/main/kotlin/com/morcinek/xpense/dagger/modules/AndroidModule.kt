@@ -30,8 +30,8 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun provideExpenseManager(): ExpenseManager {
-        return ExpenseManager()
+    fun provideExpenseManager(projectManager: ProjectManager): ExpenseManager {
+        return ExpenseManager(projectManager)
     }
 
     @Provides
@@ -42,8 +42,8 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun provideCategoryManager(): CategoryManager {
-        return CategoryManager()
+    fun provideCategoryManager(preferencesHelper: PreferencesHelper): CategoryManager {
+        return CategoryManager(preferencesHelper)
     }
 
     @Provides
