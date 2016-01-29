@@ -37,7 +37,7 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
         holder.iconView.text = ShortDateFormatter().format(item.date.time)
         holder.titleView.text = item.category!!.name
         holder.subtitleView.text = item.note
-        holder.valueView.text = CurrencyFormatter().format(item.value)
+        holder.valueView.text = CurrencyFormatter().format(item.value, item.project!!.currency)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {

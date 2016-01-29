@@ -53,6 +53,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         (application as Application).component.inject(this)
 
         setupAdapter()
+        setupItem()
         setupRecyclerView()
         setupExpense()
     }
@@ -90,8 +91,12 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun setupAdapter() {
         expenseAdapter = ExpenseAdapter(this)
-        item = Expense()
+        expenseAdapter.currencySymbol = expenseManager.currentProject.currency
         expenseAdapter.itemClickListener = this
+    }
+
+    private fun setupItem() {
+        item = Expense()
     }
 
     private fun setupRecyclerView() {
@@ -132,7 +137,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
                 .setFragmentManager(getSupportFragmentManager())
                 .setStyleResId(R.style.BetterPickersDialogFragment)
                 .setPlusMinusVisibility(View.GONE)
-                .setLabelText("$")
+                .setLabelText(expenseManager.currentProject.currency)
                 .setCurrentNumberAsInteger(item.value)
                 .addNumberPickerDialogHandler { reference, number, decimal, isNegative, fullNumber ->
                     item.value = fullNumber

@@ -26,6 +26,8 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
 
     lateinit var expense: Expense
 
+    lateinit var currencySymbol: String
+
     init {
         setList(listOf(AMOUNT_ITEM, CATEGORY_ITEM, NOTE_ITEM, DATE_ITEM))
     }
@@ -48,7 +50,7 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
     private fun setupValue(holder: ViewHolder, item: Int) {
         holder.iconView.visibility = View.GONE
         when (item) {
-            R.string.title_amount -> holder.valueView.text = CurrencyFormatter().format(expense.value)
+            R.string.title_amount -> holder.valueView.text = CurrencyFormatter().format(expense.value, currencySymbol)
             R.string.title_category -> {
                 holder.valueView.text = expense.category?.name
                 if (expense.category != null) {
