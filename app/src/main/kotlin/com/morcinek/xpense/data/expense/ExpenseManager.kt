@@ -33,6 +33,11 @@ class ExpenseManager(private val projectManager: ProjectManager) {
         //        listeners.forEach { it.expenseAdded(expense) }
     }
 
+    fun deleteExpense(expense: Expense) {
+        projectExpenses.remove(expense)
+        expense.delete()
+    }
+
     private val listeners: MutableList<ExpenseManagerListener> = ArrayList()
 
     fun registerListener(expenseManagerListener: ExpenseManagerListener) {

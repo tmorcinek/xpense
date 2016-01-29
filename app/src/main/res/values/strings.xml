@@ -4,6 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="done">Done</string>
+    <string name="delete">Delete</string>
 
     <string name="title_amount">Amount</string>
     <string name="title_category">Category</string>
@@ -22,7 +23,7 @@
 
     <string name="google_play_services_error">There is a problem with Google Play Services</string>
 
-    <string name="default_value_empty"></string>
+    <string name="default_value_empty">""</string>
     <string name="default_value_none">None</string>
     <string name="default_value_currency">$</string>
 </resources>

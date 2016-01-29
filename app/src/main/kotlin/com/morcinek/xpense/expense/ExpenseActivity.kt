@@ -3,6 +3,8 @@ package com.morcinek.xpense.expense
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
@@ -10,11 +12,8 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
-import com.morcinek.xpense.common.utils.getParcelable
-import com.morcinek.xpense.common.utils.putParcelableExtra
-import com.morcinek.xpense.common.utils.putSerializableExtra
-import com.morcinek.xpense.common.utils.show
 import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
@@ -58,6 +57,28 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     }
 
     override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Expense>()
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu!!.findItem(R.id.action_delete).setVisible(isEditMode)
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_delete -> {
+                deleteExpense()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun deleteExpense() {
+        expenseManager.deleteExpense(item)
+        intent.putSerializableExtra(ExpenseAction.DELETED)
+        intent.putParcelableExtra(item)
+        finishOk()
+    }
 
     private fun setupAdapter() {
         expenseAdapter = ExpenseAdapter(this)
