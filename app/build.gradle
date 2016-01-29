@@ -45,6 +45,7 @@ dependencies {
 
     testCompile 'junit:junit:4.11'
     testCompile 'com.github.tsuharesu:expect-kt:0.5.1'
+    testCompile 'org.mockito:mockito-core:1.9.5'
 }
 
 kapt {
