@@ -10,7 +10,7 @@ class CategoryInitializer() : Initializer {
 
     override fun initialize() {
         var initialCategories = listOf(
-                Category("Food and Drinks", 0xFF000000.toInt()),
+                Category("Food and Drinks", 0xFFeeeeee.toInt()),
                 Category("Accommodation", 0xFFff0000.toInt()),
                 Category("Health", 0xFFffc0cb.toInt()),
                 Category("Transportation", 0xFF0000ff.toInt()),
