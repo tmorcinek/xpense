@@ -20,9 +20,17 @@ class ExpenseManager(private val projectManager: ProjectManager) {
     fun getExpenses(): List<Expense> = projectExpenses
 
     fun addExpense(expense: Expense) {
+        expense.project = currentProject
         expense.save()
         projectExpenses.add(expense)
-        listeners.forEach { it.expenseAdded(expense) }
+        //        listeners.forEach { it.expenseAdded(expense) }
+    }
+
+    fun updateExpense(expense: Expense) {
+        expense.project = currentProject
+        expense.save()
+        projectExpenses.set(projectExpenses.indexOf(expense), expense)
+        //        listeners.forEach { it.expenseAdded(expense) }
     }
 
     private val listeners: MutableList<ExpenseManagerListener> = ArrayList()

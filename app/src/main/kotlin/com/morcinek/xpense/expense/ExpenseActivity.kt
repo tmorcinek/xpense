@@ -12,12 +12,14 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
 import com.morcinek.xpense.common.utils.getParcelable
+import com.morcinek.xpense.common.utils.putParcelableExtra
+import com.morcinek.xpense.common.utils.putSerializableExtra
 import com.morcinek.xpense.common.utils.show
 import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.data.project.ProjectManager
+import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
@@ -38,8 +40,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     override val validator: Validator<Expense> by lazy { ExpenseValidator() }
 
-    @Inject
-    lateinit var projectManager: ProjectManager
+    private val isEditMode by lazy { intent.extras != null }
 
     @Inject
     lateinit var expenseManager: ExpenseManager
@@ -60,7 +61,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun setupAdapter() {
         expenseAdapter = ExpenseAdapter(this)
-        expenseAdapter.expense = Expense(projectManager.currentProject)
+        item = Expense()
         expenseAdapter.itemClickListener = this
     }
 
@@ -72,62 +73,69 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     }
 
     private fun setupExpense() {
-        if (intent.extras != null) {
+        if (isEditMode) {
             setTitle(R.string.edit_expense_label)
         }
     }
 
     override fun onDoneItemSelected() {
-        expenseManager.addExpense(expenseAdapter.expense)
+        if (isEditMode) {
+            expenseManager.updateExpense(item)
+            intent.putSerializableExtra(ExpenseAction.UPDATED)
+        } else {
+            expenseManager.addExpense(item)
+            intent.putSerializableExtra(ExpenseAction.CREATED)
+        }
+        intent.putParcelableExtra(item)
     }
 
     override fun onItemClicked(item: Int) {
         when (item) {
-            AMOUNT_ITEM -> startAmountPicker(expenseAdapter.expense)
-            CATEGORY_ITEM -> startCategoryPicker(expenseAdapter.expense)
-            NOTE_ITEM -> startTextPicker(expenseAdapter.expense)
-            DATE_ITEM -> startDatePicker(expenseAdapter.expense)
+            AMOUNT_ITEM -> startAmountPicker()
+            CATEGORY_ITEM -> startCategoryPicker()
+            NOTE_ITEM -> startTextPicker()
+            DATE_ITEM -> startDatePicker()
         }
     }
 
-    private fun startAmountPicker(expense: Expense) {
+    private fun startAmountPicker() {
         val numberPickerBuilder = NumberPickerBuilder()
                 .setFragmentManager(getSupportFragmentManager())
                 .setStyleResId(R.style.BetterPickersDialogFragment)
                 .setPlusMinusVisibility(View.GONE)
                 .setLabelText("$")
-                .setCurrentNumberAsInteger(expense.value)
+                .setCurrentNumberAsInteger(item.value)
                 .addNumberPickerDialogHandler { reference, number, decimal, isNegative, fullNumber ->
-                    expense.value = fullNumber
+                    item.value = fullNumber
                     expenseAdapter.notifyDataItemChanged(AMOUNT_ITEM)
                     invalidateItem()
                 }
         numberPickerBuilder.show()
     }
 
-    private fun startCategoryPicker(expense: Expense) {
+    private fun startCategoryPicker() {
         val textPickerFragment = CategoryPickerDialogFragment()
-        textPickerFragment.selectedItem = expense.category
+        textPickerFragment.selectedItem = item.category
         textPickerFragment.onItemSetListener = {
-            expense.category = it
+            item.category = it
             expenseAdapter.notifyDataItemChanged(CATEGORY_ITEM)
             invalidateItem()
         }
         textPickerFragment.show(supportFragmentManager)
     }
 
-    private fun startTextPicker(expense: Expense) {
+    private fun startTextPicker() {
         val textPickerFragment = NotePickerDialogFragment()
-        textPickerFragment.selectedItem = expense.note
+        textPickerFragment.selectedItem = item.note
         textPickerFragment.onItemSetListener = {
-            expense.note = it
+            item.note = it
             expenseAdapter.notifyDataItemChanged(NOTE_ITEM)
         }
         textPickerFragment.show(supportFragmentManager)
     }
 
-    private fun startDatePicker(expense: Expense) {
-        val calendar = expense.date
+    private fun startDatePicker() {
+        val calendar = item.date
         val calendarDatePickerDialogFragment = CalendarDatePickerDialogFragment.newInstance(
                 { dialogFragment, year, month, day ->
                     calendar.set(year, month, day)

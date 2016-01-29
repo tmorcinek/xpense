@@ -14,8 +14,10 @@ import java.util.*
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
-class Expense(var project: Project? = null, var value: Double = 0.0, var category: Category? = null, var note: String = "",
+class Expense(var value: Double = 0.0, var category: Category? = null, var note: String = "",
               val date: Calendar = Calendar.getInstance(), id: Long? = null) : SugarRecord(), Comparable<Expense>, Parcelable {
+
+    var project: Project? = null
 
     init {
         setId(id)
@@ -37,7 +39,16 @@ class Expense(var project: Project? = null, var value: Double = 0.0, var categor
 
     companion object {
         val CREATOR = createParcel {
-            Expense(null, it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar(), it.readValue(null) as Long?)
+            Expense(it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar(), it.readValue(null) as Long?)
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        other as Expense
+        return id.equals(other.id)
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
     }
 }

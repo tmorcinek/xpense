@@ -13,11 +13,22 @@ import com.morcinek.xpense.common.formatters.ShortDateFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.data.expense.ExpenseManagerListener
 import com.morcinek.xpense.data.expense.Expense
+import com.morcinek.xpense.data.note.ExpenseAction
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context), ExpenseManagerListener {
+
+    fun updateList(expenses: List<Expense>, expense: Expense, expenseAction: ExpenseAction) {
+        when (expenseAction) {
+            ExpenseAction.UPDATED -> notifyItemChanged(items.indexOf(expense))
+            ExpenseAction.DELETED -> notifyItemRemoved(items.indexOf(expense))
+            ExpenseAction.CREATED -> notifyItemInserted(expenses.indexOf(expense))
+        }
+        items.clear()
+        items.addAll(expenses)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)

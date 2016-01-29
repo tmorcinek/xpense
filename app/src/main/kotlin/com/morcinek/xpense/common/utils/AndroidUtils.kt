@@ -17,7 +17,7 @@ import android.widget.EditText
  */
 
 fun Activity.finishOk() {
-    setResult(AppCompatActivity.RESULT_OK)
+    setResult(AppCompatActivity.RESULT_OK, getIntent())
     finish()
 }
 
@@ -46,6 +46,6 @@ fun EditText.setTextWithSelection(text: CharSequence) {
     setSelection(text.length)
 }
 
-fun DialogFragment.show(fragmentManager: FragmentManager){
+fun DialogFragment.show(fragmentManager: FragmentManager) {
     show(fragmentManager, javaClass.name)
 }

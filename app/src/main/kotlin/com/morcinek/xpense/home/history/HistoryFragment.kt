@@ -1,5 +1,7 @@
 package com.morcinek.xpense.home.history
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -10,9 +12,10 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.common.utils.startActivity
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
+import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.expense.ExpenseActivity
 import kotlinx.android.synthetic.main.default_list.*
 import javax.inject.Inject
@@ -60,6 +63,16 @@ class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickL
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
 
     override fun onItemClicked(item: Expense) {
-        activity.startActivity<ExpenseActivity>(item)
+        activity.startActivityFromFragment<ExpenseActivity>(this, item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            val expenses = expenseManager.getExpenses()
+            val action = data!!.getSerializableExtra<ExpenseAction>()!!
+            val expense = data.getParcelableExtra<Expense>()
+            historyAdapter.updateList(expenses, expense, action)
+        }
     }
 }

@@ -22,7 +22,7 @@ class ExpenseManagerTest {
         expenseManager = ExpenseManager(Mockito.mock(ProjectManager::class.java))
     }
 
-    private fun exampleExpense() = Expense(null, 120.0, Category("Food and Drinks", 0), "Pranie")
+    private fun exampleExpense() = Expense(120.0, Category("Food and Drinks", 0), "Pranie")
 
     @Test
     fun addExpenseTest() {
