@@ -22,6 +22,7 @@ import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
+import org.jetbrains.anko.alert
 import java.util.*
 import javax.inject.Inject
 
@@ -66,11 +67,18 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete -> {
-                deleteExpense()
+                showConfirmationDialog()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showConfirmationDialog() {
+        alert(R.string.expense_delete_message) {
+            positiveButton(android.R.string.yes) { deleteExpense() }
+            negativeButton(android.R.string.no)
+        }.show()
     }
 
     private fun deleteExpense() {
@@ -95,7 +103,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun setupExpense() {
         if (isEditMode) {
-            setTitle(R.string.edit_expense_label)
+            setTitle(R.string.expense_edit_label)
         }
     }
 
