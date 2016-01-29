@@ -77,8 +77,8 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun showConfirmationDialog() {
         alert(R.string.expense_delete_message) {
-            positiveButton(android.R.string.yes) { deleteExpense() }
-            negativeButton(android.R.string.no)
+            positiveButton(R.string.yes) { deleteExpense() }
+            negativeButton(R.string.no)
         }.show()
     }
 
