@@ -20,10 +20,16 @@ class NoteAdapter(context: Context) : AbstractRecyclerViewAdapter<String, NoteAd
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        (holder.itemView as TextView).text = item
+        holder.textView.text = item
         initializeOnClickListener(holder, item)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        val textView: TextView
+
+        init {
+            textView = view.findViewById(R.id.text) as TextView
+        }
     }
 }

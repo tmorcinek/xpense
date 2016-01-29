@@ -1,6 +1,7 @@
 package com.morcinek.xpense.expense.note
 
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.morcinek.xpense.Application
@@ -34,6 +35,7 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
         setupItems()
         setupButton()
         setupEditText()
+        setupRecyclerView()
     }
 
     private fun setupItems() {
@@ -55,6 +57,10 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
     private fun setupEditText() {
         dialog.window.showSoftInput()
         editText.setTextWithSelection(selectedItem!!)
+    }
+
+    private fun setupRecyclerView() {
+        recyclerView.layoutManager = GridLayoutManager(activity, 2)
     }
 
     override fun onItemClicked(item: String) {

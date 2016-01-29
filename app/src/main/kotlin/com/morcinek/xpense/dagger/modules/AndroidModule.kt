@@ -13,6 +13,7 @@ import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.data.project.ProjectManager
 import com.morcinek.xpense.splash.data.CategoryInitializer
 import com.morcinek.xpense.splash.data.Initializer
+import com.morcinek.xpense.splash.data.NoteInitializer
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -45,8 +46,8 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun provideCategoryManager(preferencesHelper: PreferencesHelper): CategoryManager {
-        return CategoryManager(preferencesHelper)
+    fun provideCategoryManager(): CategoryManager {
+        return CategoryManager()
     }
 
     @Provides
@@ -75,7 +76,7 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Named("initializers")
-    fun provideInitializers(categoryManager: CategoryManager): Array<Initializer> {
-        return arrayOf(CategoryInitializer(categoryManager))
+    fun provideInitializers(): Array<Initializer> {
+        return arrayOf(CategoryInitializer(), NoteInitializer())
     }
 }

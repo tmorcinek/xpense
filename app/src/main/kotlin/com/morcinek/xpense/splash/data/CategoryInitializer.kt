@@ -1,12 +1,12 @@
 package com.morcinek.xpense.splash.data
 
 import com.morcinek.xpense.data.category.Category
-import com.morcinek.xpense.data.category.CategoryManager
+import com.orm.SugarRecord
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CategoryInitializer(private val categoryManager: CategoryManager) : Initializer {
+class CategoryInitializer() : Initializer {
 
     override fun initialize() {
         var initialCategories = listOf(
@@ -17,8 +17,7 @@ class CategoryInitializer(private val categoryManager: CategoryManager) : Initia
                 Category("Leisure", 0xFF008080.toInt())
         )
         initialCategories.forEach {
-            categoryManager.addCategory(it)
+            SugarRecord.saveInTx(initialCategories)
         }
     }
-
 }
