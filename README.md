@@ -1,4 +1,4 @@
-kotlin-android-dagger
+Xpense
 ================
 
 Expense Manager for Android written in Kotlin.
