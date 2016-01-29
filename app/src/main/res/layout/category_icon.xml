@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/icon"
     style="@style/CategoryIcon"
-    android:layout_width="@dimen/item_image_height"
-    android:layout_height="@dimen/item_image_height" />
+    android:layout_width="@dimen/small_image_height"
+    android:layout_height="@dimen/small_image_height" />
 
     

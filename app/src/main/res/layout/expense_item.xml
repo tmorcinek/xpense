@@ -29,6 +29,8 @@
 
     <include
         layout="@layout/category_icon"
+        android:layout_height="@dimen/large_image_height"
+        android:layout_width="@dimen/large_image_height"
         android:visibility="gone" />
 </LinearLayout>
 

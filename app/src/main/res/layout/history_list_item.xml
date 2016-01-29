@@ -8,7 +8,10 @@
     android:paddingLeft="@dimen/vertical_margin"
     android:paddingRight="@dimen/vertical_margin">
 
-    <include layout="@layout/category_icon" />
+    <include
+        layout="@layout/category_icon"
+        android:layout_width="@dimen/large_image_height"
+        android:layout_height="@dimen/large_image_height" />
 
     <LinearLayout
         android:layout_width="0dp"
