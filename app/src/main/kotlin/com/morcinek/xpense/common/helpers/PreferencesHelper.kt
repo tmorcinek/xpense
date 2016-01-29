@@ -13,6 +13,7 @@ class PreferencesHelper(private val sharedPreferences: SharedPreferences) {
     private val CURRENT_PROJECT = "currentProject"
     private val DATABASE_INITIALIZED = "databaseInitialize"
 
+    fun hasCurrentProject() = sharedPreferences.contains(CURRENT_PROJECT)
     fun getCurrentProjectId() = sharedPreferences.getLong(CURRENT_PROJECT)
     fun putCurrentProjectId(id: Long) = sharedPreferences.putLong(CURRENT_PROJECT, id)
 

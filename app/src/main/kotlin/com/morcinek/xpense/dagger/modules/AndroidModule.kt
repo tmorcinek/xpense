@@ -11,8 +11,11 @@ import com.morcinek.xpense.data.category.ColorManager
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.data.project.ProjectManager
+import com.morcinek.xpense.splash.data.CategoryInitializer
+import com.morcinek.xpense.splash.data.Initializer
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -68,5 +71,11 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideProjectManager(preferencesHelper: PreferencesHelper): ProjectManager {
         return ProjectManager(preferencesHelper)
+    }
+
+    @Provides
+    @Named("initializers")
+    fun provideInitializers(categoryManager: CategoryManager): Array<Initializer> {
+        return arrayOf(CategoryInitializer(categoryManager))
     }
 }

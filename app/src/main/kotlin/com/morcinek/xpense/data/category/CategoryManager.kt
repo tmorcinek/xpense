@@ -11,10 +11,6 @@ class CategoryManager(private val preferencesHelper: PreferencesHelper) {
     private val categories: MutableList<Category> = SugarRecord.listAll(Category::class.java)
 
     init {
-        if (!preferencesHelper.isDatabaseInitialized()) {
-            initializeCategories()
-            preferencesHelper.setDatabaseInitialized()
-        }
     }
 
     private fun initializeCategories() {
