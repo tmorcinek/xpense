@@ -28,8 +28,6 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
 
     var selectedItem: T? = null
 
-    lateinit var isButtonVisible: (String) -> Boolean
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.text_picker, container)
     }
@@ -66,7 +64,6 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
         editText.textChangedListener {
             onTextChanged { charSequence, start, before, count ->
                 adapter.setList(items.filter { it.toString().contains(charSequence!!, true) })
-                button.isEnabled = isButtonVisible.invoke(charSequence.toString())
             }
         }
     }

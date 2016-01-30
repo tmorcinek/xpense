@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
@@ -53,7 +52,6 @@ class CategoryPickerDialogFragment : TextPickerDialogFragment<Category>() {
     }
 
     private fun setupButton() {
-        isButtonVisible = { true }
         button.setImageResource(R.drawable.ic_action_new)
         button.setOnClickListener({
             activity.startActivityFromFragment<CategoryActivity>(this, Category(editText.getTrimString()))

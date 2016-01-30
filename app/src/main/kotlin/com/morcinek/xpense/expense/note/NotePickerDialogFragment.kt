@@ -44,12 +44,10 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
     }
 
     private fun setupButton() {
-        isButtonVisible = { it.isNotBlank() }
         button.setImageResource(R.drawable.ic_action_accept)
         button.setOnClickListener({
             val text = editText.getTrimString()
             onItemSetListener?.invoke(text)
-            noteManager.addNote(text)
             dialog.dismiss()
         })
     }

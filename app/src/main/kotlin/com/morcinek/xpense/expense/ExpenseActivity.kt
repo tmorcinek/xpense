@@ -19,6 +19,7 @@ import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
+import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
@@ -44,6 +45,9 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     @Inject
     lateinit var expenseManager: ExpenseManager
+
+    @Inject
+    lateinit var noteManager: NoteManager
 
     private lateinit var expenseAdapter: ExpenseAdapter
 
@@ -113,6 +117,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     }
 
     override fun onDoneItemSelected() {
+        addNote()
         if (isEditMode) {
             expenseManager.updateExpense(item)
             intent.putSerializableExtra(ExpenseAction.UPDATED)
@@ -121,6 +126,12 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
             intent.putSerializableExtra(ExpenseAction.CREATED)
         }
         intent.putParcelableExtra(item)
+    }
+
+    private fun addNote() {
+        if (item.note.isNotBlank()) {
+            noteManager.addNote(item.note)
+        }
     }
 
     override fun onItemClicked(item: Int) {
@@ -134,7 +145,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun startAmountPicker() {
         val numberPickerBuilder = NumberPickerBuilder()
-                .setFragmentManager(getSupportFragmentManager())
+                .setFragmentManager(supportFragmentManager)
                 .setStyleResId(R.style.BetterPickersDialogFragment)
                 .setPlusMinusVisibility(View.GONE)
                 .setLabelText(expenseManager.currentProject.currency)
