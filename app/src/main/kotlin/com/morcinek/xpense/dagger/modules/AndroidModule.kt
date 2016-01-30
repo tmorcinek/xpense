@@ -11,6 +11,7 @@ import com.morcinek.xpense.data.category.ColorManager
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.data.project.ProjectManager
+import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import com.morcinek.xpense.splash.data.CategoryInitializer
 import com.morcinek.xpense.splash.data.Initializer
 import com.morcinek.xpense.splash.data.NoteInitializer
@@ -78,5 +79,11 @@ class AndroidModule(private val application: Application) {
     @Named("initializers")
     fun provideInitializers(): Array<Initializer> {
         return arrayOf(CategoryInitializer(), NoteInitializer())
+    }
+
+    @Provides
+    @Singleton
+    fun provideNavigationExpenseManager(expenseManager: ExpenseManager): NavigationExpenseManager {
+        return NavigationExpenseManager(expenseManager)
     }
 }

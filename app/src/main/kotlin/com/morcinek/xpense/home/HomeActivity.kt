@@ -11,13 +11,19 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.expense.ExpenseActivity
 import com.morcinek.xpense.home.history.HistoryFragment
+import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
+import kotlinx.android.synthetic.main.navigation_header.view.*
+import javax.inject.Inject
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    @Inject
+    lateinit var navigationExpenseManager: NavigationExpenseManager
 
     val homeContentController: HomeContentController = HomeContentController(this)
 
@@ -58,6 +64,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setupNavigationView() {
         navigationView.setNavigationItemSelectedListener(this)
+        val headerView = navigationView.getHeaderView(0)
+        headerView.title.text = navigationExpenseManager.title
+        headerView.subtitle.text = navigationExpenseManager.subtitle
     }
 
     override fun onBackPressed() {

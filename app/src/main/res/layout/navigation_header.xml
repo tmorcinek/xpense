@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:background="@drawable/side_nav_bar"
@@ -9,32 +10,32 @@
     android:paddingLeft="@dimen/horizontal_margin"
     android:paddingRight="@dimen/horizontal_margin"
     android:paddingTop="@dimen/vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    tools:showIn="@layout/home">
 
     <com.pkmmte.view.CircularImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/image_height"
         android:layout_height="@dimen/image_height"
-        android:padding="@dimen/nav_header_vertical_spacing"
-        android:src="@android:drawable/sym_def_app_icon"
         android:cropToPadding="true"
         android:scaleType="fitCenter"
+        android:src="@drawable/profile_logo"
         app:border="true"
         app:border_color="@color/text_white"
-        app:border_width="2dp"
+        app:border_width="1dp"
         app:shadow="true" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Android Studio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/textView"
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="android.studio@android.com" />
+        android:layout_alignParentBottom="true" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/subtitle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+</RelativeLayout>
