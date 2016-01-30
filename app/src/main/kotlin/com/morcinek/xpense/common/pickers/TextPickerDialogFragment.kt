@@ -65,7 +65,7 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
     private fun setupEditText() {
         editText.textChangedListener {
             onTextChanged { charSequence, start, before, count ->
-                adapter.setList(items.filter { it.toString().startsWith(charSequence!!, false) })
+                adapter.setList(items.filter { it.toString().contains(charSequence!!, true) })
                 button.isEnabled = isButtonVisible.invoke(charSequence.toString())
             }
         }
