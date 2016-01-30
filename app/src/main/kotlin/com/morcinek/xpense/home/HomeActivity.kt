@@ -79,7 +79,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_gallery -> TODO()
+            R.id.settings -> TODO()
         }
 
         drawer.closeDrawer(GravityCompat.START)

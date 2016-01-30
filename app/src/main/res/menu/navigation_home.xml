@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/main_group"
+        android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/overview"
+            android:icon="@drawable/ic_donut_black"
+            android:title="@string/menu_overview" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/history"
+            android:icon="@drawable/ic_history_black"
+            android:title="@string/menu_history" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/statistics"
+            android:icon="@drawable/ic_stats_black"
+            android:title="@string/menu_statistics" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <group android:id="@+id/config_group" android:checkableBehavior="single">
+        <item
+            android:id="@+id/categories"
+            android:icon="@drawable/ic_add_circle_black"
+            android:title="@string/menu_categories" />
+    </group>
 
+    <group android:id="@+id/app_group" android:checkableBehavior="none">
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_settings_black"
+            android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_info_black"
+            android:title="@string/menu_about" />
+    </group>
 </menu>
