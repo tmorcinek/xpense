@@ -10,11 +10,13 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.expense.ExpenseActivity
+import com.morcinek.xpense.home.config.SettingsActivity
 import com.morcinek.xpense.home.history.HistoryFragment
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
+import org.jetbrains.anko.*
 import javax.inject.Inject
 
 /**
@@ -79,7 +81,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.settings -> TODO()
+            R.id.settings -> startActivity<SettingsActivity>()
         }
 
         drawer.closeDrawer(GravityCompat.START)

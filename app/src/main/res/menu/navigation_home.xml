@@ -18,18 +18,18 @@
             android:title="@string/menu_statistics" />
     </group>
 
-    <group android:id="@+id/config_group" android:checkableBehavior="single">
+    <group android:id="@+id/create_group" android:checkableBehavior="single">
         <item
             android:id="@+id/categories"
             android:icon="@drawable/ic_add_circle_black"
             android:title="@string/menu_categories" />
     </group>
 
-    <group android:id="@+id/app_group" android:checkableBehavior="none">
+    <group android:id="@+id/config_group" android:checkableBehavior="none">
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black"
-            android:title="@string/menu_settings" />
+            android:title="@string/settings_label" />
         <item
             android:id="@+id/about"
             android:icon="@drawable/ic_info_black"

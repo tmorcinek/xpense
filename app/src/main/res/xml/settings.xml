@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory>
+
+        <Preference
+            android:icon="@drawable/ic_action_important_light"
+            android:title="@string/version_preference_title"/>
+
+        <Preference
+            android:icon="@drawable/ic_action_important_light"
+            android:summary="@string/rate_preference_summary"
+            android:title="@string/rate_preference_title">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/rate_preference_link" />
+        </Preference>
+
+        <Preference
+            android:icon="@drawable/ic_action_collection_light"
+            android:summary="@string/more_apps_preference_summary"
+            android:title="@string/more_apps_preference_title">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/more_apps_preference_link" />
+        </Preference>
+
+        <Preference
+            android:icon="@drawable/ic_action_share_light"
+            android:summary="@string/share_preference_summary"
+            android:title="@string/share_preference_title">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/email_me_preference_data">
+                <extra
+                    android:name="android.intent.extra.SUBJECT"
+                    android:value="@string/share_preference_subject" />
+                <extra
+                    android:name="android.intent.extra.TEXT"
+                    android:value="@string/share_preference_body" />
+            </intent>
+        </Preference>
+
+        <Preference
+            android:icon="@drawable/ic_action_email_light"
+            android:summary="@string/email_me_preference_summary"
+            android:title="@string/email_me_preference_title">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/email_me_preference_data">
+                <extra
+                    android:name="android.intent.extra.SUBJECT"
+                    android:value="@string/email_me_preference_subject" />
+            </intent>
+        </Preference>
+
+
+    </PreferenceCategory>
+</PreferenceScreen>

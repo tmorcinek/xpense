@@ -93,7 +93,7 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
 
     private fun handleLocationButton(view: View?) {
         try {
-            val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).setFilter(autocompleteFilter()).build(this@ProjectActivity)
+            val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).setFilter(autocompleteFilter()).build(this)
             startActivityForResult(intent, 0)
         } catch (e: Exception) {
             Snackbar.make(view, R.string.google_play_services_error, Snackbar.LENGTH_LONG).show()
