@@ -8,17 +8,17 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.common.utils.startActivity
+import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.expense.ExpenseActivity
 import com.morcinek.xpense.home.config.PreferencesActivity
+import com.morcinek.xpense.home.config.fragments.AboutFragment
 import com.morcinek.xpense.home.config.fragments.SettingsFragment
 import com.morcinek.xpense.home.history.HistoryFragment
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
-import org.jetbrains.anko.*
 import javax.inject.Inject
 
 /**
@@ -84,6 +84,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.settings -> startActivity<PreferencesActivity>(SettingsFragment::class.java)
+            R.id.about -> startActivity<PreferencesActivity>(AboutFragment::class.java)
         }
 
         drawer.closeDrawer(GravityCompat.START)
