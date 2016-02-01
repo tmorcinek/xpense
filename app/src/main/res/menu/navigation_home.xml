@@ -29,7 +29,8 @@
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black"
-            android:title="@string/settings_label" />
+            android:title="@string/settings_label"
+            android:visible="false"/>
         <item
             android:id="@+id/about"
             android:icon="@drawable/ic_info_black"
