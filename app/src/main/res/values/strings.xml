@@ -40,9 +40,11 @@
     <string name="menu_statistics">Statistics</string>
 
     <string name="version_preference_title">Version</string>
+    <string name="version_preference_key">version_preference_key</string>
 
     <string name="author_preference_title">Author</string>
     <string name="author_preference_summary">Tomasz Morcinek</string>
+    <string name="author_preference_link">http://www.morcinek.co.uk/</string>
 
     <string name="code_preference_title">App code</string>
     <string name="code_preference_summary">Checkout application code on Github.</string>
@@ -58,12 +60,16 @@
 
     <string name="email_me_preference_title">Send Feedback</string>
     <string name="email_me_preference_summary">Send comments regarding this application.</string>
-    <string name="email_me_preference_subject">[Grouplaying] Reference</string>
+    <string name="email_me_preference_subject">[Xpense Android App] Feedback</string>
     <string name="email_me_preference_data">mailto:tomasz.morcinek@gmail.com</string>
 
     <string name="share_preference_title">Share this app</string>
     <string name="share_preference_summary">Share this application with friends.</string>
     <string name="share_preference_subject">Invitation to Xpense</string>
-    <string name="share_preference_body">Hey,\n\nI have started using Grouplaying. It is a cool app that was designed to notify people when there is big enough group to play at football table.\n\nAs you now to start to play such game you need to have required number of players. This application helps to synchronize such process. When user is ready to play, he just clicks "Ready to play" button. After enought players click \"Ready to play\", push notification is send to each participant.\n\nGet Grouplaying from: address on google.play</string>
+    <string name="share_preference_body">Hey,\n\nI have started using Xpense.\n
+        It is a cool app that was designed to help you manage your finances.\n
+        You can add expenses, categories, and get a lot of statistics regarding your montly, weekly or daily expenditures.\n\n
+        Get Xpense from: http://play.google.com/store/apps/details?id=com.morcinek.xpense</string>
+    <string name="share_preference_data">mailto:</string>
 
 </resources>

@@ -3,12 +3,17 @@
 
     <Preference
         android:icon="@drawable/ic_action_computer"
+        android:key="@string/version_preference_key"
         android:title="@string/version_preference_title" />
 
     <Preference
         android:icon="@drawable/ic_action_person"
         android:summary="@string/author_preference_summary"
-        android:title="@string/author_preference_title" />
+        android:title="@string/author_preference_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="@string/author_preference_link" />
+    </Preference>
 
     <Preference
         android:icon="@drawable/ic_action_github"
@@ -41,9 +46,8 @@
         android:icon="@drawable/ic_action_share_light"
         android:summary="@string/share_preference_summary"
         android:title="@string/share_preference_title">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="@string/email_me_preference_data">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="@string/share_preference_data">
             <extra
                 android:name="android.intent.extra.SUBJECT"
                 android:value="@string/share_preference_subject" />
