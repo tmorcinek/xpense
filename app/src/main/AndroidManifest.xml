@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/BaseTheme">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -23,7 +23,7 @@
         <activity
             android:name=".splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,26 +32,26 @@
         <activity
             android:name=".home.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".expense.ExpenseActivity"
             android:label="@string/expense_label"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".home.category.CategoryActivity"
             android:label="@string/category_label"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".project.ProjectActivity"
             android:label="@string/project_label"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".home.config.PreferencesActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
