@@ -11,14 +11,13 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.formatters.ShortDateFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
-import com.morcinek.xpense.data.expense.ExpenseManagerListener
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.note.ExpenseAction
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context), ExpenseManagerListener {
+class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context) {
 
     fun updateList(expenses: List<Expense>, expense: Expense, expenseAction: ExpenseAction) {
         when (expenseAction) {
@@ -57,18 +56,5 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
             subtitleView = view.findViewById(R.id.subtitle) as TextView
             valueView = view.findViewById(R.id.value) as TextView
         }
-    }
-
-    override fun expenseAdded(expense: Expense) {
-        items.add(expense)
-        notifyItemInserted(items.size - 1)
-    }
-
-    override fun expenseDeleted(expense: Expense) {
-        throw UnsupportedOperationException()
-    }
-
-    override fun expenseChanged(expense: Expense) {
-        throw UnsupportedOperationException()
     }
 }

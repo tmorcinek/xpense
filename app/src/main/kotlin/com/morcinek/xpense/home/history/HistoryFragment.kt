@@ -12,7 +12,9 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
-import com.morcinek.xpense.common.utils.*
+import com.morcinek.xpense.common.utils.getParcelableExtra
+import com.morcinek.xpense.common.utils.getSerializableExtra
+import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
@@ -38,13 +40,6 @@ class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickL
 
         setupAdapter()
         setupRecyclerView()
-
-        expenseManager.registerListener(historyAdapter)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        expenseManager.unregisterListener(historyAdapter)
     }
 
     private fun setupAdapter() {
