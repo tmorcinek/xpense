@@ -1,35 +1,31 @@
 package com.morcinek.xpense.home.config
 
+import android.app.Fragment
 import android.os.Bundle
-import android.preference.PreferenceFragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.morcinek.xpense.R
-import kotlinx.android.synthetic.main.settings.*
+import com.morcinek.xpense.common.utils.getSerializableExtra
+import kotlinx.android.synthetic.main.preferences.*
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class SettingsActivity : AppCompatActivity() {
+class PreferencesActivity() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings)
+        setContentView(R.layout.preferences)
         setupToolbar()
-        fragmentManager.beginTransaction().replace(R.id.content, SettingsFragment()).commit();
+        if (savedInstanceState == null) {
+            val classType = intent.getSerializableExtra<Class<Fragment>>()!!
+            fragmentManager.beginTransaction().replace(R.id.content, classType.newInstance()).commit();
+        }
     }
 
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar.setDisplayHomeAsUpEnabled(true)
-    }
-
-    class SettingsFragment : PreferenceFragment() {
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.settings);
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

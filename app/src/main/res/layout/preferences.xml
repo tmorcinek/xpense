@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?colorPrimaryDark"
     android:fitsSystemWindows="true"
-    tools:context=".home.config.SettingsActivity">
+    tools:context=".home.config.PreferencesActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
