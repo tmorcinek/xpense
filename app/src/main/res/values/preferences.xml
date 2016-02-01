@@ -1,0 +1,35 @@
+<resources>
+    <string name="version_preference_title">Version</string>
+    <string name="version_preference_key">version_preference_key</string>
+
+    <string name="author_preference_title">Author</string>
+    <string name="author_preference_summary">Tomasz Morcinek</string>
+    <string name="author_preference_link">http://www.morcinek.co.uk/</string>
+
+    <string name="code_preference_title">App code</string>
+    <string name="code_preference_summary">Checkout application code on Github.</string>
+    <string name="code_preference_link">https://github.com/tmorcinek/xpense</string>
+
+    <string name="rate_preference_title">Rate App</string>
+    <string name="rate_preference_summary">Rate the application in Google Play.</string>
+    <string name="rate_preference_link">market://details?id=com.morcinek.xpense</string>
+
+    <string name="more_apps_preference_title">More Apps</string>
+    <string name="more_apps_preference_summary">Check out more of my applications.</string>
+    <string name="more_apps_preference_link">market://search?q=pub:Tomasz Morcinek</string>
+
+    <string name="email_me_preference_title">Send Feedback</string>
+    <string name="email_me_preference_summary">Send comments regarding this application.</string>
+    <string name="email_me_preference_subject">[Xpense Android App] Feedback</string>
+    <string name="email_me_preference_data">mailto:tomasz.morcinek@gmail.com</string>
+
+    <string name="share_preference_title">Share this app</string>
+    <string name="share_preference_summary">Share this application with friends.</string>
+    <string name="share_preference_subject">Invitation to Xpense</string>
+    <string name="share_preference_body">Hey,\n\nI have started using Xpense.\n
+        It is a cool app that was designed to help you manage your finances.\n
+        You can add expenses, categories, and get a lot of statistics regarding your montly, weekly or daily expenditures.\n\n
+        Get Xpense from: http://play.google.com/store/apps/details?id=com.morcinek.xpense</string>
+    <string name="share_preference_data">mailto:</string>
+
+</resources>
