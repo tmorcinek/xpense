@@ -32,4 +32,8 @@
         Get Xpense from: http://play.google.com/store/apps/details?id=com.morcinek.xpense</string>
     <string name="share_preference_data">mailto:</string>
 
+    <string name="libraries_preference_title">Open Source Libraries</string>
+    <string name="libraries_preference_key">libraries_preference_key</string>
+    <string name="libraries_preference_summary">Checkout libraries used in the app.</string>
+
 </resources>

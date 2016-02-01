@@ -70,4 +70,10 @@
         </intent>
     </Preference>
 
+    <Preference
+        android:icon="@drawable/ic_action_about"
+        android:key="@string/libraries_preference_key"
+        android:title="@string/libraries_preference_title"
+        android:summary="@string/libraries_preference_summary"/>
+
 </PreferenceScreen>

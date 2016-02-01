@@ -2,6 +2,7 @@ package com.morcinek.xpense.home.config.fragments
 
 import android.os.Bundle
 import android.preference.PreferenceFragment
+import com.mikepenz.aboutlibraries.LibsBuilder
 import com.morcinek.xpense.BuildConfig
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.betterpickers.setTitle
@@ -17,5 +18,13 @@ class AboutFragment : PreferenceFragment() {
         setTitle(R.string.about_label)
 
         findPreference(getString(R.string.version_preference_key)).summary = BuildConfig.VERSION_NAME
+        findPreference(getString(R.string.libraries_preference_key)).setOnPreferenceClickListener({
+            invokeLibrariesAction()
+            true
+        })
+    }
+
+    private fun invokeLibrariesAction() {
+        LibsBuilder().withFields(R.string::class.java.fields).withActivityTheme(R.style.BaseTheme).withActivityTitle(activity.getString(R.string.libraries_preference_title)).start(activity)
     }
 }

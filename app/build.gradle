@@ -48,6 +48,9 @@ dependencies {
 
     compile 'com.code-troopers.betterpickers:library:2.2.2'
     compile 'com.pkmmte.view:circularimageview:1.1'
+    compile('com.mikepenz:aboutlibraries:5.0.9@aar') {
+        transitive = true
+    }
 
     testCompile 'junit:junit:4.11'
     testCompile 'com.github.tsuharesu:expect-kt:0.5.1'
