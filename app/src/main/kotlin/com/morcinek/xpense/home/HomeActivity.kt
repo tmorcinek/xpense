@@ -1,5 +1,6 @@
 package com.morcinek.xpense.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -43,6 +44,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setupFragment(savedInstanceState)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        updateNavigationView()
+    }
+
     private fun setupFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             homeContentController.addFragment(HistoryFragment())
@@ -68,6 +74,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setupNavigationView() {
         navigationView.setNavigationItemSelectedListener(this)
+        updateNavigationView()
+    }
+
+    private fun updateNavigationView() {
         val headerView = navigationView.getHeaderView(0)
         headerView.title.text = navigationExpenseManager.title
         headerView.subtitle.text = navigationExpenseManager.subtitle
