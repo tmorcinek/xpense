@@ -2,6 +2,7 @@ package com.morcinek.xpense.home.config.fragments
 
 import android.os.Bundle
 import android.preference.PreferenceFragment
+import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.morcinek.xpense.BuildConfig
 import com.morcinek.xpense.R
@@ -24,7 +25,10 @@ class AboutFragment : PreferenceFragment() {
         })
     }
 
-    private fun invokeLibrariesAction() {
-        LibsBuilder().withFields(R.string::class.java.fields).withActivityTheme(R.style.BaseTheme).withActivityTitle(activity.getString(R.string.libraries_preference_title)).start(activity)
-    }
+    private fun invokeLibrariesAction() = LibsBuilder()
+            .withFields(R.string::class.java.fields)
+            .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+            .withActivityTheme(R.style.BaseTheme)
+            .withActivityTitle(activity.getString(R.string.libraries_preference_title))
+            .start(activity)
 }
