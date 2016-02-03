@@ -36,4 +36,6 @@
     <dimen name="edit_text_title_font">34sp</dimen>
 
     <dimen name="color_image_height">60dp</dimen>
+
+    <dimen name="chart_height">200dp</dimen>
 </resources>

@@ -17,6 +17,7 @@ import com.morcinek.xpense.home.config.fragments.AboutFragment
 import com.morcinek.xpense.home.config.fragments.SettingsFragment
 import com.morcinek.xpense.home.history.HistoryFragment
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
+import com.morcinek.xpense.home.overview.OverviewFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
@@ -51,7 +52,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setupFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            homeContentController.addFragment(HistoryFragment())
+            homeContentController.addFragment(OverviewFragment())
         }
     }
 
@@ -93,6 +94,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+//            R.id.overview -> homeContentController
             R.id.settings -> startActivity<PreferencesActivity>(SettingsFragment::class.java)
             R.id.about -> startActivity<PreferencesActivity>(AboutFragment::class.java)
         }
