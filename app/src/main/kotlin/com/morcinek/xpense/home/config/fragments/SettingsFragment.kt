@@ -3,7 +3,7 @@ package com.morcinek.xpense.home.config.fragments
 import android.os.Bundle
 import android.preference.PreferenceFragment
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.utils.betterpickers.setTitle
+import com.morcinek.xpense.common.utils.setTitle
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

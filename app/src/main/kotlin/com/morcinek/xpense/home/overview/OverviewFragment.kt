@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.morcinek.xpense.R
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.common.BaseFragment
 import kotlinx.android.synthetic.main.overview.*
 
@@ -16,6 +17,7 @@ class OverviewFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle(R.string.overview_label)
 
         ringChart.values = listOf(Pair(Color.RED, 0.3f), Pair(Color.GREEN, 0.3f), Pair(Color.BLUE, 0.2f))
     }

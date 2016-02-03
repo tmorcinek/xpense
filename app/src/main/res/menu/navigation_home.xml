@@ -7,7 +7,7 @@
         <item
             android:id="@+id/overview"
             android:icon="@drawable/ic_donut_black"
-            android:title="@string/menu_overview" />
+            android:title="@string/overview_label" />
         <item
             android:id="@+id/history"
             android:icon="@drawable/ic_history_black"
