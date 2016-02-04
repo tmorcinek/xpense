@@ -18,6 +18,7 @@ import com.morcinek.xpense.home.config.fragments.SettingsFragment
 import com.morcinek.xpense.home.history.HistoryFragment
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import com.morcinek.xpense.home.overview.OverviewFragment
+import com.morcinek.xpense.project.ProjectActivity
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
@@ -96,6 +97,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.overview -> homeContentController.switchFragment(OverviewFragment())
             R.id.history -> homeContentController.switchFragment(HistoryFragment())
+            R.id.categories -> startActivity<ProjectActivity>()
             R.id.settings -> startActivity<PreferencesActivity>(SettingsFragment::class.java)
             R.id.about -> startActivity<PreferencesActivity>(AboutFragment::class.java)
         }

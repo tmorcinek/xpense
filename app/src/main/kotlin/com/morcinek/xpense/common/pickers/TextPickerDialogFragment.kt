@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter.OnItemClickListener
-import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import kotlinx.android.synthetic.main.text_picker.*
 import org.jetbrains.anko.textChangedListener
 
@@ -57,7 +56,6 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.addItemDecoration(DividerItemDecoration(context, R.drawable.string_divider, showLast = true))
     }
 
     private fun setupEditText() {

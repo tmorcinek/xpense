@@ -59,7 +59,7 @@
                         style="@style/DefaultEditText.Title"
                         android:hint="@string/project_name_hint"
                         android:imeOptions="actionDone"
-                        android:inputType="textCapWords"/>
+                        android:inputType="textCapWords" />
 
                 </android.support.design.widget.TextInputLayout>
 
