@@ -7,10 +7,12 @@ import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import org.jetbrains.anko.dimen
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -37,6 +39,11 @@ private fun Activity.getInputMethodManager() = getSystemService(Context.INPUT_ME
 
 fun View.setDrawableColor(color: Int) {
     (background as GradientDrawable).setColor(color)
+}
+
+fun View.setTopMargin(marginResource: Int) {
+    val layoutParams = layoutParams as ViewGroup.MarginLayoutParams
+    layoutParams.topMargin = context.dimen(marginResource)
 }
 
 fun EditText.getTrimString() = getText().toString().trim()

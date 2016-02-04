@@ -11,8 +11,10 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.formatters.ShortDateFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
+import com.morcinek.xpense.common.utils.setTopMargin
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.note.ExpenseAction
+import java.util.*
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -37,10 +39,20 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
         holder.titleView.text = item.category!!.name
         holder.subtitleView.text = item.note
         holder.valueView.text = CurrencyFormatter().format(item.value, item.project!!.currency)
+        if (isDifferentDay(item, position - 1)) {
+            holder.itemView.setTopMargin(R.dimen.view_margin)
+        }
+    }
+
+    private fun isDifferentDay(item: Expense, position: Int): Boolean {
+        if (position < 0) {
+            return false
+        }
+        return !item.date.get(Calendar.DAY_OF_YEAR).equals(getItem(position).date.get(Calendar.DAY_OF_YEAR))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.history_list_item, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.history_item, parent, false))
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

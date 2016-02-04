@@ -39,6 +39,8 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/expense_item_value_text_size</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="DialogHeader">

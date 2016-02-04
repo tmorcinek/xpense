@@ -12,6 +12,7 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.getParcelableExtra
 import com.morcinek.xpense.common.utils.getSerializableExtra
 import com.morcinek.xpense.common.utils.startActivityFromFragment
@@ -53,6 +54,7 @@ class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickL
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
+        recyclerView.addItemDecoration(DividerItemDecoration(activity, R.drawable.item_divider, true, true))
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
