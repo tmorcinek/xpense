@@ -107,7 +107,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         recyclerView.adapter = expenseAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.addItemDecoration(DividerItemDecoration(context = this, showLast = true))
+        recyclerView.addItemDecoration(DividerItemDecoration(context = this, showFirst = true, showLast = true))
     }
 
     private fun setupExpense() {

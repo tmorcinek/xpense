@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/item_height"
-    android:background="@drawable/list_item_background"
-    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="@dimen/horizontal_margin"
-    android:paddingRight="@dimen/horizontal_margin"
-    tools:showIn="@layout/expense">
+    tools:showIn="@layout/expense"
+    style="@style/Item">
 
     <TextView
         android:id="@+id/title"

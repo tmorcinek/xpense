@@ -131,4 +131,15 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:smoothScrollbar">true</item>
     </style>
+
+    <style name="Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_height</item>
+        <item name="android:background">@drawable/list_item_background</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/item_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/item_horizontal_margin</item>
+    </style>
 </resources>
