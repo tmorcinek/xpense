@@ -16,12 +16,11 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background">
+            android:background="?background">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background"
                 android:descendantFocusability="beforeDescendants"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
@@ -43,7 +42,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/vertical_margin"
+                    android:layout_marginBottom="@dimen/view_margin"
                     android:background="@color/primary"
                     android:paddingBottom="@dimen/title_margin"
                     android:paddingEnd="@dimen/view_margin"

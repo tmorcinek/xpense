@@ -3,6 +3,8 @@
     <dimen name="vertical_margin">16dp</dimen>
     <dimen name="view_margin">8dp</dimen>
     <dimen name="vertical_view_margin">2dp</dimen>
+    <dimen name="default_divider_size">0.5dp</dimen>
+
     <dimen name="title_margin">24dp</dimen>
     <dimen name="title_margin_left">72dp</dimen>
 
