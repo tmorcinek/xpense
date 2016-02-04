@@ -12,7 +12,6 @@ import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setTitle
 import com.morcinek.xpense.home.overview.list.OverviewAdapter
-import kotlinx.android.synthetic.main.default_list.*
 import kotlinx.android.synthetic.main.overview.*
 import javax.inject.Inject
 
