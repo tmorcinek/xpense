@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    tools:showIn="@layout/expense"
     style="@style/Item">
 
     <TextView
         android:id="@+id/title"
         style="@style/ExpenseTitle"
-        android:textColor="@color/text_secondary"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_secondary" />
 
     <TextView
         android:id="@+id/value"
@@ -24,8 +21,8 @@
 
     <include
         layout="@layout/category_icon"
-        android:layout_height="@dimen/large_icon_height"
         android:layout_width="@dimen/large_icon_height"
+        android:layout_height="@dimen/large_icon_height"
         android:visibility="gone" />
 </LinearLayout>
 

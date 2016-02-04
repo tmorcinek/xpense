@@ -136,6 +136,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/item_height</item>
         <item name="android:background">@drawable/list_item_background</item>
+        <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">@dimen/horizontal_margin</item>
         <item name="android:paddingRight">@dimen/horizontal_margin</item>
