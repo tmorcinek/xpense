@@ -9,14 +9,16 @@ import com.morcinek.xpense.R
  */
 class HomeContentController(private val activity: FragmentActivity) {
 
+    val fragmentManager by lazy { activity.supportFragmentManager }
+
     val currentFragment: Fragment
         get() {
-            val fragments = activity.supportFragmentManager.getFragments()
-            return fragments.get(activity.supportFragmentManager.getBackStackEntryCount())
+            val fragments = fragmentManager.getFragments()
+            return fragments.get(fragmentManager.getBackStackEntryCount())
         }
 
-    fun addFragment(fragment: Fragment, addToBackStack: Boolean = false, tag: String = fragment.javaClass.name) {
-        val fragmentTransaction = activity.supportFragmentManager.beginTransaction()
+    fun switchFragment(fragment: Fragment, addToBackStack: Boolean = false, tag: String = fragment.javaClass.name) {
+        val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.content_frame, fragment, tag)
         if (addToBackStack) {
             fragmentTransaction.addToBackStack(tag)

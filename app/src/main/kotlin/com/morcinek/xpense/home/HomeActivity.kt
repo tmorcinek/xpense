@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setupFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            homeContentController.addFragment(OverviewFragment())
+            homeContentController.switchFragment(OverviewFragment())
         }
     }
 
@@ -94,7 +94,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-//            R.id.overview -> homeContentController
+            R.id.overview -> homeContentController.switchFragment(OverviewFragment())
+            R.id.history -> homeContentController.switchFragment(HistoryFragment())
             R.id.settings -> startActivity<PreferencesActivity>(SettingsFragment::class.java)
             R.id.about -> startActivity<PreferencesActivity>(AboutFragment::class.java)
         }
