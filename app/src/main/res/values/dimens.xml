@@ -19,6 +19,8 @@
 
     <dimen name="image_height">60dp</dimen>
 
+    <dimen name="title_text_size">22sp</dimen>
+
     <dimen name="item_title_text_size">16sp</dimen>
     <dimen name="item_value_text_size">26sp</dimen>
     <dimen name="item_subtitle_text_size">14sp</dimen>

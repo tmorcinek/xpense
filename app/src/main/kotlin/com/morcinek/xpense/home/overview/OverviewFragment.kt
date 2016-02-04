@@ -9,6 +9,7 @@ import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
+import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setTitle
 import com.morcinek.xpense.home.overview.list.OverviewAdapter
 import kotlinx.android.synthetic.main.default_list.*
@@ -30,12 +31,22 @@ class OverviewFragment : BaseFragment() {
         setTitle(R.string.overview_label)
         (activity.application as Application).component.inject(this)
 
+        setupTitle()
         setupChart()
+        setupAmountText()
         setupRecyclerView()
+    }
+
+    private fun setupTitle() {
+        title.text = getString(R.string.overview_title, "All")
     }
 
     private fun setupChart() {
         ringChart.values = overviewManager.getChartValues()
+    }
+
+    private fun setupAmountText() {
+        amount.text = CurrencyFormatter().format(overviewManager.getExpensesSum(), overviewManager.getCurrency())
     }
 
     private fun setupRecyclerView() {

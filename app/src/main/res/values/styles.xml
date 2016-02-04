@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_margin">@dimen/view_margin</item>
+    </style>
+
     <style name="ItemTitle">
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/item_title_text_size</item>

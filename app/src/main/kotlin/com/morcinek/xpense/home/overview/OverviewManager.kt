@@ -10,30 +10,31 @@ import com.morcinek.xpense.home.overview.list.OverviewItem
 class OverviewManager(private val expenseManager: ExpenseManager) {
 
     private var categoriesExpenses: Map<Category, Pair<Double, Double>> = mapOf()
+    private var expensesSum: Double = 0.0
 
     init {
         updateManager()
     }
 
     fun updateManager() {
+        expensesSum = prepareExpensesSum()
         categoriesExpenses = prepareCategoriesExpenses()
     }
 
+    private fun prepareExpensesSum() = expenseManager.getExpenses().sumByDouble { it.value }
+
     private fun prepareCategoriesExpenses(): Map<Category, Pair<Double, Double>> {
-        val sum = getExpensesSum()
         return expenseManager.getExpenses().groupBy { it.category!! }.mapValues {
             val categorySum = it.value.sumByDouble { it.value }
-            categorySum to categorySum / sum
-        }
+            categorySum to categorySum / expensesSum
+        }.toSortedMap()
     }
 
-    private fun getExpensesSum() = expenseManager.getExpenses().sumByDouble { it.value }
+    fun getExpensesSum() = expensesSum
 
-    fun getCategoriesExpenses() = categoriesExpenses
+    fun getChartValues() = categoriesExpenses.map { it.key.color!! to it.value.second.toFloat() }.sortedByDescending { it.second }
 
-    fun getChartValues() = categoriesExpenses.map { it.key.color!! to it.value.second.toFloat() }
-
-    fun getOverviewItems() = categoriesExpenses.map { OverviewItem(it.key, it.value.first, it.value.second) }
+    fun getOverviewItems() = categoriesExpenses.map { OverviewItem(it.key, it.value.first, it.value.second) }.sortedByDescending { it.amount }
 
     fun getCurrency() = expenseManager.currentProject.currency
 }

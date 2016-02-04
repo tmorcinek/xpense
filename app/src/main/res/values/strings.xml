@@ -34,8 +34,10 @@
 
     <string name="settings_label">Settings</string>
     <string name="about_label">About</string>
-    <string name="menu_categories">Categories</string>
     <string name="overview_label">Overview</string>
+    <string name="overview_title">Expenses by category (%s)</string>
+
+    <string name="menu_categories">Categories</string>
     <string name="menu_history">History</string>
     <string name="menu_statistics">Statistics</string>
 
