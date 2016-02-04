@@ -3,6 +3,7 @@ package com.morcinek.xpense.data.category
 import android.os.Parcel
 import android.os.Parcelable
 import com.morcinek.xpense.common.utils.createParcel
+import com.morcinek.xpense.data.expense.Expense
 import com.orm.SugarRecord
 
 /**
@@ -28,5 +29,14 @@ class Category(val name: String = "", val color: Int? = null, id: Long? = null) 
 
     companion object {
         val CREATOR = createParcel { Category(it.readString(), it.readValue(null) as Int?, it.readValue(null) as Long?) }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        other as Category
+        return id.equals(other.id)
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
     }
 }

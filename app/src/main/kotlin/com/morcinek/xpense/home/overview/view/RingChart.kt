@@ -18,7 +18,7 @@ class RingChart(context: Context, attrs: AttributeSet? = null) : View(context, a
     private val backgroundRect = RectF()
     private val paint = Paint()
 
-    var values: List<Pair<Int, Float>> = listOf()
+    var values: Iterable<Pair<Int, Float>> = listOf()
         set(value) {
             field = value
             invalidate()
@@ -50,7 +50,7 @@ class RingChart(context: Context, attrs: AttributeSet? = null) : View(context, a
     }
 
     private fun drawValues(canvas: Canvas) {
-        var start = 0f
+        var start = -90f
         values.forEach {
             paint.color = it.first
             val shift = 360 * it.second
