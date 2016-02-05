@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:gravity="center_horizontal">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
-
-    <com.morcinek.xpense.home.overview.view.RingChart
-        android:id="@+id/ringChart"
-        android:layout_width="@dimen/chart_height"
-        android:layout_height="@dimen/chart_height"
-        android:layout_below="@id/title"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/amount"
-        style="@style/ItemValue"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/ringChart"
-        android:layout_alignTop="@id/ringChart"
-        android:gravity="center" />
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        style="@style/RecyclerView"
-        android:layout_below="@id/ringChart"
-        android:paddingTop="@dimen/view_margin" />
+        <TextView
+            android:id="@+id/title"
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
 
-</RelativeLayout>
+        <com.morcinek.xpense.home.overview.view.RingChart
+            android:id="@+id/ringChart"
+            android:layout_width="@dimen/chart_height"
+            android:layout_height="@dimen/chart_height"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/amount"
+            style="@style/ItemValue"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/chart_height"
+            android:layout_alignTop="@id/ringChart"
+            android:layout_centerHorizontal="true"
+            android:gravity="center" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            style="@style/RecyclerView"
+            android:layout_below="@id/ringChart"
+            android:layout_marginBottom="@dimen/view_margin"
+            android:layout_marginTop="@dimen/view_margin" />
+    </RelativeLayout>
+</ScrollView>

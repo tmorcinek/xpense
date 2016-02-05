@@ -12,6 +12,8 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.morcinek.xpense.R
+import kotlinx.android.synthetic.main.overview.*
 import org.jetbrains.anko.dimen
 
 /**
@@ -44,6 +46,10 @@ fun View.setDrawableColor(color: Int) {
 fun View.setTopMargin(marginResource: Int) {
     val layoutParams = layoutParams as ViewGroup.MarginLayoutParams
     layoutParams.topMargin = context.dimen(marginResource)
+}
+
+fun View.setLayoutHeight(height: Int) {
+    layoutParams.height = height
 }
 
 fun EditText.getTrimString() = getText().toString().trim()

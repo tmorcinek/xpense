@@ -2,7 +2,6 @@
     <dimen name="horizontal_margin">16dp</dimen>
     <dimen name="vertical_margin">16dp</dimen>
     <dimen name="view_margin">8dp</dimen>
-    <dimen name="vertical_view_margin">2dp</dimen>
     <dimen name="item_divider_size">1dp</dimen>
     <dimen name="item_horizontal_margin">4dp</dimen>
 
@@ -46,4 +45,6 @@
     <dimen name="color_image_height">60dp</dimen>
 
     <dimen name="chart_height">200dp</dimen>
+
+    <dimen name="overview_item_height">34dp</dimen>
 </resources>
