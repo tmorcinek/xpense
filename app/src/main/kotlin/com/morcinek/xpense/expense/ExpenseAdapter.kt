@@ -59,7 +59,7 @@ class ExpenseAdapter(context: Context) : AbstractRecyclerViewAdapter<Int, Expens
                 }
             }
             R.string.title_note -> holder.valueView.text = expense.note
-            R.string.title_date -> holder.valueView.text = dateFormatForTime(expense.date.timeInMillis)
+            R.string.title_date -> holder.valueView.text = dateFormatForTime(expense.date.toDate().time)
         }
     }
 
