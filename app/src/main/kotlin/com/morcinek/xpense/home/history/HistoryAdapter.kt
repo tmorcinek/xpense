@@ -12,6 +12,7 @@ import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.formatters.ShortDateFormatter
 import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.common.utils.setTopMargin
+import com.morcinek.xpense.common.utils.toShortDate
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.note.ExpenseAction
 import java.util.*
@@ -35,7 +36,7 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.iconView.setDrawableColor(item.category!!.color!!)
-        holder.iconView.text = ShortDateFormatter().format(item.date)
+        holder.iconView.text = item.date.toShortDate()
         holder.titleView.text = item.category!!.name
         holder.subtitleView.text = item.note
         holder.valueView.text = CurrencyFormatter().format(item.value, item.project!!.currency)
