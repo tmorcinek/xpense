@@ -24,7 +24,6 @@ import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
 import org.jetbrains.anko.alert
-import org.joda.time.LocalDate
 import java.util.*
 import javax.inject.Inject
 
@@ -181,12 +180,13 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     }
 
     private fun startDatePicker() {
+        val calendar = item.date
         val calendarDatePickerDialogFragment = CalendarDatePickerDialogFragment.newInstance(
                 { dialogFragment, year, month, day ->
-                    item.date = LocalDate(year, month, day)
+                    calendar.set(year, month, day)
                     expenseAdapter.notifyDataItemChanged(DATE_ITEM)
                 },
-                item.date.year, item.date.monthOfYear, item.date.dayOfMonth)
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
         calendarDatePickerDialogFragment.setThemeCustom(R.style.BetterPickersTheme)
         calendarDatePickerDialogFragment.show(supportFragmentManager)
     }

@@ -36,7 +36,7 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
         val item = getItem(position)
         initializeOnClickListener(holder, item)
         holder.iconView.setDrawableColor(item.category!!.color!!)
-        holder.iconView.text = item.date.toShortDate()
+        holder.iconView.text = ShortDateFormatter().format(item.date.time)
         holder.titleView.text = item.category!!.name
         holder.subtitleView.text = item.note
         holder.valueView.text = CurrencyFormatter().format(item.value, item.project!!.currency)
@@ -49,7 +49,7 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
         if (position < 0) {
             return false
         }
-        return item.date.dayOfYear != getItem(position).date.dayOfYear
+        return !item.date.get(Calendar.DAY_OF_YEAR).equals(getItem(position).date.get(Calendar.DAY_OF_YEAR))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {

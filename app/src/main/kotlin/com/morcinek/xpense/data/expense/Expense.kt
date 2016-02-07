@@ -3,17 +3,19 @@ package com.morcinek.xpense.data.expense
 import android.os.Parcel
 import android.os.Parcelable
 import com.morcinek.xpense.common.utils.createParcel
+import com.morcinek.xpense.common.utils.readCalendar
 import com.morcinek.xpense.common.utils.readParcelable
+import com.morcinek.xpense.common.utils.writeCalendar
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.project.Project
 import com.orm.SugarRecord
-import org.joda.time.LocalDate
+import java.util.*
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
 class Expense(var value: Double = 0.0, var category: Category? = null, var note: String = "",
-              var date: LocalDate = LocalDate.now(), id: Long? = null) : SugarRecord(), Comparable<Expense>, Parcelable {
+              val date: Calendar = Calendar.getInstance(), id: Long? = null) : SugarRecord(), Comparable<Expense>, Parcelable {
 
     var project: Project? = null
 
@@ -29,7 +31,7 @@ class Expense(var value: Double = 0.0, var category: Category? = null, var note:
         dest.writeDouble(value)
         dest.writeParcelable(category, 0)
         dest.writeString(note)
-        dest.writeSerializable(date)
+        dest.writeCalendar(date)
         dest.writeValue(id)
     }
 
@@ -37,7 +39,7 @@ class Expense(var value: Double = 0.0, var category: Category? = null, var note:
 
     companion object {
         val CREATOR = createParcel {
-            Expense(it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readSerializable() as LocalDate, it.readValue(null) as Long?)
+            Expense(it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar(), it.readValue(null) as Long?)
         }
     }
 
