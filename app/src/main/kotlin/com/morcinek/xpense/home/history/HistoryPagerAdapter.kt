@@ -19,6 +19,8 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
     }
 
     private fun createPeriodFragments() = listOf(
+            PeriodFragment(Period.LAST_WEEK),
+            PeriodFragment(Period.THIS_WEEK),
             PeriodFragment(Period.YESTERDAY),
             PeriodFragment(Period.TODAY)
     )
