@@ -18,8 +18,9 @@ import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.expense.ExpenseActivity
+import com.morcinek.xpense.home.history.period.model.Period
+import com.morcinek.xpense.home.history.period.model.PeriodObject
 import kotlinx.android.synthetic.main.default_list.*
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -31,8 +32,8 @@ class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickList
 
     private val periodFilterFactory = PeriodFilterFactory()
 
-    private val periodObject : PeriodObject by lazy {
-        periodFilterFactory.getPeriodFilter(arguments.getSerializable<PeriodFilterFactory.Period>()!!)
+    private val periodObject: PeriodObject by lazy {
+        periodFilterFactory.getPeriodFilter(arguments.getSerializable<Period>()!!)
     }
 
     @Inject
@@ -42,10 +43,10 @@ class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickList
 
     fun getTitle() = periodObject.titleResource
 
-    constructor(){
+    constructor() {
     }
 
-    constructor(period: PeriodFilterFactory.Period){
+    constructor(period: Period) {
         arguments = Bundle()
         arguments.putSerializable(period)
     }

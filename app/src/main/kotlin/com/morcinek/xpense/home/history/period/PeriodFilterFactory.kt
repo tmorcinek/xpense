@@ -3,6 +3,8 @@ package com.morcinek.xpense.home.history.period
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.isSameDay
 import com.morcinek.xpense.common.utils.minusDays
+import com.morcinek.xpense.home.history.period.model.Period
+import com.morcinek.xpense.home.history.period.model.PeriodObject
 import java.util.*
 
 /**
@@ -15,10 +17,6 @@ class PeriodFilterFactory {
         val calendar = Calendar.getInstance()
         calendar.minusDays(1)
         calendar
-    }
-
-    enum class Period {
-        TODAY, YESTERDAY
     }
 
     fun getPeriodFilter(period: Period): PeriodObject {

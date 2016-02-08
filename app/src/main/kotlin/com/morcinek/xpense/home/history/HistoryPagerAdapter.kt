@@ -3,8 +3,8 @@ package com.morcinek.xpense.home.history
 import android.content.Context
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.morcinek.xpense.home.history.period.PeriodFilterFactory
 import com.morcinek.xpense.home.history.period.PeriodFragment
+import com.morcinek.xpense.home.history.period.model.Period
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -19,8 +19,8 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
     }
 
     private fun createPeriodFragments() = listOf(
-            PeriodFragment(PeriodFilterFactory.Period.YESTERDAY),
-            PeriodFragment(PeriodFilterFactory.Period.TODAY)
+            PeriodFragment(Period.YESTERDAY),
+            PeriodFragment(Period.TODAY)
     )
 
     override fun getItem(position: Int): PeriodFragment? {
