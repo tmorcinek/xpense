@@ -37,8 +37,9 @@
     <string name="overview_label">Overview</string>
     <string name="overview_title">Expenses by category (%s)</string>
 
+    <string name="history_label">History</string>
+
     <string name="menu_categories">Categories</string>
-    <string name="menu_history">History</string>
     <string name="menu_statistics">Statistics</string>
 
 </resources>

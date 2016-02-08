@@ -16,6 +16,7 @@ import com.morcinek.xpense.home.config.PreferencesActivity
 import com.morcinek.xpense.home.config.fragments.AboutFragment
 import com.morcinek.xpense.home.config.fragments.SettingsFragment
 import com.morcinek.xpense.home.history.HistoryFragment
+import com.morcinek.xpense.home.history.HistoryHostFragment
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import com.morcinek.xpense.home.overview.OverviewFragment
 import com.morcinek.xpense.project.ProjectActivity
@@ -96,7 +97,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.overview -> homeContentController.switchFragment(OverviewFragment())
-            R.id.history -> homeContentController.switchFragment(HistoryFragment())
+            R.id.history -> homeContentController.switchFragment(HistoryHostFragment())
             R.id.categories -> startActivity<ProjectActivity>()
             R.id.settings -> startActivity<PreferencesActivity>(SettingsFragment::class.java)
             R.id.about -> startActivity<PreferencesActivity>(AboutFragment::class.java)
