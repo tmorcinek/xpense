@@ -6,7 +6,6 @@ import com.morcinek.xpense.dagger.DaggerApplicationComponent
 import com.morcinek.xpense.dagger.modules.AndroidModule
 import com.morcinek.xpense.dagger.modules.ManagersModule
 import com.orm.SugarContext
-import net.danlew.android.joda.JodaTimeAndroid
 
 
 /**
@@ -23,7 +22,6 @@ class Application : Application() {
                 .managersModule(ManagersModule())
                 .build()
         SugarContext.init(this);
-        JodaTimeAndroid.init(this);
     }
 
     override fun onTerminate() {

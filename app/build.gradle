@@ -24,7 +24,6 @@ android {
     }
     applicationVariants.all { variant ->
         variant.buildConfigField 'String', 'SHORT_DATE_FORMAT', '"dd\\nMMM"'
-        variant.buildConfigField 'String', 'MONTH_FORMAT', '"MMMM"'
         variant.buildConfigField 'String', 'CURRENCY_FORMAT', '"%.2f %s"'
         variant.buildConfigField 'String', 'CURRENCY_FORMAT_NO_DECIMAL', '"%.0f %s"'
         variant.buildConfigField 'String', 'NAV_SUBTITLE_FORMAT', '"%s, %.2f %s"'

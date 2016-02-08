@@ -1,6 +1,8 @@
 package com.morcinek.xpense.home.navigation
 
 import com.morcinek.xpense.common.formatters.NavigationTextFormatter
+import com.morcinek.xpense.common.utils.isSameMonth
+import com.morcinek.xpense.common.utils.monthName
 import com.morcinek.xpense.data.expense.ExpenseManager
 import java.util.*
 
@@ -19,7 +21,7 @@ class NavigationExpenseManager(private val expenseManager: ExpenseManager) {
 
     private val formatter = NavigationTextFormatter()
 
-    private fun currentMonth() = currentDate.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+    private fun currentMonth() = currentDate.monthName()
 
-    private fun totalAmount() = expenseManager.getExpenses().filter { it.date.get(Calendar.MONTH) == currentDate.get(Calendar.MONTH) }.sumByDouble { it.value }
+    private fun totalAmount() = expenseManager.getExpenses().filter { it.date.isSameMonth(currentDate) }.sumByDouble { it.value }
 }
