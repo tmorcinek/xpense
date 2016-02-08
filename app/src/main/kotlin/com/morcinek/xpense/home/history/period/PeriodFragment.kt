@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.history
+package com.morcinek.xpense.home.history.period
 
 import android.app.Activity
 import android.content.Intent
@@ -13,27 +13,42 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
-import com.morcinek.xpense.common.utils.getParcelableExtra
-import com.morcinek.xpense.common.utils.getSerializableExtra
-import com.morcinek.xpense.common.utils.startActivityFromFragment
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.expense.ExpenseActivity
 import kotlinx.android.synthetic.main.default_list.*
+import java.util.*
 import javax.inject.Inject
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickListener<Expense> {
+class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickListener<Expense> {
+
+    override fun getLayoutResourceId() = R.layout.default_list
+
+    private val periodFilterFactory = PeriodFilterFactory()
+
+    private val periodObject : PeriodObject by lazy {
+        periodFilterFactory.getPeriodFilter(arguments.getSerializable<PeriodFilterFactory.Period>()!!)
+    }
 
     @Inject
     lateinit var expenseManager: ExpenseManager
 
-    private lateinit var historyAdapter: HistoryAdapter
+    private lateinit var periodAdapter: PeriodAdapter
 
-    override fun getLayoutResourceId() = R.layout.default_list
+    fun getTitle() = periodObject.titleResource
+
+    constructor(){
+    }
+
+    constructor(period: PeriodFilterFactory.Period){
+        arguments = Bundle()
+        arguments.putSerializable(period)
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,13 +59,13 @@ class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickL
     }
 
     private fun setupAdapter() {
-        historyAdapter = HistoryAdapter(activity)
-        historyAdapter.setList(expenseManager.getExpenses())
-        historyAdapter.itemClickListener = this
+        periodAdapter = PeriodAdapter(activity)
+        periodAdapter.setList(expenseManager.getExpenses().filter(periodObject.filter))
+        periodAdapter.itemClickListener = this
     }
 
     private fun setupRecyclerView() {
-        recyclerView.adapter = historyAdapter
+        recyclerView.adapter = periodAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
@@ -69,7 +84,7 @@ class HistoryFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickL
             val expenses = expenseManager.getExpenses()
             val action = data!!.getSerializableExtra<ExpenseAction>()!!
             val expense = data.getParcelableExtra<Expense>()
-            historyAdapter.updateList(expenses, expense, action)
+            periodAdapter.updateList(expenses, expense, action)
         }
     }
 }

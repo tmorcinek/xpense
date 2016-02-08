@@ -15,25 +15,4 @@ import com.morcinek.xpense.data.expense.Expense
  */
 enum class ExpenseAction {
     DELETED, UPDATED, CREATED
-
-    //    override fun writeToParcel(dest: Parcel, flags: Int) {
-    //        dest.writeDouble(value)
-    //        dest.writeParcelable(category, 0)
-    //        dest.writeString(note)
-    //        dest.writeCalendar(date)
-    //        dest.writeValue(id)
-    //    }
-    //
-    //    override fun describeContents() = 0
-    //
-    //    companion object {
-    //        val CREATOR = createParcel {
-    //            Expense(null, it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar(), it.readValue(null) as Long?)
-    //        }
-    //
-    //        fun getExpense(intent: Intent): Expense {
-    //            return intent.extras.getParcelableExtra()
-    //        }
-    //    }
-
 }

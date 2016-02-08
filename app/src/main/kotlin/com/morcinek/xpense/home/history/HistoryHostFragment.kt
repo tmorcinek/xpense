@@ -18,7 +18,7 @@ class HistoryHostFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setTitle(R.string.history_label)
 
-        viewPager.adapter = HistoryPagerAdapter(childFragmentManager);
+        viewPager.adapter = HistoryPagerAdapter(context, childFragmentManager);
         tabs.setupWithViewPager(viewPager);
     }
 }

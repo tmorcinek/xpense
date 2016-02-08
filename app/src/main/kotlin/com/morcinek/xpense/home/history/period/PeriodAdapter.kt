@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.history
+package com.morcinek.xpense.home.history.period
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -15,12 +15,11 @@ import com.morcinek.xpense.common.utils.setTopMargin
 import com.morcinek.xpense.common.utils.toShortDate
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.note.ExpenseAction
-import java.util.*
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, HistoryAdapter.ViewHolder>(context) {
+class PeriodAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, PeriodAdapter.ViewHolder>(context) {
 
     fun updateList(expenses: List<Expense>, expense: Expense, expenseAction: ExpenseAction) {
         when (expenseAction) {
@@ -46,7 +45,7 @@ class HistoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Hi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.history_item, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.period_item, parent, false))
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

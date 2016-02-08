@@ -14,8 +14,10 @@ import java.io.Serializable
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 inline fun <reified T : Parcelable> Bundle.getParcelable(): T? = getParcelable(T::class.java.name)
+inline fun <reified T : Serializable> Bundle.getSerializable(): T? = getSerializable(T::class.java.name) as T?
 
 fun <T : Parcelable> Bundle.putParcelable(value: T) = putParcelable(value.javaClass.getName(), value)
+fun <T : Serializable> Bundle.putSerializable(value: T) = putSerializable(value.javaClass.getName(), value)
 
 inline fun <reified T : Parcelable> Intent.putParcelableExtra(value: T) = putExtra(value.javaClass.getName(), value)
 inline fun <reified T : Serializable> Intent.putSerializableExtra(value: T) = putExtra(value.javaClass.getName(), value)

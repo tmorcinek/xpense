@@ -14,15 +14,17 @@ fun Calendar.toShortDate() = toString(BuildConfig.SHORT_DATE_FORMAT)
 
 fun Calendar.monthName() = getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
 
-val Calendar.month : Int
-        get() = get(Calendar.MONTH)
+val Calendar.month: Int
+    get() = get(Calendar.MONTH)
 
-val Calendar.year : Int
-        get() = get(Calendar.YEAR)
+val Calendar.year: Int
+    get() = get(Calendar.YEAR)
 
-val Calendar.dayOfYear : Int
-        get() = get(Calendar.DAY_OF_YEAR)
+val Calendar.dayOfYear: Int
+    get() = get(Calendar.DAY_OF_YEAR)
 
-fun Calendar.isSameMonth(otherDate : Calendar) = year == otherDate.year && month == otherDate.month
+fun Calendar.isSameMonth(otherDate: Calendar) = year == otherDate.year && month == otherDate.month
 
-fun Calendar.isSameDay(otherDate : Calendar) = year == otherDate.year && dayOfYear == otherDate.dayOfYear
+fun Calendar.isSameDay(otherDate: Calendar) = year == otherDate.year && dayOfYear == otherDate.dayOfYear
+
+fun Calendar.minusDays(number: Int) = add(Calendar.DAY_OF_MONTH, -number)
