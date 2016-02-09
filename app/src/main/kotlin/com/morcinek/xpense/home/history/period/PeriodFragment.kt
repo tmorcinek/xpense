@@ -18,8 +18,9 @@ import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.expense.ExpenseActivity
-import com.morcinek.xpense.home.history.period.model.Period
-import com.morcinek.xpense.home.history.period.model.PeriodObject
+import com.morcinek.xpense.data.period.Period
+import com.morcinek.xpense.data.period.PeriodFilterFactory
+import com.morcinek.xpense.data.period.PeriodObject
 import kotlinx.android.synthetic.main.default_list.*
 import javax.inject.Inject
 

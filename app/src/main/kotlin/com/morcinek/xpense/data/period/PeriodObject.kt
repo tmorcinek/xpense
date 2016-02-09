@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.history.period.model
+package com.morcinek.xpense.data.period
 
 import com.morcinek.xpense.data.expense.Expense
 

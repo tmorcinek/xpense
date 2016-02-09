@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.history.period.model
+package com.morcinek.xpense.data.period
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

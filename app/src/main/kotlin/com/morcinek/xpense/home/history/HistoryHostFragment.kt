@@ -6,7 +6,7 @@ import android.view.View
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.utils.setTitle
-import com.morcinek.xpense.home.history.period.model.Period
+import com.morcinek.xpense.data.period.Period
 import kotlinx.android.synthetic.main.history_host.*
 
 /**
