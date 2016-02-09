@@ -19,7 +19,7 @@ import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.data.period.Period
-import com.morcinek.xpense.data.period.PeriodFilterFactory
+import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.data.period.PeriodObject
 import com.morcinek.xpense.expense.ExpenseActivity
 import kotlinx.android.synthetic.main.period.*
@@ -32,7 +32,7 @@ class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickList
 
     override fun getLayoutResourceId() = R.layout.period
 
-    private val periodFilterFactory = PeriodFilterFactory()
+    private val periodFilterFactory = PeriodObjectFactory()
 
     private val periodObject: PeriodObject by lazy {
         periodFilterFactory.getPeriodFilter(arguments.getSerializable<Period>()!!)

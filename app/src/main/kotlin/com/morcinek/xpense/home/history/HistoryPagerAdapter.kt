@@ -3,8 +3,8 @@ package com.morcinek.xpense.home.history
 import android.content.Context
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.morcinek.xpense.home.history.period.PeriodFragment
 import com.morcinek.xpense.data.period.Period
+import com.morcinek.xpense.home.history.period.PeriodFragment
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -13,9 +13,11 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
 
     val periods = listOf(
             Period.LAST_WEEK,
+            Period.LAST_7_DAYS,
             Period.THIS_WEEK,
             Period.YESTERDAY,
             Period.TODAY,
+            Period.THIS_MONTH,
             Period.LAST_30_DAYS,
             Period.LAST_MONTH
     )

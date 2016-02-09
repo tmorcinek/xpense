@@ -6,5 +6,7 @@ package com.morcinek.xpense.data.period
 enum class Period {
     TODAY, YESTERDAY,
     THIS_WEEK, LAST_WEEK,
-    LAST_30_DAYS, LAST_MONTH
+    LAST_7_DAYS, LAST_30_DAYS,
+    LAST_MONTH, THIS_MONTH,
+    ALL
 }
