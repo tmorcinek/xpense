@@ -145,4 +145,15 @@
         <item name="android:layout_marginLeft">@dimen/item_horizontal_margin</item>
         <item name="android:layout_marginRight">@dimen/item_horizontal_margin</item>
     </style>
+
+    <style name="Item.Header">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/text_white</item>
+        <item name="android:layout_marginTop">@dimen/item_divider_size</item>
+        <item name="android:layout_marginBottom">@dimen/item_divider_size</item>
+        <item name="android:gravity">end</item>
+    </style>
 </resources>

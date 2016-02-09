@@ -12,16 +12,17 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
-import com.morcinek.xpense.expense.ExpenseActivity
 import com.morcinek.xpense.data.period.Period
 import com.morcinek.xpense.data.period.PeriodFilterFactory
 import com.morcinek.xpense.data.period.PeriodObject
-import kotlinx.android.synthetic.main.default_list.*
+import com.morcinek.xpense.expense.ExpenseActivity
+import kotlinx.android.synthetic.main.period.*
 import javax.inject.Inject
 
 /**
@@ -29,7 +30,7 @@ import javax.inject.Inject
  */
 class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickListener<Expense> {
 
-    override fun getLayoutResourceId() = R.layout.default_list
+    override fun getLayoutResourceId() = R.layout.period
 
     private val periodFilterFactory = PeriodFilterFactory()
 
@@ -56,13 +57,21 @@ class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickList
         super.onViewCreated(view, savedInstanceState)
         (activity.application as Application).component.inject(this)
 
-        setupAdapter()
+
+        val expenses = expenses()
+        setupBalance(expenses)
+        setupAdapter(expenses)
         setupRecyclerView()
     }
 
-    private fun setupAdapter() {
+    private fun setupBalance(expenses: List<Expense>) {
+        val sumByDouble = expenses.sumByDouble { it.value }
+        amount.text = CurrencyFormatter().format(sumByDouble, expenseManager.currency)
+    }
+
+    private fun setupAdapter(expenses: List<Expense>) {
         periodAdapter = PeriodAdapter(activity)
-        periodAdapter.setList(expenses())
+        periodAdapter.setList(expenses)
         periodAdapter.itemClickListener = this
     }
 
@@ -73,7 +82,7 @@ class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickList
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
-        recyclerView.addItemDecoration(DividerItemDecoration(activity, R.drawable.item_divider, true, true))
+        recyclerView.addItemDecoration(DividerItemDecoration(activity, R.drawable.item_divider, showLast = true))
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)

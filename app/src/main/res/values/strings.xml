@@ -38,6 +38,7 @@
     <string name="overview_title">Expenses by category (%s)</string>
 
     <string name="history_label">History</string>
+
     <string name="period_today">Today</string>
     <string name="period_yesterday">Yesterday</string>
     <string name="period_this_week">This week</string>
