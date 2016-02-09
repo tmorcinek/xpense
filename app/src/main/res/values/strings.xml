@@ -42,6 +42,8 @@
     <string name="period_yesterday">Yesterday</string>
     <string name="period_this_week">This week</string>
     <string name="period_last_week">Last week</string>
+    <string name="period_last_30_days">Last 30 days</string>
+    <string name="period_last_month">Last month</string>
 
     <string name="menu_categories">Categories</string>
     <string name="menu_statistics">Statistics</string>

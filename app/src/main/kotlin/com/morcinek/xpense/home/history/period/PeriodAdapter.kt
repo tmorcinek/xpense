@@ -9,10 +9,7 @@ import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
-import com.morcinek.xpense.common.utils.isSameDay
-import com.morcinek.xpense.common.utils.setDrawableColor
-import com.morcinek.xpense.common.utils.setTopMargin
-import com.morcinek.xpense.common.utils.toShortDate
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.note.ExpenseAction
 
@@ -41,6 +38,8 @@ class PeriodAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Per
         holder.valueView.text = CurrencyFormatter().format(item.value, item.project!!.currency)
         if (position > 0 && !getItem(position - 1).date.isSameDay(item.date)) {
             holder.itemView.setTopMargin(R.dimen.view_margin)
+        } else {
+            holder.itemView.removeTopMargin()
         }
     }
 

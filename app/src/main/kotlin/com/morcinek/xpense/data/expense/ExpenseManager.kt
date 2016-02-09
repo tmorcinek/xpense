@@ -16,7 +16,10 @@ class ExpenseManager(private val projectManager: ProjectManager) {
     val currentProject: Project
         get() = projectManager.currentProject!!
 
-    fun getExpenses(): List<Expense> = projectExpenses
+    fun getExpenses(): List<Expense> {
+        projectExpenses.sortByDescending { it.date }
+        return projectExpenses
+    }
 
     fun addExpense(expense: Expense) {
         expense.project = currentProject

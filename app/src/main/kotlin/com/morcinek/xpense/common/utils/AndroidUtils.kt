@@ -48,6 +48,11 @@ fun View.setTopMargin(marginResource: Int) {
     layoutParams.topMargin = context.dimen(marginResource)
 }
 
+fun View.removeTopMargin() {
+    val layoutParams = layoutParams as ViewGroup.MarginLayoutParams
+    layoutParams.topMargin = 0
+}
+
 fun View.setLayoutHeight(height: Int) {
     layoutParams.height = height
 }

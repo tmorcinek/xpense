@@ -30,7 +30,8 @@
     </style>
 
     <style name="TabLayoutTheme" parent="Widget.Design.TabLayout">
-        <item name="tabMaxWidth">256dp</item>
+        <item name="tabGravity">center</item>
+        <item name="tabMode">scrollable</item>
         <item name="tabIndicatorColor">@color/text_white</item>
         <item name="tabIndicatorHeight">4dp</item>
         <item name="tabPaddingStart">@dimen/vertical_margin</item>

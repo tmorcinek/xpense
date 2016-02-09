@@ -27,7 +27,11 @@ fun Calendar.isSameMonth(otherDate: Calendar) = year == otherDate.year && month 
 
 fun Calendar.isSameDay(otherDate: Calendar) = year == otherDate.year && dayOfYear == otherDate.dayOfYear
 
+fun Calendar.plusDays(number: Int) = add(Calendar.DAY_OF_MONTH, number)
+
 fun Calendar.minusDays(number: Int) = add(Calendar.DAY_OF_MONTH, -number)
+
+fun Calendar.minusMonth(number: Int) = add(Calendar.MONTH, -number)
 
 fun Calendar.resetTime() {
     set(Calendar.HOUR_OF_DAY, 0);            // set hour to midnight

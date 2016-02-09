@@ -22,16 +22,18 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
             PeriodFragment(Period.LAST_WEEK),
             PeriodFragment(Period.THIS_WEEK),
             PeriodFragment(Period.YESTERDAY),
-            PeriodFragment(Period.TODAY)
+            PeriodFragment(Period.TODAY),
+            PeriodFragment(Period.LAST_30_DAYS),
+            PeriodFragment(Period.LAST_MONTH)
     )
 
     override fun getItem(position: Int): PeriodFragment? {
         return fragments[position]
     }
 
+    override fun getCount() = fragments.size
+
     override fun getPageTitle(position: Int): CharSequence? {
         return context.getString(getItem(position)!!.getTitle())
     }
-
-    override fun getCount() = fragments.size
 }
