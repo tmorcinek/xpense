@@ -11,6 +11,15 @@ import com.morcinek.xpense.home.history.period.model.Period
  */
 class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
+    val periods = listOf(
+            Period.LAST_WEEK,
+            Period.THIS_WEEK,
+            Period.YESTERDAY,
+            Period.TODAY,
+            Period.LAST_30_DAYS,
+            Period.LAST_MONTH
+    )
+
     private val fragments: List<PeriodFragment>
 
     init {
@@ -18,14 +27,7 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
         fragments = createPeriodFragments()
     }
 
-    private fun createPeriodFragments() = listOf(
-            PeriodFragment(Period.LAST_WEEK),
-            PeriodFragment(Period.THIS_WEEK),
-            PeriodFragment(Period.YESTERDAY),
-            PeriodFragment(Period.TODAY),
-            PeriodFragment(Period.LAST_30_DAYS),
-            PeriodFragment(Period.LAST_MONTH)
-    )
+    private fun createPeriodFragments() = periods.map { PeriodFragment(it) }
 
     override fun getItem(position: Int): PeriodFragment? {
         return fragments[position]

@@ -5,6 +5,7 @@ import android.view.View
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.utils.setTitle
+import com.morcinek.xpense.home.history.period.model.Period
 import kotlinx.android.synthetic.main.history_host.*
 
 /**
@@ -18,7 +19,17 @@ class HistoryHostFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setTitle(R.string.history_label)
 
-        viewPager.adapter = HistoryPagerAdapter(context, childFragmentManager);
+        setupViewPager()
+        setupTabs()
+    }
+
+    private fun setupViewPager() {
+        val adapter = HistoryPagerAdapter(context, childFragmentManager)
+        viewPager.adapter = adapter;
+        viewPager.currentItem = adapter.periods.indexOf(Period.TODAY)
+    }
+
+    private fun setupTabs() {
         tabs.setupWithViewPager(viewPager);
     }
 }
