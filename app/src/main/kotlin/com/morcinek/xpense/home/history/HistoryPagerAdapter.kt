@@ -20,7 +20,7 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
             Period.LAST_MONTH
     )
 
-    private val fragments: List<PeriodFragment>
+    val fragments: List<PeriodFragment>
 
     init {
         fragmentManager.fragments?.clear()

@@ -18,6 +18,8 @@ import com.morcinek.xpense.data.note.ExpenseAction
  */
 class PeriodAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, PeriodAdapter.ViewHolder>(context) {
 
+    fun getItems(): List<Expense> = items
+
     fun updateList(expenses: List<Expense>, expense: Expense, expenseAction: ExpenseAction) {
         when (expenseAction) {
             ExpenseAction.UPDATED -> notifyItemChanged(items.indexOf(expense))

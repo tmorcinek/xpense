@@ -1,5 +1,6 @@
 package com.morcinek.xpense.home.history
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.morcinek.xpense.R
@@ -21,6 +22,14 @@ class HistoryHostFragment : BaseFragment() {
 
         setupViewPager()
         setupTabs()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val adapter = viewPager.adapter as HistoryPagerAdapter
+        adapter.fragments.filter { it.isVisible }.forEach {
+            it.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     private fun setupViewPager() {

@@ -61,9 +61,11 @@ class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickList
 
     private fun setupAdapter() {
         periodAdapter = PeriodAdapter(activity)
-        periodAdapter.setList(expenseManager.getExpenses().filter(periodObject.filter))
+        periodAdapter.setList(expenses())
         periodAdapter.itemClickListener = this
     }
+
+    private fun expenses() = expenseManager.getExpenses().filter(periodObject.filter)
 
     private fun setupRecyclerView() {
         recyclerView.adapter = periodAdapter
@@ -82,10 +84,12 @@ class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickList
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            val expenses = expenseManager.getExpenses()
-            val action = data!!.getSerializableExtra<ExpenseAction>()!!
-            val expense = data.getParcelableExtra<Expense>()
-            periodAdapter.updateList(expenses, expense, action)
+            val expenses = expenses()
+            if (!expenses.equals(periodAdapter.getItems())) {
+                val action = data!!.getSerializableExtra<ExpenseAction>()!!
+                val expense = data.getParcelableExtra<Expense>()
+                periodAdapter.updateList(expenses, expense, action)
+            }
         }
     }
 }
