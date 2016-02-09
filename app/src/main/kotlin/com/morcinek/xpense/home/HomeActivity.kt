@@ -15,7 +15,6 @@ import com.morcinek.xpense.expense.ExpenseActivity
 import com.morcinek.xpense.home.config.PreferencesActivity
 import com.morcinek.xpense.home.config.fragments.AboutFragment
 import com.morcinek.xpense.home.config.fragments.SettingsFragment
-import com.morcinek.xpense.home.history.period.PeriodFragment
 import com.morcinek.xpense.home.history.HistoryHostFragment
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import com.morcinek.xpense.home.overview.OverviewFragment
@@ -54,8 +53,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setupFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            homeContentController.switchFragment(HistoryHostFragment())
+            setupInitialFragment()
         }
+    }
+
+    private fun setupInitialFragment() {
+        homeContentController.switchFragment(HistoryHostFragment())
+        navigationView.setCheckedItem(R.id.history)
     }
 
     private fun setupToolbar() {
