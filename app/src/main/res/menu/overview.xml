@@ -4,7 +4,7 @@
     tools:context=".home.HomeActivity">
     <item
         android:id="@+id/action_period"
-        android:orderInCategory="100"
+        android:icon="@drawable/ic_date_range_white"
         android:title="@string/action_period"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>
