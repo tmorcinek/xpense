@@ -69,7 +69,7 @@ class OverviewFragment : BaseFragment() {
     }
 
     private fun setupPeriodObject() {
-        periodObject = periodObjectFactory.getPeriodFilter(Period.ALL)
+        periodObject = periodObjectFactory.getPeriodFilter(Period.LAST_7_DAYS)
     }
 
     private fun updateHeader() {

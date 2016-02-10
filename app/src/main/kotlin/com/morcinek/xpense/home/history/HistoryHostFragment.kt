@@ -35,7 +35,7 @@ class HistoryHostFragment : BaseFragment() {
     private fun setupViewPager() {
         val adapter = HistoryPagerAdapter(context, childFragmentManager)
         viewPager.adapter = adapter;
-        viewPager.currentItem = adapter.periods.indexOf(Period.TODAY)
+        viewPager.currentItem = adapter.periods.indexOf(Period.LAST_7_DAYS)
     }
 
     private fun setupTabs() {

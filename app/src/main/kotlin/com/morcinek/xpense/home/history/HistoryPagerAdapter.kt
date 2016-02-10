@@ -15,12 +15,12 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
 
     val periods = listOf(
             Period.LAST_WEEK,
-            Period.LAST_7_DAYS,
             Period.THIS_WEEK,
             Period.YESTERDAY,
             Period.TODAY,
-            Period.THIS_MONTH,
+            Period.LAST_7_DAYS,
             Period.LAST_30_DAYS,
+            Period.THIS_MONTH,
             Period.LAST_MONTH
     )
 
