@@ -22,7 +22,9 @@
             style="@style/ItemValue"
             android:layout_width="@dimen/chart_height"
             android:layout_height="@dimen/chart_height"
-            android:gravity="center" />
+            android:gravity="center"
+            android:shadowColor="@color/background_shadow"
+            android:textColor="@color/text" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

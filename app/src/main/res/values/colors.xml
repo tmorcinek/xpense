@@ -7,6 +7,7 @@
     <color name="accent_disabled">#a7989d</color>
 
     <color name="background">#FFFFFF</color>
+    <color name="background_shadow">#BFFFFFFF</color>
     <color name="background_gray">#D6D6D6</color>
 
     <color name="list_item">#FAFAFA</color>

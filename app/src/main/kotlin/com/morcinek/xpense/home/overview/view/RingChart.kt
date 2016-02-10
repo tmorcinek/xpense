@@ -2,12 +2,9 @@ package com.morcinek.xpense.home.overview.view
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
-import android.view.View
 import android.widget.TextView
 
 /**
@@ -61,13 +58,7 @@ class RingChart(context: Context, attrs: AttributeSet? = null) : TextView(contex
     }
 
     private fun drawInnerCycle(canvas: Canvas) {
-        paint.color = getBackgroundColor()
+        paint.color = shadowColor
         canvas.drawArc(backgroundRect, 0f, 360f, true, paint)
     }
-
-    private fun getBackgroundColor() =
-            when (background) {
-                is ColorDrawable -> (background as ColorDrawable).color
-                else -> Color.WHITE
-            }
 }

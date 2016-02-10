@@ -84,6 +84,7 @@ class OverviewFragment : BaseFragment() {
     private fun setupChart() {
         ringChart.values = overviewManager.getChartValues()
         ringChart.text = CurrencyFormatter().format(overviewManager.getExpensesSum(), overviewManager.getCurrency())
+        ringChart.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in))
     }
 
     private fun setupAdapter() {
