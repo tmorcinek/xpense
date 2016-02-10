@@ -14,13 +14,16 @@ import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
-import com.morcinek.xpense.common.utils.*
+import com.morcinek.xpense.common.utils.getParcelableExtra
+import com.morcinek.xpense.common.utils.getSerializable
+import com.morcinek.xpense.common.utils.getSerializableExtra
+import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.ExpenseAction
 import com.morcinek.xpense.data.period.Period
-import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.data.period.PeriodObject
+import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.expense.ExpenseActivity
 import kotlinx.android.synthetic.main.period.*
 import javax.inject.Inject
@@ -28,35 +31,24 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class PeriodFragment : BaseFragment, AbstractRecyclerViewAdapter.OnItemClickListener<Expense> {
+class PeriodFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickListener<Expense> {
 
     override fun getLayoutResourceId() = R.layout.period
-
-    private val periodFilterFactory = PeriodObjectFactory()
-
-    private val periodObject: PeriodObject by lazy {
-        periodFilterFactory.getPeriodFilter(arguments.getSerializable<Period>()!!)
-    }
 
     @Inject
     lateinit var expenseManager: ExpenseManager
 
-    private lateinit var periodAdapter: PeriodAdapter
+    private val periodObject: PeriodObject by lazy {
+        PeriodObjectFactory().getPeriodFilter(arguments.getSerializable<Period>()!!)
+    }
 
     fun getTitle() = periodObject.titleResource
 
-    constructor() {
-    }
-
-    constructor(period: Period) {
-        arguments = Bundle()
-        arguments.putSerializable(period)
-    }
+    private lateinit var periodAdapter: PeriodAdapter
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity.application as Application).component.inject(this)
-
 
         val expenses = expenses()
         setupBalance(expenses)

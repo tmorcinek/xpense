@@ -1,8 +1,10 @@
 package com.morcinek.xpense.home.history
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.morcinek.xpense.common.utils.putSerializable
 import com.morcinek.xpense.data.period.Period
 import com.morcinek.xpense.home.history.period.PeriodFragment
 
@@ -29,7 +31,16 @@ class HistoryPagerAdapter(val context: Context, fragmentManager: FragmentManager
         fragments = createPeriodFragments()
     }
 
-    private fun createPeriodFragments() = periods.map { PeriodFragment(it) }
+    private fun createPeriodFragments() = periods.map {
+        createPeriodFragment(it)
+    }
+
+    private fun createPeriodFragment(it: Period): PeriodFragment {
+        val periodFragment = PeriodFragment()
+        periodFragment.arguments = Bundle()
+        periodFragment.arguments.putSerializable(it)
+        return periodFragment
+    }
 
     override fun getItem(position: Int): PeriodFragment? {
         return fragments[position]
