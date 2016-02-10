@@ -8,11 +8,12 @@ import android.graphics.RectF
 import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.View
+import android.widget.TextView
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class RingChart(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
+class RingChart(context: Context, attrs: AttributeSet? = null) : TextView(context, attrs) {
 
     private val rect = RectF()
     private val backgroundRect = RectF()
@@ -44,9 +45,9 @@ class RingChart(context: Context, attrs: AttributeSet? = null) : View(context, a
     }
 
     override protected fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
         drawValues(canvas)
         drawInnerCycle(canvas)
+        super.onDraw(canvas)
     }
 
     private fun drawValues(canvas: Canvas) {

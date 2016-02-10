@@ -78,16 +78,12 @@ class OverviewFragment : BaseFragment() {
 
     private fun updateViews() {
         setupChart()
-        setupAmountText()
         setupAdapter()
     }
 
     private fun setupChart() {
         ringChart.values = overviewManager.getChartValues()
-    }
-
-    private fun setupAmountText() {
-        amount.text = CurrencyFormatter().format(overviewManager.getExpensesSum(), overviewManager.getCurrency())
+        ringChart.text = CurrencyFormatter().format(overviewManager.getExpensesSum(), overviewManager.getCurrency())
     }
 
     private fun setupAdapter() {
@@ -95,6 +91,7 @@ class OverviewFragment : BaseFragment() {
         overviewAdapter.currency = overviewManager.getCurrency()
         overviewAdapter.setList(overviewManager.getOverviewItems())
         recyclerView.setLayoutHeight(overviewAdapter.itemCount * context.dimen(R.dimen.overview_item_height))
+        recyclerView.startLayoutAnimation()
     }
 
     private fun setupRecyclerView() {

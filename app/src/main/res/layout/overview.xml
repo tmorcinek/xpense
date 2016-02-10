@@ -5,38 +5,29 @@
     android:background="@color/background"
     android:fillViewport="true">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/header"
-            style="@style/Title"
+            style="@style/Header"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="wrap_content" />
 
         <com.morcinek.xpense.home.overview.view.RingChart
             android:id="@+id/ringChart"
+            style="@style/ItemValue"
             android:layout_width="@dimen/chart_height"
             android:layout_height="@dimen/chart_height"
-            android:layout_below="@id/header"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/amount"
-            style="@style/ItemValue"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/chart_height"
-            android:layout_alignTop="@id/ringChart"
-            android:layout_centerHorizontal="true"
             android:gravity="center" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             style="@style/RecyclerView"
-            android:layout_below="@id/ringChart"
             android:layout_marginBottom="@dimen/view_margin"
             android:layout_marginTop="@dimen/view_margin" />
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
