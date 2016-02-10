@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
@@ -13,9 +16,13 @@ import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setLayoutHeight
 import com.morcinek.xpense.common.utils.setTitle
+import com.morcinek.xpense.data.period.Period
+import com.morcinek.xpense.data.period.PeriodObject
+import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.home.overview.list.OverviewAdapter
 import kotlinx.android.synthetic.main.overview.*
 import org.jetbrains.anko.dimen
+import org.jetbrains.anko.selector
 import javax.inject.Inject
 
 /**
@@ -26,32 +33,53 @@ class OverviewFragment : BaseFragment() {
     @Inject
     lateinit var overviewManager: OverviewManager
 
+    @Inject
+    lateinit var periodObjectFactory: PeriodObjectFactory
+
     override fun getLayoutResourceId() = R.layout.overview
+
+    lateinit var periodObject: PeriodObject
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTitle(R.string.overview_label)
         (activity.application as Application).component.inject(this)
 
-        setupTitle()
+        setTitle(R.string.overview_label)
+        setHasOptionsMenu(true)
+
+        setupPeriodObject()
         setupRecyclerView()
-        updateViews()
+
+        updateUI()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        overviewManager.updateManager()
+        updateUI()
+    }
+
+    private fun updateUI() {
+        updateHeader()
+        updateOverviewManager()
         updateViews()
+    }
+
+    private fun updateOverviewManager() {
+        overviewManager.updateManager(periodObject.filter)
+    }
+
+    private fun setupPeriodObject() {
+        periodObject = periodObjectFactory.getPeriodFilter(Period.ALL)
+    }
+
+    private fun updateHeader() {
+        header.text = getString(R.string.overview_title, getString(periodObject.titleResource))
     }
 
     private fun updateViews() {
         setupChart()
         setupAmountText()
         setupAdapter()
-    }
-
-    private fun setupTitle() {
-        title.text = getString(R.string.overview_title, "All")
     }
 
     private fun setupChart() {
@@ -77,4 +105,23 @@ class OverviewFragment : BaseFragment() {
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.overview, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_period -> {
+                val periodObjects = Period.values().map { periodObjectFactory.getPeriodFilter(it) }
+                activity.selector(items = periodObjects.map { getString(it.titleResource) }) { i ->
+                    periodObject = periodObjects[i]
+                    updateUI()
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

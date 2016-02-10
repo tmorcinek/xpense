@@ -10,6 +10,7 @@ import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.category.ColorManager
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.NoteManager
+import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.data.project.ProjectManager
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import com.morcinek.xpense.splash.data.CategoryInitializer
@@ -85,5 +86,10 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideNavigationExpenseManager(expenseManager: ExpenseManager): NavigationExpenseManager {
         return NavigationExpenseManager(expenseManager)
+    }
+
+    @Provides
+    fun providePeriodObjectFactory(): PeriodObjectFactory {
+        return PeriodObjectFactory()
     }
 }

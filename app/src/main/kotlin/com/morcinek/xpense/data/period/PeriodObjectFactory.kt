@@ -9,6 +9,20 @@ import java.util.*
  */
 class PeriodObjectFactory {
 
+    fun getPeriodFilter(period: Period): PeriodObject {
+        return when (period) {
+            Period.TODAY -> PeriodObject(R.string.period_today, { it.date.isSameDay(today) })
+            Period.YESTERDAY -> PeriodObject(R.string.period_yesterday, { it.date.isSameDay(yesterday) })
+            Period.THIS_WEEK -> PeriodObject(R.string.period_this_week, { it.date.isSameWeek(today) })
+            Period.LAST_WEEK -> PeriodObject(R.string.period_last_week, { it.date.isSameWeek(sevenDaysAgo) })
+            Period.LAST_7_DAYS -> PeriodObject(R.string.period_last_7_days, { it.date in sevenDaysAgo..tomorrow })
+            Period.LAST_30_DAYS -> PeriodObject(R.string.period_last_30_days, { it.date in thirtyDaysAgo..tomorrow })
+            Period.LAST_MONTH -> PeriodObject(R.string.period_last_month, { it.date.isSameMonth(dayOfPreviousMonth) })
+            Period.THIS_MONTH -> PeriodObject(R.string.period_this_month, { it.date.isSameMonth(today) })
+            Period.ALL -> PeriodObject(R.string.period_all, { true })
+        }
+    }
+
     private val today: Calendar by lazy {
         val calendar = Calendar.getInstance()
         calendar.resetTime()
@@ -27,7 +41,6 @@ class PeriodObjectFactory {
         calendar.resetTime()
         calendar
     }
-
 
     private val thirtyDaysAgo: Calendar by lazy {
         val calendar = Calendar.getInstance()
@@ -48,19 +61,5 @@ class PeriodObjectFactory {
         calendar.minusMonth(1)
         calendar.resetTime()
         calendar
-    }
-
-    fun getPeriodFilter(period: Period): PeriodObject {
-        return when (period) {
-            Period.TODAY -> PeriodObject(R.string.period_today, { it.date.isSameDay(today) })
-            Period.YESTERDAY -> PeriodObject(R.string.period_yesterday, { it.date.isSameDay(yesterday) })
-            Period.THIS_WEEK -> PeriodObject(R.string.period_this_week, { it.date.isSameWeek(today) })
-            Period.LAST_WEEK -> PeriodObject(R.string.period_last_week, { it.date.isSameWeek(sevenDaysAgo) })
-            Period.LAST_7_DAYS -> PeriodObject(R.string.period_last_7_days, { it.date in sevenDaysAgo..tomorrow })
-            Period.LAST_30_DAYS -> PeriodObject(R.string.period_last_30_days, { it.date in thirtyDaysAgo..tomorrow })
-            Period.LAST_MONTH -> PeriodObject(R.string.period_last_month, { it.date.isSameMonth(dayOfPreviousMonth) })
-            Period.THIS_MONTH -> PeriodObject(R.string.period_last_month, { it.date.isSameMonth(today) })
-            Period.ALL -> PeriodObject(R.string.period_all, { true })
-        }
     }
 }

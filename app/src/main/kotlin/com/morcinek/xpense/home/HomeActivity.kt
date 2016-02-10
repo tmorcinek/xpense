@@ -58,8 +58,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setupInitialFragment() {
-        homeContentController.switchFragment(HistoryHostFragment())
-        navigationView.setCheckedItem(R.id.history)
+        homeContentController.switchFragment(OverviewFragment())
+        navigationView.setCheckedItem(R.id.overview)
     }
 
     private fun setupToolbar() {

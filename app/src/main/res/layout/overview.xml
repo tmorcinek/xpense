@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/header"
             style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:id="@+id/ringChart"
             android:layout_width="@dimen/chart_height"
             android:layout_height="@dimen/chart_height"
-            android:layout_below="@id/title"
+            android:layout_below="@id/header"
             android:layout_centerHorizontal="true" />
 
         <TextView
