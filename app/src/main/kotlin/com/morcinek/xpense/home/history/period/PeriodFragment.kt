@@ -11,7 +11,6 @@ import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
-import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.getParcelableExtra
@@ -31,7 +30,7 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class PeriodFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickListener<Expense> {
+class PeriodFragment : BaseFragment() {
 
     override fun getLayoutResourceId() = R.layout.period
 
@@ -64,7 +63,9 @@ class PeriodFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickLi
     private fun setupAdapter(expenses: List<Expense>) {
         periodAdapter = PeriodAdapter(activity)
         periodAdapter.setList(expenses)
-        periodAdapter.itemClickListener = this
+        periodAdapter.setItemClickListener {
+            activity.startActivityFromFragment<ExpenseActivity>(this, it)
+        }
     }
 
     private fun expenses() = expenseManager.getExpenses().filter(periodObject.filter)
@@ -78,10 +79,6 @@ class PeriodFragment : BaseFragment(), AbstractRecyclerViewAdapter.OnItemClickLi
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
-
-    override fun onItemClicked(item: Expense) {
-        activity.startActivityFromFragment<ExpenseActivity>(this, item)
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

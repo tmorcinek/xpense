@@ -6,16 +6,18 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.inputmethod.EditorInfo
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
+import com.morcinek.xpense.common.utils.getParcelable
+import com.morcinek.xpense.common.utils.getTrimString
+import com.morcinek.xpense.common.utils.hideSoftInput
+import com.morcinek.xpense.common.utils.setTextWithSelection
 import com.morcinek.xpense.create.CreateActivity
-import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.category.ColorManager
 import kotlinx.android.synthetic.main.category.*
+import org.jetbrains.anko.textChangedListener
 import javax.inject.Inject
-import org.jetbrains.anko.*
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -53,11 +55,9 @@ class CategoryActivity : CreateActivity<Category>() {
 
     private fun setupAdapter() {
         colorAdapter = ColorAdapter(this)
-        colorAdapter.itemClickListener = object : AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
-            override fun onItemClicked(item: Int) {
-                colorAdapter.onItemClicked(item)
-                invalidateItem()
-            }
+        colorAdapter.setItemClickListener {
+            colorAdapter.onItemClicked(it)
+            invalidateItem()
         }
         colorAdapter.setList(colorManager.colors.minus(disabledColors()))
     }
