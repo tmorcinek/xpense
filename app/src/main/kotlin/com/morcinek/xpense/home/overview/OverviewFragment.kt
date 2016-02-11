@@ -13,13 +13,17 @@ import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
+import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.setLayoutHeight
 import com.morcinek.xpense.common.utils.setTitle
+import com.morcinek.xpense.common.utils.startActivity
 import com.morcinek.xpense.data.period.Period
 import com.morcinek.xpense.data.period.PeriodObject
 import com.morcinek.xpense.data.period.PeriodObjectFactory
+import com.morcinek.xpense.home.overview.category.OverviewCategoryActivity
 import com.morcinek.xpense.home.overview.list.OverviewAdapter
+import com.morcinek.xpense.home.overview.list.OverviewItem
 import kotlinx.android.synthetic.main.overview.*
 import org.jetbrains.anko.dimen
 import org.jetbrains.anko.selector
@@ -96,7 +100,14 @@ class OverviewFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() {
-        recyclerView.adapter = OverviewAdapter(activity)
+        val overviewAdapter = OverviewAdapter(activity)
+        overviewAdapter.itemClickListener = object : AbstractRecyclerViewAdapter.OnItemClickListener<OverviewItem> {
+            override fun onItemClicked(item: OverviewItem) {
+                //TODO change static Period.LAST_7_DAYS to dynamic one
+                activity.startActivity<OverviewCategoryActivity>(item.category, Period.LAST_7_DAYS)
+            }
+        }
+        recyclerView.adapter = overviewAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())

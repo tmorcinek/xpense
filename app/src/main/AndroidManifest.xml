@@ -52,6 +52,10 @@
             android:name=".home.config.PreferencesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".home.overview.category.OverviewCategoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

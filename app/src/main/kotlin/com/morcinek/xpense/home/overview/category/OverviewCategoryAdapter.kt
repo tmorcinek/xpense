@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.overview.list
+package com.morcinek.xpense.home.overview.category
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -9,40 +9,37 @@ import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
-import com.morcinek.xpense.common.utils.setDrawableColor
+import com.morcinek.xpense.common.utils.toDateFormat
+import com.morcinek.xpense.data.expense.Expense
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class OverviewAdapter(context: Context) : AbstractRecyclerViewAdapter<OverviewItem, OverviewAdapter.ViewHolder>(context) {
+class OverviewCategoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, OverviewCategoryAdapter.ViewHolder>(context) {
 
     lateinit var currency: String
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        initializeOnClickListener(holder, getItem(position))
-        val (category, amount, percentage) = getItem(position)
-        holder.iconView.setDrawableColor(category.color!!)
-        holder.titleView.text = category.name
-        holder.valueView.text = CurrencyFormatter().format(amount, currency)
-        holder.percentageView.text = "${(percentage * 100).toInt()}%"
+        val expense = getItem(position)
+        holder.dateView.text = expense.date.toDateFormat()
+        holder.titleView.text = expense.note
+        holder.valueView.text = CurrencyFormatter().format(expense.value, currency)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.overview_item, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.overview_category_item, parent, false))
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val iconView: TextView
+        val dateView: TextView
         val titleView: TextView
         val valueView: TextView
-        val percentageView: TextView
 
         init {
-            iconView = view.findViewById(R.id.icon) as TextView
+            dateView = view.findViewById(R.id.date) as TextView
             titleView = view.findViewById(R.id.title) as TextView
             valueView = view.findViewById(R.id.value) as TextView
-            percentageView = view.findViewById(R.id.percentage) as TextView
         }
     }
 }

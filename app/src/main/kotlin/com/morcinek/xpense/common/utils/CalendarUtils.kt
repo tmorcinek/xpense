@@ -12,6 +12,8 @@ fun Calendar.toString(format: String) = SimpleDateFormat(format).format(time)
 
 fun Calendar.toShortDate() = toString(BuildConfig.SHORT_DATE_FORMAT)
 
+fun Calendar.toDateFormat() = toString(BuildConfig.DATE_FORMAT)
+
 fun Calendar.monthName() = getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
 
 val Calendar.month: Int
