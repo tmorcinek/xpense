@@ -9,6 +9,7 @@
     <color name="background">#FFFFFF</color>
     <color name="background_shadow">#BFFFFFFF</color>
     <color name="background_gray">#D6D6D6</color>
+    <color name="toolbar_shadow">#30FFFFFF</color>
 
     <color name="list_item">#FAFAFA</color>
     <color name="list_item_highlighted">#E8E8E8</color>

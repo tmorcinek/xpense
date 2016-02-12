@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
@@ -11,6 +12,8 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.getParcelableExtra
 import com.morcinek.xpense.common.utils.getSerializableExtra
+import com.morcinek.xpense.common.utils.setBackgroundColor
+import com.morcinek.xpense.common.utils.setStatusBarColor
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.period.Period
@@ -39,6 +42,7 @@ class OverviewCategoryActivity : AppCompatActivity() {
         (application as Application).component.inject(this)
 
         setupIntentObjects()
+        setupBackground()
         setupToolbar()
         setupTitle()
         setupRecyclerView()
@@ -48,6 +52,12 @@ class OverviewCategoryActivity : AppCompatActivity() {
     private fun setupIntentObjects() {
         category = intent.getParcelableExtra<Category>()!!
         periodObject = periodObjectFactory.getPeriodFilter(intent.getSerializableExtra<Period>()!!)
+    }
+
+    private fun setupBackground() {
+        val color = category.color!!
+        setBackgroundColor(color)
+        setStatusBarColor(color)
     }
 
     private fun setupToolbar() {
@@ -77,4 +87,14 @@ class OverviewCategoryActivity : AppCompatActivity() {
     private fun prepareExpenses() = expenseManager.getExpenses().filter { it.category == category && periodObject.filter.invoke(it) }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left)
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
 }

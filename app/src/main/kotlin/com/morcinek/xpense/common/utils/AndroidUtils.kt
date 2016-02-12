@@ -67,3 +67,13 @@ fun EditText.setTextWithSelection(text: CharSequence) {
 fun DialogFragment.show(fragmentManager: FragmentManager) {
     show(fragmentManager, javaClass.name)
 }
+
+fun Activity.setBackgroundColor(color: Int){
+    window.decorView.setBackgroundColor(color)
+}
+
+fun Activity.setStatusBarColor(color: Int){
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+        window.statusBarColor = color
+    }
+}
