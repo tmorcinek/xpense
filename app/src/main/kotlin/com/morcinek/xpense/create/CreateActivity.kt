@@ -8,6 +8,9 @@ import android.view.MenuItem
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.finishOk
 import com.morcinek.xpense.common.utils.putParcelable
+import com.morcinek.xpense.common.utils.putParcelableExtra
+import com.morcinek.xpense.common.utils.putSerializableExtra
+import com.morcinek.xpense.data.CollectionAction
 import kotlinx.android.synthetic.main.expense.*
 
 /**
@@ -18,6 +21,16 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
     protected abstract var item: T
 
     protected abstract val validator: Validator<T>
+
+    protected val isEditMode by lazy { intent.extras != null }
+
+    protected val editItem: T? by lazy {
+        if (isEditMode) {
+            restoreItem(intent.extras)!!
+        } else {
+            null
+        }
+    }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -37,7 +50,7 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     abstract fun restoreItem(bundle: Bundle): T?
 
-    protected fun invalidateItem(){
+    protected fun invalidateItem() {
         supportInvalidateOptionsMenu()
     }
 
@@ -47,7 +60,7 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
     }
 
     private fun restoreIntentItem() {
-        if (intent.extras != null) {
+        if (isEditMode) {
             item = restoreItem(intent.extras)!!
         }
     }
@@ -77,5 +90,12 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
         }
     }
 
-    abstract protected fun onDoneItemSelected()
+    protected open fun onDoneItemSelected(){
+        if (isEditMode) {
+            intent.putSerializableExtra(CollectionAction.UPDATED)
+        } else {
+            intent.putSerializableExtra(CollectionAction.CREATED)
+        }
+        intent.putParcelableExtra(item)
+    }
 }

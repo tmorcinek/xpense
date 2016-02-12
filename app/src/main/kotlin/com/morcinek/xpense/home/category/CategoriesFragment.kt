@@ -12,9 +12,15 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
+import com.morcinek.xpense.common.utils.getParcelableExtra
+import com.morcinek.xpense.common.utils.getSerializableExtra
 import com.morcinek.xpense.common.utils.setTitle
 import com.morcinek.xpense.common.utils.startActivityFromFragment
+import com.morcinek.xpense.data.CollectionAction
+import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.category.CategoryManager
+import com.morcinek.xpense.data.expense.Expense
+import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.expense.category.CategoryAdapter
 import com.morcinek.xpense.home.category.create.CreateCategoryActivity
 import kotlinx.android.synthetic.main.overview.*
@@ -30,6 +36,9 @@ class CategoriesFragment : BaseFragment(), View.OnClickListener {
     @Inject
     lateinit var categoryManager: CategoryManager
 
+    @Inject
+    lateinit var expenseManager: ExpenseManager
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity.application as Application).component.inject(this)
@@ -43,7 +52,9 @@ class CategoriesFragment : BaseFragment(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            setupAdapter()
+            val action = data!!.getSerializableExtra<CollectionAction>()!!
+            val category = data.getParcelableExtra<Category>()
+            (recyclerView.adapter as CategoryAdapter).updateList(categoryManager.getCategories(), category, action)
         }
     }
 
@@ -54,7 +65,7 @@ class CategoriesFragment : BaseFragment(), View.OnClickListener {
     private fun setupRecyclerView() {
         val categoryAdapter = CategoryAdapter(context)
         categoryAdapter.setItemClickListener {
-            //            activity.startActivityFromFragment<CreateCategoryActivity>(this, it)
+            activity.startActivityFromFragment<CreateCategoryActivity>(this, it)
         }
         recyclerView.adapter = categoryAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)

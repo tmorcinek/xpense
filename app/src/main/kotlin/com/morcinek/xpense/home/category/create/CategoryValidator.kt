@@ -7,11 +7,11 @@ import com.morcinek.xpense.data.category.CategoryManager
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CategoryValidator(private val categoryManager: CategoryManager) : Validator<Category> {
+class CategoryValidator(private val categoryManager: CategoryManager, private val editItem: Category?) : Validator<Category> {
 
     override fun isValid(item: Category): Boolean {
         return item.color != null
                 && item.name.isNotEmpty()
-                && categoryManager.getCategories().none { it.name.equals(item.name, ignoreCase = true) }
+                && (item.name == editItem?.name || categoryManager.getCategories().none { it.name.equals(item.name, ignoreCase = true) })
     }
 }

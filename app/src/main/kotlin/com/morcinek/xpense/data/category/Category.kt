@@ -28,7 +28,9 @@ class Category(val name: String = "", val color: Int? = null, id: Long? = null) 
     override fun describeContents() = 0
 
     companion object {
-        val CREATOR = createParcel { Category(it.readString(), it.readValue(null) as Int?, it.readValue(null) as Long?) }
+        val CREATOR = createParcel {
+            Category(it.readString(), it.readValue(null) as Int?, it.readValue(null) as Long?)
+        }
     }
 
     override fun equals(other: Any?): Boolean {

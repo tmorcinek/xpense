@@ -30,44 +30,54 @@ class CreateCategoryActivity : CreateActivity<Category>() {
     @Inject
     lateinit var colorManager: ColorManager
 
-    private lateinit var colorAdapter: ColorAdapter
+    private val colorAdapter: ColorAdapter
+        get() = recyclerView.adapter as ColorAdapter
 
     override var item: Category
-        get() = Category(editText.getTrimString(), colorAdapter.selectedItem)
+        get() = Category(editText.getTrimString(), colorAdapter.selectedItem, editItem?.id)
         set(value) {
             editText.setTextWithSelection(value.name)
             colorAdapter.selectedItem = value.color
         }
 
-    override val validator: Validator<Category> by lazy { CategoryValidator(categoryManager) }
+    override val validator: Validator<Category> by lazy { CategoryValidator(categoryManager, editItem) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.category)
         (application as Application).component.inject(this)
 
-        setupAdapter()
         setupRecyclerView()
         setupEditText()
     }
 
-    override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Category>()
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        setupAdapter()
+    }
 
     private fun setupAdapter() {
-        colorAdapter = ColorAdapter(this)
+        if (isEditMode) {
+            colorAdapter.setList(listOf(item.color!!).plus(availableColors()))
+        } else {
+            colorAdapter.setList(availableColors())
+        }
+    }
+
+    private fun availableColors() = colorManager.colors.minus(disabledColors())
+
+    private fun disabledColors() = categoryManager.getCategories().map { it.color!! }
+
+    override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Category>()
+
+    private fun setupRecyclerView() {
+        recyclerView.layoutManager = GridLayoutManager(this, 5)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.adapter = ColorAdapter(this)
         colorAdapter.setItemClickListener {
             colorAdapter.onItemClicked(it)
             invalidateItem()
         }
-        colorAdapter.setList(colorManager.colors.minus(disabledColors()))
-    }
-
-    private fun disabledColors() = categoryManager.getCategories().map { it.color!! }
-
-    private fun setupRecyclerView() {
-        recyclerView.adapter = colorAdapter
-        recyclerView.layoutManager = GridLayoutManager(this, 5)
-        recyclerView.itemAnimator = DefaultItemAnimator()
     }
 
     private fun setupEditText() {
@@ -87,6 +97,11 @@ class CreateCategoryActivity : CreateActivity<Category>() {
     }
 
     override fun onDoneItemSelected() {
-        categoryManager.addCategory(item)
+        super.onDoneItemSelected()
+        if (isEditMode) {
+            categoryManager.updateCategory(item)
+        } else {
+            categoryManager.addCategory(item)
+        }
     }
 }

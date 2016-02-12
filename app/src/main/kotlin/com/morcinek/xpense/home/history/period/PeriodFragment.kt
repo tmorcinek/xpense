@@ -19,7 +19,7 @@ import com.morcinek.xpense.common.utils.getSerializableExtra
 import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.data.note.ExpenseAction
+import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.period.Period
 import com.morcinek.xpense.data.period.PeriodObject
 import com.morcinek.xpense.data.period.PeriodObjectFactory
@@ -85,7 +85,7 @@ class PeriodFragment : BaseFragment() {
         if (resultCode == Activity.RESULT_OK) {
             val expenses = expenses()
             if (!expenses.equals(periodAdapter.getItems())) {
-                val action = data!!.getSerializableExtra<ExpenseAction>()!!
+                val action = data!!.getSerializableExtra<CollectionAction>()!!
                 val expense = data.getParcelableExtra<Expense>()
                 periodAdapter.updateList(expenses, expense, action)
             }

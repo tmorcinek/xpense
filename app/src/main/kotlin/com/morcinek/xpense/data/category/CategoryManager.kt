@@ -7,12 +7,17 @@ import com.orm.SugarRecord
  */
 class CategoryManager() {
 
-    private val categories: MutableList<Category> = SugarRecord.listAll(Category::class.java)
+    private var categories: MutableList<Category> = SugarRecord.listAll(Category::class.java)
 
     fun getCategories(): List<Category> = categories
 
     fun addCategory(category: Category) {
         category.save()
         categories.add(category)
+    }
+
+    fun updateCategory(category: Category) {
+        category.save()
+        categories[categories.indexOf(category)] = category
     }
 }

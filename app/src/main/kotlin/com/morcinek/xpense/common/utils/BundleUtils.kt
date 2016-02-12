@@ -19,8 +19,8 @@ inline fun <reified T : Serializable> Bundle.getSerializable(): T? = getSerializ
 fun <T : Parcelable> Bundle.putParcelable(value: T) = putParcelable(value.javaClass.getName(), value)
 fun <T : Serializable> Bundle.putSerializable(value: T) = putSerializable(value.javaClass.getName(), value)
 
-inline fun <reified T : Parcelable> Intent.putParcelableExtra(value: T) = putExtra(value.javaClass.getName(), value)
-inline fun <reified T : Serializable> Intent.putSerializableExtra(value: T) = putExtra(value.javaClass.getName(), value)
+fun <T : Parcelable> Intent.putParcelableExtra(value: T) = putExtra(value.javaClass.getName(), value)
+fun <T : Serializable> Intent.putSerializableExtra(value: T) = putExtra(value.javaClass.getName(), value)
 
 inline fun <reified T : Parcelable> Intent.getParcelableExtra() = getParcelableExtra<T>(T::class.java.name)
 inline fun <reified T : Serializable> Intent.getSerializableExtra() = getSerializableExtra(T::class.java.name) as T?

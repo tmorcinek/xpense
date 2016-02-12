@@ -11,7 +11,7 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
 import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.expense.Expense
-import com.morcinek.xpense.data.note.ExpenseAction
+import com.morcinek.xpense.data.CollectionAction
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -20,11 +20,11 @@ class PeriodAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, Per
 
     fun getItems(): List<Expense> = items
 
-    fun updateList(expenses: List<Expense>, expense: Expense, expenseAction: ExpenseAction) {
-        when (expenseAction) {
-            ExpenseAction.UPDATED -> notifyItemChanged(items.indexOf(expense))
-            ExpenseAction.DELETED -> notifyItemRemoved(items.indexOf(expense))
-            ExpenseAction.CREATED -> notifyItemInserted(expenses.indexOf(expense))
+    fun updateList(expenses: List<Expense>, expense: Expense, collectionAction: CollectionAction) {
+        when (collectionAction) {
+            CollectionAction.UPDATED -> notifyItemChanged(items.indexOf(expense))
+            CollectionAction.DELETED -> notifyItemRemoved(items.indexOf(expense))
+            CollectionAction.CREATED -> notifyItemInserted(expenses.indexOf(expense))
         }
         items.clear()
         items.addAll(expenses)

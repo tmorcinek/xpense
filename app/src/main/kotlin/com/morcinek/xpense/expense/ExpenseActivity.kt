@@ -18,7 +18,7 @@ import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.data.note.ExpenseAction
+import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
@@ -40,8 +40,6 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         }
 
     override val validator: Validator<Expense> by lazy { ExpenseValidator() }
-
-    private val isEditMode by lazy { intent.extras != null }
 
     @Inject
     lateinit var expenseManager: ExpenseManager
@@ -88,7 +86,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     private fun deleteExpense() {
         expenseManager.deleteExpense(item)
-        intent.putSerializableExtra(ExpenseAction.DELETED)
+        intent.putSerializableExtra(CollectionAction.DELETED)
         intent.putParcelableExtra(item)
         finishOk()
     }
@@ -117,15 +115,13 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     }
 
     override fun onDoneItemSelected() {
+        super.onDoneItemSelected()
         addNote()
         if (isEditMode) {
             expenseManager.updateExpense(item)
-            intent.putSerializableExtra(ExpenseAction.UPDATED)
         } else {
             expenseManager.addExpense(item)
-            intent.putSerializableExtra(ExpenseAction.CREATED)
         }
-        intent.putParcelableExtra(item)
     }
 
     private fun addNote() {

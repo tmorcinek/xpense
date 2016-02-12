@@ -9,12 +9,24 @@ import android.widget.TextView
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.utils.setDrawableColor
+import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.category.Category
+import com.morcinek.xpense.data.expense.Expense
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class CategoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Category, CategoryAdapter.ViewHolder>(context) {
+
+    fun updateList(categories: List<Category>, category: Category, collectionAction: CollectionAction) {
+        when (collectionAction) {
+            CollectionAction.UPDATED -> notifyItemChanged(items.indexOf(category))
+            CollectionAction.DELETED -> notifyItemRemoved(items.indexOf(category))
+            CollectionAction.CREATED -> notifyItemInserted(categories.indexOf(category))
+        }
+        items.clear()
+        items.addAll(categories)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.category_item, parent, false))
