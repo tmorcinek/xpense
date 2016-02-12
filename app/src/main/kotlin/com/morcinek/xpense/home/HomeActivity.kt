@@ -106,8 +106,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.settings -> startActivity<PreferencesActivity>(SettingsFragment::class.java)
             R.id.about -> startActivity<PreferencesActivity>(AboutFragment::class.java)
         }
-
-        drawer.closeDrawer(GravityCompat.START)
+        when(item.itemId){
+            R.id.overview, R.id.history -> drawer.closeDrawer(GravityCompat.START)
+        }
         return true
     }
 }
