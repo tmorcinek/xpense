@@ -100,14 +100,14 @@ class OverviewFragment : BaseFragment() {
 
     private fun setupRecyclerView() {
         val overviewAdapter = OverviewAdapter(activity)
+        overviewAdapter.setItemClickListener {
+            activity.startActivity<OverviewCategoryActivity>(it.category, periodObject.period)
+        }
         recyclerView.adapter = overviewAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
         recyclerView.addItemDecoration(DividerItemDecoration(context, showFirst = true))
-        overviewAdapter.setItemClickListener {
-            activity.startActivity<OverviewCategoryActivity>(it.category, periodObject.period)
-        }
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)

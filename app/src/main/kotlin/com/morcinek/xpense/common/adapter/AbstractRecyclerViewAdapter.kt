@@ -37,7 +37,7 @@ abstract class AbstractRecyclerViewAdapter<T, H : RecyclerView.ViewHolder>(prote
     }
 
     protected fun initializeOnClickListener(holder: H, item: T) {
-        holder.itemView.setOnClickListener { itemClickListener!!.onItemClicked(item) }
+        holder.itemView.setOnClickListener { itemClickListener?.onItemClicked(item) }
     }
 
     interface OnItemClickListener<T> {

@@ -11,6 +11,5 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         style="@style/RecyclerView"
-        android:layout_below="@id/amount"
-        android:background="?background" />
+        android:layout_below="@id/amount" />
 </RelativeLayout>

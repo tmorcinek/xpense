@@ -7,18 +7,19 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.view.View
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.startActivity
 import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.expense.ExpenseActivity
+import com.morcinek.xpense.home.category.CategoriesFragment
 import com.morcinek.xpense.home.config.PreferencesActivity
 import com.morcinek.xpense.home.config.fragments.AboutFragment
 import com.morcinek.xpense.home.config.fragments.SettingsFragment
 import com.morcinek.xpense.home.history.HistoryHostFragment
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import com.morcinek.xpense.home.overview.OverviewFragment
-import com.morcinek.xpense.project.ProjectActivity
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
@@ -27,8 +28,7 @@ import javax.inject.Inject
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
+class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     @Inject
     lateinit var navigationExpenseManager: NavigationExpenseManager
 
@@ -74,9 +74,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setupActionButton() {
-        fab.setOnClickListener {
-            startActivityFromFragment<ExpenseActivity>(homeContentController.currentFragment)
-        }
+        fab.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        startActivityFromFragment<ExpenseActivity>(homeContentController.currentFragment)
     }
 
     private fun setupNavigationView() {
@@ -102,12 +104,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.overview -> homeContentController.switchFragment(OverviewFragment())
             R.id.history -> homeContentController.switchFragment(HistoryHostFragment())
-            R.id.categories -> startActivity<ProjectActivity>()
+            R.id.categories -> homeContentController.switchFragment(CategoriesFragment())
             R.id.settings -> startActivity<PreferencesActivity>(SettingsFragment::class.java)
             R.id.about -> startActivity<PreferencesActivity>(AboutFragment::class.java)
         }
-        when(item.itemId){
-            R.id.overview, R.id.history -> drawer.closeDrawer(GravityCompat.START)
+        when (item.itemId) {
+            R.id.overview, R.id.history, R.id.categories -> drawer.closeDrawer(GravityCompat.START)
         }
         return true
     }
