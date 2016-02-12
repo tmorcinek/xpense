@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.category
+package com.morcinek.xpense.home.category.create
 
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.category.Category

@@ -13,7 +13,7 @@ import com.morcinek.xpense.common.utils.getTrimString
 import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.category.CategoryManager
-import com.morcinek.xpense.home.category.CategoryActivity
+import com.morcinek.xpense.home.category.create.CreateCategoryActivity
 import kotlinx.android.synthetic.main.text_picker.*
 import javax.inject.Inject
 
@@ -54,7 +54,7 @@ class CategoryPickerDialogFragment : TextPickerDialogFragment<Category>() {
     private fun setupButton() {
         button.setImageResource(R.drawable.ic_action_new)
         button.setOnClickListener({
-            activity.startActivityFromFragment<CategoryActivity>(this, Category(editText.getTrimString()))
+            activity.startActivityFromFragment<CreateCategoryActivity>(this, Category(editText.getTrimString()))
         })
     }
 

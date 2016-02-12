@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.category
+package com.morcinek.xpense.home.category.create
 
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
@@ -22,7 +22,7 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CategoryActivity : CreateActivity<Category>() {
+class CreateCategoryActivity : CreateActivity<Category>() {
 
     @Inject
     lateinit var categoryManager: CategoryManager

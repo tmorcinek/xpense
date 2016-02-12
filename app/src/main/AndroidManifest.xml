@@ -39,7 +39,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".home.category.CategoryActivity"
+            android:name=".home.category.create.CreateCategoryActivity"
             android:label="@string/category_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />

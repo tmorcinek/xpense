@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.category
+package com.morcinek.xpense.home.category.create
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

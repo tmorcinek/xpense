@@ -6,7 +6,7 @@ import com.morcinek.xpense.expense.ExpenseActivity
 import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.home.HomeActivity
-import com.morcinek.xpense.home.category.CategoryActivity
+import com.morcinek.xpense.home.category.create.CreateCategoryActivity
 import com.morcinek.xpense.home.history.period.PeriodFragment
 import com.morcinek.xpense.home.overview.category.OverviewCategoryActivity
 import com.morcinek.xpense.home.overview.OverviewFragment
@@ -25,7 +25,7 @@ interface ApplicationComponent {
     fun inject(splashActivity: SplashActivity)
     fun inject(homeActivity: HomeActivity)
     fun inject(expenseActivity: ExpenseActivity)
-    fun inject(categoryActivity: CategoryActivity)
+    fun inject(createCategoryActivity: CreateCategoryActivity)
     fun inject(projectActivity: ProjectActivity)
     fun inject(overviewCategoryActivity: OverviewCategoryActivity)
 

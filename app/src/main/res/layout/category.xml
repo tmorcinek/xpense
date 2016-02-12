@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?colorPrimaryDark"
     android:fitsSystemWindows="true"
-    tools:context=".home.category.CategoryActivity">
+    tools:context=".home.category.create.CreateCategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
