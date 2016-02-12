@@ -104,8 +104,7 @@ class OverviewFragment : BaseFragment() {
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
         overviewAdapter.setItemClickListener {
-            //TODO change static Period.LAST_7_DAYS to dynamic one
-            activity.startActivity<OverviewCategoryActivity>(it.category, Period.LAST_7_DAYS)
+            activity.startActivity<OverviewCategoryActivity>(it.category, periodObject.period)
         }
     }
 
