@@ -15,6 +15,7 @@ class PreferencesActivity() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_outside_right)
         setContentView(R.layout.preferences)
         setupToolbar()
         if (savedInstanceState == null) {
@@ -36,5 +37,10 @@ class PreferencesActivity() : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_inside_left, R.anim.slide_out_right)
     }
 }

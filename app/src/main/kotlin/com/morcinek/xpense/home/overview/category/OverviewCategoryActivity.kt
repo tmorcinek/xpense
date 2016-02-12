@@ -38,6 +38,7 @@ class OverviewCategoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.partial_fade_out)
         setContentView(R.layout.overview_category)
         (application as Application).component.inject(this)
 
@@ -96,5 +97,10 @@ class OverviewCategoryActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.partial_fade_in, R.anim.slide_out_bottom)
     }
 }

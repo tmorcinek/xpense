@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <scale
+        android:fromXScale="0.8"
+        android:toXScale="1.0"
+        android:fromYScale="0.8"
+        android:toYScale="1.0"
+        android:duration="@android:integer/config_longAnimTime" />
+    <translate
+        android:duration="@android:integer/config_longAnimTime"
+        android:fromXDelta="10%p"
+        android:toXDelta="0"
+        android:fromYDelta="10%p"
+        android:toYDelta="0" />
+    <alpha
+        android:startOffset="100"
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromAlpha="0.5"
+        android:toAlpha="1" />
+</set>
