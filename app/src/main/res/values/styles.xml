@@ -126,6 +126,10 @@
         <item name="android:layout_marginRight">@dimen/view_margin</item>
     </style>
 
+    <style name="ItemSubtitle.Overview.Value">
+        <item name="android:textColor">@color/value</item>
+    </style>
+
     <style name="RecyclerView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
