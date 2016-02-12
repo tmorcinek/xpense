@@ -46,5 +46,5 @@
 
     <dimen name="chart_height">200dp</dimen>
 
-    <dimen name="overview_item_height">34dp</dimen>
+    <dimen name="overview_item_height">36dp</dimen>
 </resources>

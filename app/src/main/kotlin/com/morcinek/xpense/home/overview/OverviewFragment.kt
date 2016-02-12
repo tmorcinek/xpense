@@ -14,6 +14,8 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.BaseFragment
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
+import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
+import com.morcinek.xpense.common.utils.dimenSum
 import com.morcinek.xpense.common.utils.setLayoutHeight
 import com.morcinek.xpense.common.utils.setTitle
 import com.morcinek.xpense.common.utils.startActivity
@@ -23,7 +25,6 @@ import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.home.overview.category.OverviewCategoryActivity
 import com.morcinek.xpense.home.overview.list.OverviewAdapter
 import kotlinx.android.synthetic.main.overview.*
-import org.jetbrains.anko.dimen
 import org.jetbrains.anko.selector
 import javax.inject.Inject
 
@@ -93,7 +94,7 @@ class OverviewFragment : BaseFragment() {
         val overviewAdapter = recyclerView.adapter as OverviewAdapter
         overviewAdapter.currency = overviewManager.getCurrency()
         overviewAdapter.setList(overviewManager.getOverviewItems())
-        recyclerView.setLayoutHeight(overviewAdapter.itemCount * context.dimen(R.dimen.overview_item_height))
+        recyclerView.setLayoutHeight(overviewAdapter.itemCount * context.dimenSum(R.dimen.overview_item_height, R.dimen.default_divider_size))
         recyclerView.startLayoutAnimation()
     }
 
@@ -103,6 +104,7 @@ class OverviewFragment : BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
+        recyclerView.addItemDecoration(DividerItemDecoration(context, showFirst = true))
         overviewAdapter.setItemClickListener {
             activity.startActivity<OverviewCategoryActivity>(it.category, periodObject.period)
         }

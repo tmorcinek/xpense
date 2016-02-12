@@ -77,3 +77,5 @@ fun Activity.setStatusBarColor(color: Int){
         window.statusBarColor = color
     }
 }
+
+fun Context.dimenSum(vararg dimens: Int) = dimens.sumBy { dimen(it) }
