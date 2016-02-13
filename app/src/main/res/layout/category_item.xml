@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/DialogItem"
-    android:orientation="horizontal">
+    style="@style/Item">
 
-    <include layout="@layout/category_icon" />
+    <include
+        layout="@layout/category_icon"
+        android:layout_width="@dimen/large_icon_height"
+        android:layout_height="@dimen/large_icon_height" />
 
     <TextView
         android:id="@+id/text"
-        style="@style/DialogText" />
+        style="@style/Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/horizontal_margin" />
 </LinearLayout>

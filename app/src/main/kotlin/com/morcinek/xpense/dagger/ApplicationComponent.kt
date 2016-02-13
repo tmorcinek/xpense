@@ -3,7 +3,7 @@ package com.morcinek.xpense.dagger
 import com.morcinek.xpense.dagger.modules.AndroidModule
 import com.morcinek.xpense.dagger.modules.ManagersModule
 import com.morcinek.xpense.expense.ExpenseActivity
-import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
+import com.morcinek.xpense.expense.category.CategoriesPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import com.morcinek.xpense.home.HomeActivity
 import com.morcinek.xpense.home.category.CategoriesFragment
@@ -35,5 +35,5 @@ interface ApplicationComponent {
     fun inject(categoriesFragment: CategoriesFragment)
 
     fun inject(notePickerDialogFragment: NotePickerDialogFragment)
-    fun inject(categoryPickerDialogFragment: CategoryPickerDialogFragment)
+    fun inject(categoriesPickerDialogFragment: CategoriesPickerDialogFragment)
 }

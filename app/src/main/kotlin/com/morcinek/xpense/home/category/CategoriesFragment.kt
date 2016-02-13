@@ -20,7 +20,7 @@ import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.expense.category.CategoryAdapter
+import com.morcinek.xpense.expense.category.CategoriesPickerDialogAdapter
 import com.morcinek.xpense.home.category.create.CreateCategoryActivity
 import kotlinx.android.synthetic.main.overview.*
 import javax.inject.Inject
@@ -38,8 +38,8 @@ class CategoriesFragment : BaseFragment(), View.OnClickListener {
     @Inject
     lateinit var expenseManager: ExpenseManager
 
-    private val categoryAdapter: CategoryAdapter
-        get() = recyclerView.adapter as CategoryAdapter
+    private val adapter: CategoriesAdapter
+        get() = recyclerView.adapter as CategoriesAdapter
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,7 +56,7 @@ class CategoriesFragment : BaseFragment(), View.OnClickListener {
         if (resultCode == Activity.RESULT_OK) {
             val action = data!!.getSerializableExtra<CollectionAction>()!!
             val category = data.getParcelableExtra<Category>()
-            categoryAdapter.updateList(categoryManager.getCategories(), category, action)
+            adapter.updateList(categoryManager.getCategories(), category, action)
             expenseManager.updateExpenses()
         }
     }
@@ -70,8 +70,8 @@ class CategoriesFragment : BaseFragment(), View.OnClickListener {
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
         recyclerView.addItemDecoration(DividerItemDecoration(context, showFirst = true, showLast = true))
-        recyclerView.adapter = CategoryAdapter(context)
-        categoryAdapter.setItemClickListener {
+        recyclerView.adapter = CategoriesAdapter(context)
+        adapter.setItemClickListener {
             activity.startActivityFromFragment<CreateCategoryActivity>(this, it)
         }
     }
@@ -79,7 +79,7 @@ class CategoriesFragment : BaseFragment(), View.OnClickListener {
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
 
     private fun setupAdapter() {
-        categoryAdapter.setList(categoryManager.getCategories())
+        adapter.setList(categoryManager.getCategories())
         recyclerView.startLayoutAnimation()
     }
 

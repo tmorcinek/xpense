@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/DialogItem"
+    android:orientation="horizontal">
+
+    <include layout="@layout/category_icon" />
+
+    <TextView
+        android:id="@+id/text"
+        style="@style/DialogText" />
+</LinearLayout>

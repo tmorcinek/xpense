@@ -21,13 +21,13 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CategoryPickerDialogFragment : TextPickerDialogFragment<Category>() {
+class CategoriesPickerDialogFragment : TextPickerDialogFragment<Category>() {
 
     @Inject
     lateinit var categoryManager: CategoryManager
 
     override val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder> by lazy {
-        CategoryAdapter(context)
+        CategoriesPickerDialogAdapter(context)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

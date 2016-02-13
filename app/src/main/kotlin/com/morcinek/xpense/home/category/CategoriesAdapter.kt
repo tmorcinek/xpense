@@ -1,4 +1,4 @@
-package com.morcinek.xpense.expense.category
+package com.morcinek.xpense.home.category
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -11,12 +11,11 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.utils.setDrawableColor
 import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.category.Category
-import com.morcinek.xpense.data.expense.Expense
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CategoryAdapter(context: Context) : AbstractRecyclerViewAdapter<Category, CategoryAdapter.ViewHolder>(context) {
+open class CategoriesAdapter(context: Context) : AbstractRecyclerViewAdapter<Category, CategoriesAdapter.ViewHolder>(context) {
 
     fun updateList(categories: List<Category>, category: Category, collectionAction: CollectionAction) {
         when (collectionAction) {

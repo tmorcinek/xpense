@@ -20,7 +20,7 @@ import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.note.NoteManager
-import com.morcinek.xpense.expense.category.CategoryPickerDialogFragment
+import com.morcinek.xpense.expense.category.CategoriesPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
 import org.jetbrains.anko.alert
@@ -155,7 +155,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
     }
 
     private fun startCategoryPicker() {
-        val textPickerFragment = CategoryPickerDialogFragment()
+        val textPickerFragment = CategoriesPickerDialogFragment()
         textPickerFragment.selectedItem = item.category
         textPickerFragment.onItemSetListener = {
             item.category = it
