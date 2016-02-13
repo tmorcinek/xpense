@@ -3,7 +3,6 @@ package com.morcinek.xpense.home.category.create
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
-import android.view.Menu
 import android.view.inputmethod.EditorInfo
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
@@ -43,7 +42,7 @@ class CreateCategoryActivity : CreateActivity<Category>() {
 
     override val validator: Validator<Category> by lazy { CategoryValidator(categoryManager, editItem) }
 
-    private val canDelete: Boolean by lazy { categoryManager.canDeleteCategory(item) }
+    override protected val canDelete: Boolean by lazy { categoryManager.canDeleteCategory(item) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +56,6 @@ class CreateCategoryActivity : CreateActivity<Category>() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         setupAdapter()
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menu!!.findItem(R.id.action_delete).setVisible(isEditMode && canDelete)
-        return super.onPrepareOptionsMenu(menu)
     }
 
     private fun setupAdapter() {
@@ -106,7 +100,7 @@ class CreateCategoryActivity : CreateActivity<Category>() {
         }
     }
 
-    override fun onDoneItemSelected() {
+    override protected fun onDoneItemSelected() {
         hideSoftInput(editText)
         super.onDoneItemSelected()
         if (isEditMode) {
@@ -114,5 +108,10 @@ class CreateCategoryActivity : CreateActivity<Category>() {
         } else {
             categoryManager.addCategory(item)
         }
+    }
+
+    override protected fun onDeleteItemSelected() {
+        super.onDeleteItemSelected()
+        categoryManager.deleteCategory(item)
     }
 }

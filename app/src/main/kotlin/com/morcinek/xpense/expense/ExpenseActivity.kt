@@ -3,8 +3,6 @@ package com.morcinek.xpense.expense
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
@@ -12,18 +10,17 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
-import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.common.utils.betterpickers.setCurrentNumberAsInteger
+import com.morcinek.xpense.common.utils.getParcelable
+import com.morcinek.xpense.common.utils.show
 import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.note.NoteManager
 import com.morcinek.xpense.expense.category.CategoriesPickerDialogFragment
 import com.morcinek.xpense.expense.note.NotePickerDialogFragment
 import kotlinx.android.synthetic.main.expense.*
-import org.jetbrains.anko.alert
 import java.util.*
 import javax.inject.Inject
 
@@ -61,35 +58,6 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
 
     override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Expense>()
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menu!!.findItem(R.id.action_delete).setVisible(isEditMode)
-        return super.onPrepareOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_delete -> {
-                showConfirmationDialog()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun showConfirmationDialog() {
-        alert(R.string.expense_delete_message) {
-            positiveButton(R.string.yes) { deleteExpense() }
-            negativeButton(R.string.no)
-        }.show()
-    }
-
-    private fun deleteExpense() {
-        expenseManager.deleteExpense(item)
-        intent.putSerializableExtra(CollectionAction.DELETED)
-        intent.putParcelableExtra(item)
-        finishOk()
-    }
-
     private fun setupAdapter() {
         expenseAdapter = ExpenseAdapter(this)
         expenseAdapter.currencySymbol = expenseManager.currentProject.currency
@@ -107,7 +75,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         recyclerView.addItemDecoration(DividerItemDecoration(context = this, showFirst = true, showLast = true))
     }
 
-    override fun onDoneItemSelected() {
+    override protected fun onDoneItemSelected() {
         super.onDoneItemSelected()
         addNote()
         if (isEditMode) {
@@ -115,6 +83,11 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         } else {
             expenseManager.addExpense(item)
         }
+    }
+
+    override protected fun onDeleteItemSelected() {
+        super.onDeleteItemSelected()
+        expenseManager.deleteExpense(item)
     }
 
     private fun addNote() {

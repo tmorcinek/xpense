@@ -15,7 +15,7 @@
     <string name="title_date">Date</string>
     <string name="title_currency">Currency</string>
 
-    <string name="expense_delete_message">Do you want to delete this item?</string>
+    <string name="item_delete_message">Do you want to delete this item?</string>
 
     <string name="activity_label_new">New %s</string>
     <string name="activity_label_edit">Edit %s</string>

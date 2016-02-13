@@ -12,6 +12,7 @@ import com.morcinek.xpense.common.utils.putParcelableExtra
 import com.morcinek.xpense.common.utils.putSerializableExtra
 import com.morcinek.xpense.data.CollectionAction
 import kotlinx.android.synthetic.main.expense.*
+import org.jetbrains.anko.alert
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -25,6 +26,8 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
     protected val isEditMode by lazy { intent.extras != null }
 
     protected val editItem: T? by lazy { if (isEditMode) restoreItem(intent.extras)!! else null }
+
+    protected open val canDelete: Boolean = true
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -73,6 +76,7 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         menu!!.findItem(R.id.action_done).setEnabled(validator.isValid(item))
+        menu.findItem(R.id.action_delete).setVisible(isEditMode && canDelete)
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -87,8 +91,23 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
                 finishOk()
                 return true
             }
+            R.id.action_delete -> {
+                showConfirmationDialog()
+                return true
+            }
+
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showConfirmationDialog() {
+        alert(R.string.item_delete_message) {
+            positiveButton(R.string.yes) {
+                onDeleteItemSelected()
+                finishOk()
+            }
+            negativeButton(R.string.no)
+        }.show()
     }
 
     protected open fun onDoneItemSelected() {
@@ -97,6 +116,11 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
         } else {
             intent.putSerializableExtra(CollectionAction.CREATED)
         }
+        intent.putParcelableExtra(item)
+    }
+
+    protected open fun onDeleteItemSelected() {
+        intent.putSerializableExtra(CollectionAction.DELETED)
         intent.putParcelableExtra(item)
     }
 }
