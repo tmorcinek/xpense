@@ -33,9 +33,9 @@ class CreateCategoryActivity : CreateActivity<Category>() {
     private val colorAdapter: ColorAdapter
         get() = recyclerView.adapter as ColorAdapter
 
-    override var item: Category
-        get() = Category(editText.getTrimString(), colorAdapter.selectedItem, editItem?.id)
+    override var item: Category = Category()
         set(value) {
+            field = value
             editText.setTextWithSelection(value.name)
             colorAdapter.selectedItem = value.color
         }
@@ -76,6 +76,7 @@ class CreateCategoryActivity : CreateActivity<Category>() {
         recyclerView.adapter = ColorAdapter(this)
         colorAdapter.setItemClickListener {
             colorAdapter.onItemClicked(it)
+            item.color = it
             invalidateItem()
         }
     }
@@ -83,6 +84,7 @@ class CreateCategoryActivity : CreateActivity<Category>() {
     private fun setupEditText() {
         editText.textChangedListener {
             onTextChanged { charSequence, start, before, count ->
+                item.name = editText.getTrimString()
                 invalidateItem()
             }
         }

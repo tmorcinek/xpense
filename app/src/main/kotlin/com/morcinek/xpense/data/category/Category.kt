@@ -9,7 +9,7 @@ import com.orm.SugarRecord
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class Category(val name: String = "", val color: Int? = null, id: Long? = null) : SugarRecord(), Comparable<Category>, Parcelable {
+class Category(var name: String = "", var color: Int? = null, id: Long? = null) : SugarRecord(), Comparable<Category>, Parcelable {
 
     init {
         setId(id)
