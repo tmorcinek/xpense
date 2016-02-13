@@ -1,5 +1,6 @@
 package com.morcinek.xpense.data.category
 
+import com.morcinek.xpense.data.expense.Expense
 import com.orm.SugarRecord
 
 /**
@@ -20,4 +21,11 @@ class CategoryManager() {
         category.save()
         categories[categories.indexOf(category)] = category
     }
+
+    fun deleteCategory(category: Category) {
+        categories.remove(category)
+        category.delete()
+    }
+
+    fun canDeleteCategory(category: Category) = SugarRecord.count<Expense>(Expense::class.java, "category = ?", arrayOf("${category.id}")) == 0L
 }
