@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.pager.*
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class HistoryHostFragment : PagerFragment() {
+class HistoryFragment : PagerFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
