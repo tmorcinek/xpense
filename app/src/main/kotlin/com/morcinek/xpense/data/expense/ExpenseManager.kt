@@ -9,15 +9,21 @@ import com.orm.SugarRecord
  */
 class ExpenseManager(private val projectManager: ProjectManager) {
 
-    private val projectExpenses: MutableList<Expense> by lazy {
-        SugarRecord.find(Expense::class.java, "project = ?", "${projectManager.currentProject!!.id}")
-    }
+    private var projectExpenses: MutableList<Expense> = arrayListOf()
 
     val currentProject: Project
         get() = projectManager.currentProject!!
 
     val currency: String
         get() = projectManager.currentProject!!.currency
+
+    init {
+        updateExpenses()
+    }
+
+    fun updateExpenses() {
+        projectExpenses = SugarRecord.find(Expense::class.java, "project = ?", "${projectManager.currentProject!!.id}")
+    }
 
     fun getExpenses(): List<Expense> {
         projectExpenses.sortByDescending { it.date }
