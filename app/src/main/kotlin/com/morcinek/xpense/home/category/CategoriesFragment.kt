@@ -10,7 +10,7 @@ import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.BaseFragment
+import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.getParcelableExtra
 import com.morcinek.xpense.common.utils.getSerializableExtra
