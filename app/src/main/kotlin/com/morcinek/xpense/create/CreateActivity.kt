@@ -24,19 +24,20 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     protected val isEditMode by lazy { intent.extras != null }
 
-    protected val editItem: T? by lazy {
-        if (isEditMode) {
-            restoreItem(intent.extras)!!
-        } else {
-            null
-        }
-    }
+    protected val editItem: T? by lazy { if (isEditMode) restoreItem(intent.extras)!! else null }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         setupToolbar()
         restoreIntentItem()
+        setupTitle()
     }
+
+    private fun setupTitle() {
+        title = getString(activityLabel(), item.javaClass.simpleName)
+    }
+
+    private fun activityLabel() = if (isEditMode) R.string.activity_label_edit else R.string.activity_label_new
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)

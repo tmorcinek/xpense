@@ -35,17 +35,14 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".expense.ExpenseActivity"
-            android:label="@string/expense_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".home.category.create.CreateCategoryActivity"
-            android:label="@string/category_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".project.ProjectActivity"
-            android:label="@string/project_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity

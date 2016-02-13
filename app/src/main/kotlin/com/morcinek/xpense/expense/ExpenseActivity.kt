@@ -57,7 +57,6 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         setupAdapter()
         setupItem()
         setupRecyclerView()
-        setupExpense()
     }
 
     override fun restoreItem(bundle: Bundle) = bundle.getParcelable<Expense>()
@@ -106,12 +105,6 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.addItemDecoration(DividerItemDecoration(context = this, showFirst = true, showLast = true))
-    }
-
-    private fun setupExpense() {
-        if (isEditMode) {
-            setTitle(R.string.expense_edit_label)
-        }
     }
 
     override fun onDoneItemSelected() {
