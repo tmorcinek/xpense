@@ -89,7 +89,7 @@ class CreateCategoryActivity : CreateActivity<Category>() {
         editText.setOnEditorActionListener { textView, actionId, keyEvent ->
             when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
-                    window.hideSoftInput()
+                    hideSoftInput(editText)
                 }
             }
             false
@@ -97,6 +97,7 @@ class CreateCategoryActivity : CreateActivity<Category>() {
     }
 
     override fun onDoneItemSelected() {
+        hideSoftInput(editText)
         super.onDoneItemSelected()
         if (isEditMode) {
             categoryManager.updateCategory(item)

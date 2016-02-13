@@ -90,7 +90,7 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
         }
     }
 
-    protected open fun onDoneItemSelected(){
+    protected open fun onDoneItemSelected() {
         if (isEditMode) {
             intent.putSerializableExtra(CollectionAction.UPDATED)
         } else {
