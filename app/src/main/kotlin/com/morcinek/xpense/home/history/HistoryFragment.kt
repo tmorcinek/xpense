@@ -3,7 +3,7 @@ package com.morcinek.xpense.home.history
 import android.os.Bundle
 import android.view.View
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.fragments.PagerFragment
+import com.morcinek.xpense.common.pager.PagerFragment
 import com.morcinek.xpense.common.utils.setTitle
 import com.morcinek.xpense.data.period.Period
 import kotlinx.android.synthetic.main.pager.*
