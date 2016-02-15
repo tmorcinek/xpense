@@ -19,15 +19,12 @@ open class PagerFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        onActivityResult(viewPager.adapter as FragmentPagerAdapter, data, requestCode, resultCode)
+        onActivityResult(viewPager.adapter as PagerAdapter, data, requestCode, resultCode)
     }
 
-    private fun onActivityResult(adapter: FragmentPagerAdapter, data: Intent?, requestCode: Int, resultCode: Int) {
-        (0..adapter.count).forEach {
-            val item = adapter.getItem(it)
-            if (item.isVisible) {
-                item.onActivityResult(requestCode, resultCode, data)
-            }
+    private fun onActivityResult(adapter: PagerAdapter, data: Intent?, requestCode: Int, resultCode: Int) {
+        adapter.fragments.filter { it.isVisible }.forEach {
+            it.onActivityResult(requestCode, resultCode, data)
         }
     }
 }
