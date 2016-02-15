@@ -12,6 +12,7 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
+import com.morcinek.xpense.common.pager.PagerAdapter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.getParcelableExtra
 import com.morcinek.xpense.common.utils.getSerializable
@@ -30,7 +31,7 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class PeriodFragment : BaseFragment() {
+class PeriodFragment : BaseFragment() , PagerAdapter.Page {
 
     override fun getLayoutResourceId() = R.layout.period
 
@@ -41,7 +42,8 @@ class PeriodFragment : BaseFragment() {
         PeriodObjectFactory().getPeriodFilter(arguments.getSerializable<Period>()!!)
     }
 
-    fun getTitle() = periodObject.titleResource
+    override val title: Int
+        get() = periodObject.titleResource
 
     private lateinit var periodAdapter: PeriodAdapter
 
