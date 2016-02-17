@@ -9,7 +9,7 @@ import com.morcinek.xpense.common.pager.PagerAdapter
 import com.morcinek.xpense.common.utils.putSerializable
 import com.morcinek.xpense.data.period.Period
 import com.morcinek.xpense.home.history.period.PeriodFragment
-import com.morcinek.xpense.home.statistics.charts.ChartFragment
+import com.morcinek.xpense.home.statistics.charts.DaysChartFragment
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -17,6 +17,6 @@ import com.morcinek.xpense.home.statistics.charts.ChartFragment
 class StatsPagerAdapter(context: Context, fragmentManager: FragmentManager) : PagerAdapter(context, fragmentManager) {
 
     override val fragments: List<Fragment> by lazy {
-        listOf<Fragment>(ChartFragment())
+        listOf<Fragment>(DaysChartFragment())
     }
 }

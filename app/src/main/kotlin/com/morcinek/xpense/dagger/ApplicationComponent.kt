@@ -11,6 +11,7 @@ import com.morcinek.xpense.home.category.create.CreateCategoryActivity
 import com.morcinek.xpense.home.history.period.PeriodFragment
 import com.morcinek.xpense.home.overview.category.OverviewCategoryActivity
 import com.morcinek.xpense.home.overview.OverviewFragment
+import com.morcinek.xpense.home.statistics.charts.DaysChartFragment
 import com.morcinek.xpense.project.ProjectActivity
 import com.morcinek.xpense.splash.SplashActivity
 import dagger.Component
@@ -33,6 +34,7 @@ interface ApplicationComponent {
     fun inject(periodFragment: PeriodFragment)
     fun inject(overviewFragment: OverviewFragment)
     fun inject(categoriesFragment: CategoriesFragment)
+    fun inject(daysChartFragment: DaysChartFragment)
 
     fun inject(notePickerDialogFragment: NotePickerDialogFragment)
     fun inject(categoriesPickerDialogFragment: CategoriesPickerDialogFragment)
