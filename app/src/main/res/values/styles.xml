@@ -160,7 +160,10 @@
         <item name="android:layout_marginBottom">@dimen/item_divider_size</item>
         <item name="android:gravity">end</item>
     </style>
+
     <style name="Item.Header.Charts">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">0dp</item>
         <item name="android:layout_marginRight">0dp</item>
     </style>
