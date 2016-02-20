@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.support.v4.app.DialogFragment
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -79,3 +80,5 @@ fun Activity.setStatusBarColor(color: Int){
 }
 
 fun Context.dimenSum(vararg dimens: Int) = dimens.sumBy { dimen(it) }
+
+fun Fragment.getColor(id: Int) = context.resources.getColor(id)
