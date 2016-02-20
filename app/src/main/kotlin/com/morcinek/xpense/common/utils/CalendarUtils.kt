@@ -14,6 +14,8 @@ fun Calendar.toShortDate() = toString(BuildConfig.SHORT_DATE_FORMAT)
 
 fun Calendar.toDateFormat() = toString(BuildConfig.DATE_FORMAT)
 
+fun Calendar.toDayFormat() = toString(BuildConfig.DAY_FORMAT)
+
 fun Calendar.monthName() = getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
 
 val Calendar.month: Int
@@ -47,4 +49,31 @@ fun Calendar.resetTime() {
     set(Calendar.MINUTE, 0);                 // set minute in hour
     set(Calendar.SECOND, 0);                 // set second in minute
     set(Calendar.MILLISECOND, 0);
+}
+
+operator fun Calendar.rangeTo(other: Calendar) = CalendarRange(this, other)
+
+fun Calendar.nextDay(): Calendar {
+    val day = clone() as Calendar
+    day.plusDays(1)
+    return day
+}
+
+class CalendarRange(val start: Calendar, val endInclusive: Calendar) : Iterable<Calendar> {
+
+    override fun iterator(): Iterator<Calendar> = CalendarIterator(this)
+
+    operator fun contains(date: Calendar): Boolean = date > start && date < endInclusive
+}
+
+class CalendarIterator(val range: CalendarRange) : Iterator<Calendar> {
+
+    var currentDate: Calendar = range.start
+
+    override fun next(): Calendar {
+        currentDate = currentDate.nextDay()
+        return currentDate
+    }
+
+    override fun hasNext() = currentDate.nextDay() in range
 }

@@ -95,6 +95,8 @@ class OverviewFragment : BaseFragment() {
         overviewAdapter.currency = overviewManager.getCurrency()
         overviewAdapter.setList(overviewManager.getOverviewItems())
         recyclerView.setLayoutHeight(overviewAdapter.itemCount * context.dimenSum(R.dimen.overview_item_height, R.dimen.default_divider_size))
+        recyclerView.setHasFixedSize(true)
+        recyclerView.isNestedScrollingEnabled = false
         recyclerView.startLayoutAnimation()
     }
 

@@ -16,11 +16,19 @@ class PeriodObjectFactory {
             Period.THIS_WEEK -> PeriodObject(period, R.string.period_this_week, { it.date.isSameWeek(today) })
             Period.LAST_WEEK -> PeriodObject(period, R.string.period_last_week, { it.date.isSameWeek(sevenDaysAgo) })
             Period.LAST_7_DAYS -> PeriodObject(period, R.string.period_last_7_days, { it.date in sevenDaysAgo..tomorrow })
-            Period.LAST_30_DAYS -> PeriodObject(period, R.string.period_last_30_days, { it.date in thirtyDaysAgo..tomorrow })
+            Period.LAST_30_DAYS -> PeriodObject(period, R.string.period_last_30_days, { it.date in last30Days })
             Period.LAST_MONTH -> PeriodObject(period, R.string.period_last_month, { it.date.isSameMonth(dayOfPreviousMonth) })
             Period.THIS_MONTH -> PeriodObject(period, R.string.period_this_month, { it.date.isSameMonth(today) })
             Period.ALL -> PeriodObject(period, R.string.period_all, { true })
         }
+    }
+
+    val last30Days by lazy {
+        thirtyDaysAgo..tomorrow
+    }
+
+    val last2Weeks by lazy {
+        daysBefore(14)..tomorrow
     }
 
     private val today: Calendar by lazy {
@@ -61,5 +69,12 @@ class PeriodObjectFactory {
         calendar.minusMonth(1)
         calendar.resetTime()
         calendar
+    }
+
+    private fun daysBefore(days: Int) : Calendar  {
+        val calendar = Calendar.getInstance()
+        calendar.resetTime()
+        calendar.minusDays(days)
+        return calendar
     }
 }
