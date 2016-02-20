@@ -9,6 +9,7 @@ import com.morcinek.xpense.common.pager.PagerAdapter
 import com.morcinek.xpense.common.utils.dayOfYear
 import com.morcinek.xpense.common.utils.getColor
 import com.morcinek.xpense.common.utils.toDayFormat
+import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.period.PeriodObjectFactory
 import kotlinx.android.synthetic.main.days_charts.*
@@ -37,19 +38,20 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
         super.onViewCreated(view, savedInstanceState)
         (activity.application as Application).component.inject(this)
 
-        lineChart.lineChartData = generateLineChartData()
+        val expenses = expenses()
+        lineChart.lineChartData = generateLineChartData(expenses)
         lineChart.isZoomEnabled = false
 
-        columnChart.columnChartData = generateColumnChartData()
+        columnChart.columnChartData = generateColumnChartData(expenses)
         columnChart.isZoomEnabled = false
     }
 
     private fun expenses() = expenseManager.getExpenses().filter { it.date in range }
 
-    private fun generateLineChartData(): LineChartData {
+    private fun generateLineChartData(expenses: List<Expense>): LineChartData {
         val values = arrayListOf<PointValue>()
         val axisValues = arrayListOf<AxisValue>()
-        iterateOverRange { index, day, value ->
+        iterateExpenses(expenses) { index, day, value ->
             values.add(PointValue(day.dayOfYear.toFloat(), value))
             axisValues.add(AxisValue(day.dayOfYear.toFloat()).setLabel(day.toDayFormat()))
         }
@@ -66,10 +68,10 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
         return line
     }
 
-    private fun generateColumnChartData(): ColumnChartData {
+    private fun generateColumnChartData(expenses: List<Expense>): ColumnChartData {
         val columns = arrayListOf<Column>()
         val axisValues = arrayListOf<AxisValue>()
-        iterateOverRange { index, day, value ->
+        iterateExpenses(expenses) { index, day, value ->
             columns.add(Column(listOf(SubcolumnValue(value, getColor(R.color.accent)))).setHasLabelsOnlyForSelected(true))
             axisValues.add(AxisValue(index.toFloat()).setLabel(day.toDayFormat()))
         }
@@ -80,8 +82,8 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
         return columnData
     }
 
-    inline private fun iterateOverRange(function: (Int, Calendar, Float) -> Unit) {
-        val dayGroups = expenses().groupBy { it.date.dayOfYear }.mapValues { it.value.sumByDouble { it.value } }
+    inline private fun iterateExpenses(expenses: List<Expense>, function: (Int, Calendar, Float) -> Unit) {
+        val dayGroups = expenses.groupBy { it.date.dayOfYear }.mapValues { it.value.sumByDouble { it.value } }
         for ((index, day) in range.withIndex()) {
             val value = dayGroups[day.dayOfYear]?.toFloat() ?: 0f
             function(index, day, value)
