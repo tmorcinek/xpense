@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ChartCategoryItem">
+
+    <include
+        layout="@layout/category_icon"
+        android:layout_width="@dimen/chart_category_icon_height"
+        android:layout_height="@dimen/chart_category_icon_height" />
+
+    <TextView
+        android:id="@+id/text"
+        style="@style/ChartCategoryText" />
+</LinearLayout>

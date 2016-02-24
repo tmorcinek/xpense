@@ -27,5 +27,11 @@
         <lecho.lib.hellocharts.view.LineChartView
             android:id="@+id/lineChart"
             style="@style/Chart" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            style="@style/RecyclerView"
+            android:layout_marginBottom="@dimen/item_divider_size"
+            android:layout_marginTop="@dimen/item_divider_size" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

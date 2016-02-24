@@ -1,18 +1,19 @@
 package com.morcinek.xpense.home.statistics.charts
 
 import android.os.Bundle
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.pager.PagerAdapter
-import com.morcinek.xpense.common.utils.dayOfYear
-import com.morcinek.xpense.common.utils.getColor
-import com.morcinek.xpense.common.utils.toDayFormat
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.period.PeriodObjectFactory
+import com.morcinek.xpense.home.category.CategoriesAdapter
 import kotlinx.android.synthetic.main.days_charts.*
 import lecho.lib.hellocharts.model.*
 import java.util.*
@@ -57,6 +58,8 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
 
         lineChart.lineChartData = generateLineChartData(expenses)
         lineChart.isZoomEnabled = false
+        setupRecyclerView()
+        setupAdapter()
     }
 
     private fun expenses() = expenseManager.getExpenses().filter { it.date in range }
@@ -120,5 +123,19 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
             val value = dayGroups[day.dayOfYear]?.toFloat() ?: 0f
             function(index, day, value)
         }
+    }
+
+    private fun setupRecyclerView() {
+        recyclerView.adapter = CategoriesChartAdapter(context)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+    }
+
+    private fun setupAdapter() {
+        val adapter = recyclerView.adapter as CategoriesAdapter
+        adapter.setList(selectedCategories)
+        recyclerView.setLayoutHeight(adapter.itemCount * context.dimenSum(R.dimen.chart_category_item_height))
+        recyclerView.setHasFixedSize(true)
+        recyclerView.isNestedScrollingEnabled = false
     }
 }

@@ -45,6 +45,8 @@
     <dimen name="color_image_height">60dp</dimen>
 
     <dimen name="chart_height">200dp</dimen>
+    <dimen name="chart_category_item_height">24dp</dimen>
+    <dimen name="chart_category_icon_height">20dp</dimen>
 
     <dimen name="overview_item_height">36dp</dimen>
 </resources>
