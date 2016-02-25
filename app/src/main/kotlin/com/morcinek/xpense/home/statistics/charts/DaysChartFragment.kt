@@ -4,54 +4,36 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.*
-import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
-import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.home.category.CategoriesAdapter
 import kotlinx.android.synthetic.main.days_charts.*
 import lecho.lib.hellocharts.model.*
 import org.jetbrains.anko.collections.forEachReversed
 import java.util.*
-import javax.inject.Inject
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
 class DaysChartFragment : AbstractChartFragment() {
+
     override val title = R.string.days_chart_label
+
+    override val filter = { expense: Expense ->
+        expense.date in range
+    }
 
     private val range by lazy { periodObjectFactory.last2Weeks }
 
-    private val selectedCategories: ArrayList<Category> by lazy {
-        val selectedCategories = arrayListOf<Category>()
-        selectedCategories.addAll(defaultCategories())
-        selectedCategories
-    }
-
-    @Inject
-    lateinit var expenseManager: ExpenseManager
-
-    @Inject
-    lateinit var periodObjectFactory: PeriodObjectFactory
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity.application as Application).component.inject(this)
-
-
-        updateUI()
 
         setupRecyclerView()
         setupAdapter()
     }
 
-    override fun updateUI() {
-        val expenses = expenses()
-
+    override fun updateData(expenses: List<Expense>) {
         columnChart.columnChartData = generateColumnChartData(expenses)
         columnChart.isZoomEnabled = false
 
@@ -61,13 +43,6 @@ class DaysChartFragment : AbstractChartFragment() {
         categoriesChart.columnChartData = generateCategoriesChartData(expenses)
         categoriesChart.isZoomEnabled = false
     }
-
-    private fun defaultCategories(): List<Category> {
-        val categoriesExpenses = expenses().groupBy { it.category!! }
-        return categoriesExpenses.map { it.key to it.value.sumByDouble { it.value } }.sortedByDescending { it.second }.map { it.first }
-    }
-
-    private fun expenses() = expenseManager.getExpenses().filter { it.date in range }
 
     private fun generateLineChartData(expenses: List<Expense>): LineChartData {
         val data = LineChartData(createLinesForSelectedCategories(expenses))
