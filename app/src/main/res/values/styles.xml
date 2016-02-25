@@ -181,8 +181,8 @@
         <item name="android:layout_height">@dimen/chart_category_item_height</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingLeft">@dimen/item_horizontal_margin</item>
-        <item name="android:paddingRight">@dimen/item_horizontal_margin</item>
+        <item name="android:paddingLeft">@dimen/view_margin</item>
+        <item name="android:paddingRight">@dimen/view_margin</item>
     </style>
 
     <style name="ChartCategoryText">

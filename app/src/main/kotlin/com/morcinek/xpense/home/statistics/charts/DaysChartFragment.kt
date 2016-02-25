@@ -16,6 +16,7 @@ import com.morcinek.xpense.data.period.PeriodObjectFactory
 import com.morcinek.xpense.home.category.CategoriesAdapter
 import kotlinx.android.synthetic.main.days_charts.*
 import lecho.lib.hellocharts.model.*
+import org.jetbrains.anko.collections.forEachReversed
 import java.util.*
 import javax.inject.Inject
 
@@ -36,11 +37,6 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
         selectedCategories
     }
 
-    private fun defaultCategories(): List<Category> {
-        val categoriesExpenses = expenses().groupBy { it.category!! }
-        return categoriesExpenses.map { it.key to it.value.sumByDouble { it.value } }.sortedByDescending { it.second }.map { it.first }
-    }
-
     @Inject
     lateinit var expenseManager: ExpenseManager
 
@@ -58,8 +54,17 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
 
         lineChart.lineChartData = generateLineChartData(expenses)
         lineChart.isZoomEnabled = false
+
+        categoriesChart.columnChartData = generateCategoriesChartData(expenses)
+        categoriesChart.isZoomEnabled = false
+
         setupRecyclerView()
         setupAdapter()
+    }
+
+    private fun defaultCategories(): List<Category> {
+        val categoriesExpenses = expenses().groupBy { it.category!! }
+        return categoriesExpenses.map { it.key to it.value.sumByDouble { it.value } }.sortedByDescending { it.second }.map { it.first }
     }
 
     private fun expenses() = expenseManager.getExpenses().filter { it.date in range }
@@ -113,6 +118,17 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
 
         val columnData = ColumnChartData(columns)
         columnData.axisXBottom = Axis(axisValues).setHasLines(true)
+        columnData.axisYLeft = Axis().setHasLines(true)
+        return columnData
+    }
+
+    private fun generateCategoriesChartData(expenses: List<Expense>): ColumnChartData {
+        val columns = arrayListOf<Column>()
+        val groupsExpenses = expenses.groupBy { it.category }.mapValues { it.value.sumByDouble { it.value } }
+        selectedCategories.forEachReversed {
+            columns.add(Column(listOf(SubcolumnValue(groupsExpenses[it]!!.toFloat(), it.color!!))))
+        }
+        val columnData = ColumnChartData(columns)
         columnData.axisYLeft = Axis().setHasLines(true)
         return columnData
     }
