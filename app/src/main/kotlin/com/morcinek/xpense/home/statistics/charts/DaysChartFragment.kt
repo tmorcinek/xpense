@@ -6,8 +6,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.fragments.BaseFragment
-import com.morcinek.xpense.common.pager.PagerAdapter
 import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
@@ -23,11 +21,8 @@ import javax.inject.Inject
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
-
+class DaysChartFragment : AbstractChartFragment() {
     override val title = R.string.days_chart_label
-
-    override fun getLayoutResourceId() = R.layout.days_charts
 
     private val range by lazy { periodObjectFactory.last2Weeks }
 
@@ -47,6 +42,14 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
         super.onViewCreated(view, savedInstanceState)
         (activity.application as Application).component.inject(this)
 
+
+        updateUI()
+
+        setupRecyclerView()
+        setupAdapter()
+    }
+
+    override fun updateUI() {
         val expenses = expenses()
 
         columnChart.columnChartData = generateColumnChartData(expenses)
@@ -57,9 +60,6 @@ class DaysChartFragment : BaseFragment(), PagerAdapter.Page {
 
         categoriesChart.columnChartData = generateCategoriesChartData(expenses)
         categoriesChart.isZoomEnabled = false
-
-        setupRecyclerView()
-        setupAdapter()
     }
 
     private fun defaultCategories(): List<Category> {

@@ -55,5 +55,6 @@
     <string name="menu_categories">Categories</string>
     <string name="menu_statistics">Statistics</string>
     <string name="action_period">Time Range</string>
+    <string name="action_filter">Filter Categories</string>
 
 </resources>
