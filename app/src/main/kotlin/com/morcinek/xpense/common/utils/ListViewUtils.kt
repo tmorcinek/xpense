@@ -7,17 +7,19 @@ import android.widget.ListView
  */
 
 fun <T> ListView.forEachItemIndexed(function: ListView.(Int, T) -> Unit) {
-    for (position in 0..count - 1) {
-        function(position, getItemAtPosition(position) as T)
+    for (index in 0..count - 1) {
+        function(index, getItemAtPosition(index) as T)
     }
 }
 
 fun <T> ListView.getCheckedItems(): List<T> {
     val checkedItems = arrayListOf<T>()
-    forEachItemIndexed { position, item: T ->
-        if (checkedItemPositions.get(position)) {
+    forEachItemIndexed { index, item: T ->
+        if (isItemChecked(index)) {
             checkedItems.add(item)
         }
     }
     return checkedItems
 }
+
+fun ListView.hasCheckedItems() = checkedItemCount > 0

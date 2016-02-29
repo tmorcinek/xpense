@@ -15,6 +15,8 @@ import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.pager.PagerAdapter
 import com.morcinek.xpense.common.utils.forEachItemIndexed
 import com.morcinek.xpense.common.utils.getCheckedItems
+import com.morcinek.xpense.common.utils.hasCheckedItems
+import com.morcinek.xpense.common.utils.showSnackbar
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
@@ -91,13 +93,17 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
 
     private fun showCategoriesDialog() {
         val listView = createListView()
-        context.alert(R.string.action_filter) {
+        context.alert() {
             customView(listView)
-            positiveButton() {
-                setupSelectedCategories(listView)
-                updateData(expenses())
+            positiveButton {
+                if (listView.hasCheckedItems()) {
+                    setupSelectedCategories(listView)
+                    updateData(expenses())
+                } else {
+                    context.showSnackbar(view, R.string.no_categories_selected)
+                }
             }
-            negativeButton() {}
+            negativeButton {}
         }.show()
     }
 
