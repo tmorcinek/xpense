@@ -4,6 +4,7 @@ import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.home.category.CategoriesAdapter
+import com.morcinek.xpense.home.statistics.charts.common.AbstractChartFragment
 import kotlinx.android.synthetic.main.days_charts.*
 import lecho.lib.hellocharts.model.*
 import org.jetbrains.anko.collections.forEachReversed

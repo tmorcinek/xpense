@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.statistics.charts
+package com.morcinek.xpense.home.statistics.charts.common
 
 import android.content.Intent
 import android.os.Bundle
