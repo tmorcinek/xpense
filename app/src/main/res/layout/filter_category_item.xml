@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Item">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DialogItem"
+    android:background="@android:color/transparent">
 
     <TextView
         android:id="@android:id/icon"
         style="@style/CategoryIcon"
-        android:layout_width="@dimen/chart_category_icon_height"
-        android:layout_height="@dimen/chart_category_icon_height" />
+        android:layout_width="@dimen/small_icon_height"
+        android:layout_height="@dimen/small_icon_height" />
 
     <TextView
         android:id="@android:id/text1"
         style="@style/Header"
-        android:layout_height="wrap_content"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <CheckBox
+    <ImageView
+        android:layout_width="@dimen/chart_category_icon_height"
+        android:layout_height="@dimen/chart_category_icon_height"
+        android:background="@drawable/checked_background_selector"
         android:clickable="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:duplicateParentState="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:padding="@dimen/checked_icon_padding"
+        android:src="@drawable/checked_icon_selector"
+        tools:ignore="ContentDescription" />
 </LinearLayout>

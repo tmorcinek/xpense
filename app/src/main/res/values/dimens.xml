@@ -49,4 +49,6 @@
     <dimen name="chart_category_icon_height">20dp</dimen>
 
     <dimen name="overview_item_height">36dp</dimen>
+
+    <dimen name="checked_icon_padding">2dp</dimen>
 </resources>
