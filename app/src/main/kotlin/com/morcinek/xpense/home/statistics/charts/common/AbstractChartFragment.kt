@@ -69,6 +69,8 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
         recyclerView.adapter = CategoriesChartAdapter(context)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.isNestedScrollingEnabled = false
+        recyclerView.setHasFixedSize(true)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

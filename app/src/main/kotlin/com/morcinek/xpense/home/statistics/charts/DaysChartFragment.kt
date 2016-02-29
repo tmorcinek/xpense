@@ -55,7 +55,7 @@ class DaysChartFragment : AbstractChartFragment() {
     private fun createLine(color: Int, expenses: List<Expense>): Line {
         val line = Line(pointValues(expenses))
         line.setColor(color)
-        line.setHasPoints(false)
+//        line.setHasPoints(false)
         return line
     }
 
@@ -112,7 +112,5 @@ class DaysChartFragment : AbstractChartFragment() {
         val adapter = recyclerView.adapter as CategoriesAdapter
         adapter.setList(selectedCategories)
         recyclerView.setLayoutHeight(adapter.itemCount * context.dimenSum(R.dimen.chart_category_item_height))
-        recyclerView.setHasFixedSize(true)
-        recyclerView.isNestedScrollingEnabled = false
     }
 }
