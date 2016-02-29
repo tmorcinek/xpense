@@ -14,7 +14,7 @@
 
         <TextView
             style="@style/Item.Header.Charts"
-            android:text="Statistics for all expenses" />
+            android:text="@string/stats_all_expenses_header" />
 
         <lecho.lib.hellocharts.view.ColumnChartView
             android:id="@+id/columnChart"
@@ -22,7 +22,7 @@
 
         <TextView
             style="@style/Item.Header.Charts"
-            android:text="Statistics by Category" />
+            android:text="@string/stats_categories_header" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
