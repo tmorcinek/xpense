@@ -13,6 +13,8 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.pager.PagerAdapter
+import com.morcinek.xpense.common.utils.forEachItemIndexed
+import com.morcinek.xpense.common.utils.getCheckedItems
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
@@ -88,32 +90,27 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
     }
 
     private fun showCategoriesDialog() {
-        val listView = ListView(context)
-        listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
-        listView.adapter = CategoriesFilterAdapter(context, R.layout.filter_category_item, defaultCategories())
-        prepareListFromSelectedCategories(listView)
-        context.alert("Filter Categories") {
+        val listView = createListView()
+        context.alert(R.string.action_filter) {
             customView(listView)
             positiveButton() {
-                prepareSelectedCategoriesFromList(listView)
+                setupSelectedCategories(listView)
                 updateData(expenses())
             }
             negativeButton() {}
         }.show()
     }
 
-    private fun prepareListFromSelectedCategories(listView: ListView) {
-        for (index in 0..listView.count - 1) {
-            listView.setItemChecked(index, selectedCategories.contains(listView.getItemAtPosition(index)))
-        }
+    private fun createListView(): ListView {
+        val listView = ListView(context)
+        listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
+        listView.adapter = CategoriesFilterAdapter(context, R.layout.filter_category_item, defaultCategories())
+        listView.forEachItemIndexed { index, item: Category -> setItemChecked(index, selectedCategories.contains(item)) }
+        return listView
     }
 
-    private fun prepareSelectedCategoriesFromList(listView: ListView) {
+    private fun setupSelectedCategories(listView: ListView) {
         selectedCategories.clear()
-        for (index in 0..listView.count - 1) {
-            if (listView.checkedItemPositions.get(index)) {
-                selectedCategories.add(listView.getItemAtPosition(index) as Category)
-            }
-        }
+        selectedCategories.addAll(listView.getCheckedItems())
     }
 }
