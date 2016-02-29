@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.statistics.charts.day
+package com.morcinek.xpense.home.statistics.charts.week
 
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense

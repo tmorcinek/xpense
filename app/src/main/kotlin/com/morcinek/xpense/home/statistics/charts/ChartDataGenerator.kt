@@ -15,7 +15,7 @@ interface ChartDataGenerator {
     fun generateData(expenses: List<Expense>, selectedCategories: List<Category>): AbstractChartData
 }
 
-inline fun ChartDataGenerator.iterateDay(expenses: List<Expense>, range: Iterable<Calendar>, function: (Int, Calendar, Float) -> Unit) {
+inline fun iterateDay(expenses: List<Expense>, range: Iterable<Calendar>, function: (Int, Calendar, Float) -> Unit) {
     val dayGroups = expenses.groupBy { it.date.dayOfYear }.mapValues { it.value.sumByDouble { it.value } }
     for ((index, day) in range.withIndex()) {
         val value = dayGroups[day.dayOfYear]?.toFloat() ?: 0f
@@ -23,7 +23,7 @@ inline fun ChartDataGenerator.iterateDay(expenses: List<Expense>, range: Iterabl
     }
 }
 
-inline fun ChartDataGenerator.iterateWeek(expenses: List<Expense>, range: Iterable<Int>, function: (Int, Int, Float) -> Unit) {
+inline fun iterateWeek(expenses: List<Expense>, range: Iterable<Int>, function: (Int, Int, Float) -> Unit) {
     val dayGroups = expenses.groupBy { it.date.weekOfYear }.mapValues { it.value.sumByDouble { it.value } }
     for ((index, week) in range.withIndex()) {
         val value = dayGroups[week]?.toFloat() ?: 0f

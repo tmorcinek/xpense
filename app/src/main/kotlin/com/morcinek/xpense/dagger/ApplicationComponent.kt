@@ -12,7 +12,7 @@ import com.morcinek.xpense.home.history.period.PeriodFragment
 import com.morcinek.xpense.home.overview.category.OverviewCategoryActivity
 import com.morcinek.xpense.home.overview.OverviewFragment
 import com.morcinek.xpense.home.statistics.charts.AbstractChartFragment
-import com.morcinek.xpense.home.statistics.charts.day.DaysChartFragment
+import com.morcinek.xpense.home.statistics.charts.day.DayChartFragment
 import com.morcinek.xpense.project.ProjectActivity
 import com.morcinek.xpense.splash.SplashActivity
 import dagger.Component
