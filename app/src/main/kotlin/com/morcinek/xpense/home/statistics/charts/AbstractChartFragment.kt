@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.statistics.charts.common
+package com.morcinek.xpense.home.statistics.charts
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,15 +13,17 @@ import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.pager.PagerAdapter
-import com.morcinek.xpense.common.utils.forEachItemIndexed
-import com.morcinek.xpense.common.utils.getCheckedItems
-import com.morcinek.xpense.common.utils.hasCheckedItems
-import com.morcinek.xpense.common.utils.showSnackbar
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.period.PeriodObjectFactory
+import com.morcinek.xpense.home.category.CategoriesAdapter
 import kotlinx.android.synthetic.main.days_charts.*
+import lecho.lib.hellocharts.model.ColumnChartData
+import lecho.lib.hellocharts.model.LineChartData
+import lecho.lib.hellocharts.view.ColumnChartView
+import lecho.lib.hellocharts.view.LineChartView
 import org.jetbrains.anko.alert
 import java.util.*
 import javax.inject.Inject
@@ -31,9 +33,9 @@ import javax.inject.Inject
  */
 abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
 
-    abstract protected fun updateData(expenses: List<Expense>)
-
     abstract protected val filter: (Expense) -> Boolean
+
+    abstract protected val chartDataGenerators: Map<Int, ChartDataGenerator>
 
     @Inject
     lateinit var expenseManager: ExpenseManager
@@ -62,7 +64,24 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
 
         setHasOptionsMenu(true)
         setupRecyclerView()
-        updateData(expenses())
+        generateChartData(expenses())
+    }
+
+    fun generateChartData(expenses: List<Expense>) {
+        for (chart in listOf(columnChart, lineChart, categoriesChart)) {
+            when (chart) {
+                is LineChartView -> chart.lineChartData = chartDataGenerators.get(chart.id)!!.generateData(expenses, selectedCategories) as LineChartData
+                is ColumnChartView -> chart.columnChartData = chartDataGenerators.get(chart.id)!!.generateData(expenses, selectedCategories) as ColumnChartData
+            }
+            chart.isZoomEnabled = false
+        }
+        updateCategoriesList()
+    }
+
+    private fun updateCategoriesList() {
+        val adapter = recyclerView.adapter as CategoriesAdapter
+        adapter.setList(selectedCategories)
+        recyclerView.setLayoutHeight(adapter.itemCount * context.dimenSum(R.dimen.chart_category_item_height))
     }
 
     private fun setupRecyclerView() {
@@ -75,7 +94,7 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        updateData(expenses())
+        generateChartData(expenses())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -100,7 +119,7 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
             positiveButton {
                 if (listView.hasCheckedItems()) {
                     setupSelectedCategories(listView)
-                    updateData(expenses())
+                    generateChartData(expenses())
                 } else {
                     context.showSnackbar(view, R.string.no_categories_selected)
                 }

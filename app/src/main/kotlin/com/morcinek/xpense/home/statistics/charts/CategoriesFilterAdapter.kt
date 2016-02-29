@@ -1,4 +1,4 @@
-package com.morcinek.xpense.home.statistics.charts.common
+package com.morcinek.xpense.home.statistics.charts
 
 import android.content.Context
 import com.morcinek.xpense.common.adapter.SimpleListAdapter
