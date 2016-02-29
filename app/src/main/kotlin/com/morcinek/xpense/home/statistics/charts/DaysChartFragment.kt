@@ -1,9 +1,5 @@
 package com.morcinek.xpense.home.statistics.charts
 
-import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.data.expense.Expense
@@ -26,13 +22,6 @@ class DaysChartFragment : AbstractChartFragment() {
 
     private val range by lazy { periodObjectFactory.last2Weeks }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupRecyclerView()
-        setupAdapter()
-    }
-
     override fun updateData(expenses: List<Expense>) {
         columnChart.columnChartData = generateColumnChartData(expenses)
         columnChart.isZoomEnabled = false
@@ -42,6 +31,8 @@ class DaysChartFragment : AbstractChartFragment() {
 
         categoriesChart.columnChartData = generateCategoriesChartData(expenses)
         categoriesChart.isZoomEnabled = false
+
+        setupAdapter()
     }
 
     private fun generateLineChartData(expenses: List<Expense>): LineChartData {
@@ -86,7 +77,7 @@ class DaysChartFragment : AbstractChartFragment() {
     private fun generateColumnChartData(expenses: List<Expense>): ColumnChartData {
         val columns = arrayListOf<Column>()
         val axisValues = arrayListOf<AxisValue>()
-        iterateExpenses(expenses) { index, day, value ->
+        iterateExpenses(expenses.filter { selectedCategories.contains(it.category) }) { index, day, value ->
             columns.add(Column(listOf(SubcolumnValue(value, getColor(R.color.accent)))).setHasLabelsOnlyForSelected(true))
             axisValues.add(AxisValue(index.toFloat()).setLabel(day.toDayFormat()))
         }
@@ -114,12 +105,6 @@ class DaysChartFragment : AbstractChartFragment() {
             val value = dayGroups[day.dayOfYear]?.toFloat() ?: 0f
             function(index, day, value)
         }
-    }
-
-    private fun setupRecyclerView() {
-        recyclerView.adapter = CategoriesChartAdapter(context)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.itemAnimator = DefaultItemAnimator()
     }
 
     private fun setupAdapter() {
