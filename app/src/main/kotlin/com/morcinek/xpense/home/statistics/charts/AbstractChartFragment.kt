@@ -90,25 +90,25 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
     private fun showCategoriesDialog() {
         val listView = ListView(context)
         listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
-        val itemsAdapter = CategoriesFilterAdapter(context, R.layout.filter_category_item)
-        val allCategories = defaultCategories()
-        itemsAdapter.list = allCategories
-        listView.adapter = itemsAdapter
-        allCategories.forEachIndexed { index, category ->
-            val contains = selectedCategories.contains(category)
-            listView.setItemChecked(index, contains);
-        }
-        context.alert("Select categories") {
+        listView.adapter = CategoriesFilterAdapter(context, R.layout.filter_category_item, defaultCategories())
+        prepareListFromSelectedCategories(listView)
+        context.alert("Filter Categories") {
             customView(listView)
-            positiveButton("Yes") {
-                prepareSelectedCategories(listView)
+            positiveButton() {
+                prepareSelectedCategoriesFromList(listView)
                 updateData(expenses())
             }
-            negativeButton("No") {}
+            negativeButton() {}
         }.show()
     }
 
-    private fun prepareSelectedCategories(listView: ListView) {
+    private fun prepareListFromSelectedCategories(listView: ListView) {
+        for (index in 0..listView.count - 1) {
+            listView.setItemChecked(index, selectedCategories.contains(listView.getItemAtPosition(index)))
+        }
+    }
+
+    private fun prepareSelectedCategoriesFromList(listView: ListView) {
         selectedCategories.clear()
         for (index in 0..listView.count - 1) {
             if (listView.checkedItemPositions.get(index)) {

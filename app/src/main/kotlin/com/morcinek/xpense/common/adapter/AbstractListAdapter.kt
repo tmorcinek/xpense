@@ -11,15 +11,15 @@ import android.widget.BaseAdapter
  */
 abstract class AbstractListAdapter<T, H>(val context: Context, val resourceId: Int) : BaseAdapter() {
 
-    var list: List<T> = listOf()
+    var items: List<T> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    override fun getCount() =list.size
+    override fun getCount() = items.size
 
-    override fun getItem(position: Int) = list[position]
+    override fun getItem(position: Int) = items[position]
 
     override fun getItemId(position: Int) = position.toLong()
 
