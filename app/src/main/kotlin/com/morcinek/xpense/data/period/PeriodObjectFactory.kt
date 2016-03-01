@@ -37,7 +37,6 @@ class PeriodObjectFactory {
 
     val firstDayOf5WeeksAgo by lazy {
         val calendar = weeksBefore(4)
-        calendar.dayOfWeek = 1
         calendar
     }
 
@@ -102,6 +101,7 @@ class PeriodObjectFactory {
         val calendar = Calendar.getInstance()
         calendar.resetTime()
         calendar.minusWeeks(weeks)
+        calendar.dayOfWeek = Calendar.MONDAY
         return calendar
     }
 

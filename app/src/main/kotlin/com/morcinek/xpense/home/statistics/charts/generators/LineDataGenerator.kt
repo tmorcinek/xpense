@@ -23,8 +23,8 @@ internal class LineDataGenerator(val range: Iterable<Int>, val extractor: (Calen
     private fun createLines(expenses: List<Expense>, selectedCategories: List<Category>): ArrayList<Line> {
         val lines = arrayListOf<Line>()
         val categoriesExpenses = expenses.groupBy { it.category!! }
-        for (category in selectedCategories) {
-            lines.add(createLine(category.color!!, categoriesExpenses[category]!!))
+        selectedCategories.forEach {
+            lines.add(createLine(it.color!!, categoriesExpenses[it]!!))
         }
         return lines
     }
@@ -38,15 +38,15 @@ internal class LineDataGenerator(val range: Iterable<Int>, val extractor: (Calen
     private fun pointValues(expenses: List<Expense>): ArrayList<PointValue> {
         val values = arrayListOf<PointValue>()
         iteratePeriod(expenses, range, extractor) { index, period, value ->
-            values.add(PointValue(period.toFloat(), value))
+            values.add(PointValue(index.toFloat(), value))
         }
         return values
     }
 
     private fun lineXValues(): ArrayList<AxisValue> {
         val axisValues = arrayListOf<AxisValue>()
-        for (period in range) {
-            axisValues.add(AxisValue(period.toFloat()).setLabel(printer(period)))
+        range.forEachIndexed { index, period ->
+            axisValues.add(AxisValue(index.toFloat()).setLabel(printer(period)))
         }
         return axisValues
     }
