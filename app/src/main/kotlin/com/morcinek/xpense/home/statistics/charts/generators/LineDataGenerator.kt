@@ -10,7 +10,7 @@ import java.util.*
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-internal class LineDataGenerator(val range: Iterable<Int>, val extractor: (Calendar) -> Int, val printer: (Int) -> String = { it.toString() }) : ChartDataGenerator {
+internal class LineDataGenerator(val range: Iterable<Int>, val extractor: (Calendar) -> Int, val printer: (Int) -> String) : ChartDataGenerator {
 
     override fun generateData(expenses: List<Expense>, selectedCategories: List<Category>): AbstractChartData {
         val data = LineChartData(createLines(expenses, selectedCategories))
