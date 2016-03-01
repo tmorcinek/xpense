@@ -25,6 +25,5 @@ internal class ColumnDataGenerator(val range: Iterable<Calendar>, val color: Int
         columnData.axisXBottom = Axis(axisValues).setHasLines(true)
         columnData.axisYLeft = Axis().setHasLines(true)
         return columnData
-
     }
 }

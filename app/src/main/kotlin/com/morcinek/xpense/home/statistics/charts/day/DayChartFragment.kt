@@ -5,6 +5,7 @@ import com.morcinek.xpense.common.utils.getColor
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.home.statistics.charts.AbstractChartFragment
 import com.morcinek.xpense.home.statistics.charts.ChartDataGenerator
+import com.morcinek.xpense.home.statistics.charts.generators.CategoriesDataGenerator
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.

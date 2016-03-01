@@ -23,6 +23,5 @@ internal class ColumnDataGenerator(val range: Iterable<Int>, val color: Int) : C
         columnData.axisXBottom = Axis(axisValues).setHasLines(true)
         columnData.axisYLeft = Axis().setHasLines(true)
         return columnData
-
     }
 }

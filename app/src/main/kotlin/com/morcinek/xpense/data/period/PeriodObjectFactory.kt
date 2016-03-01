@@ -35,6 +35,10 @@ class PeriodObjectFactory {
         weeksBefore(5)..tomorrow
     }
 
+    val last4Months by lazy {
+        monthsBefore(4)..tomorrow
+    }
+
     val today: Calendar by lazy {
         val calendar = Calendar.getInstance()
         calendar.resetTime()
@@ -79,6 +83,13 @@ class PeriodObjectFactory {
         val calendar = Calendar.getInstance()
         calendar.resetTime()
         calendar.minusWeeks(weeks)
+        return calendar
+    }
+
+    private fun monthsBefore(months: Int) : Calendar  {
+        val calendar = Calendar.getInstance()
+        calendar.resetTime()
+        calendar.minusMonth(months)
         return calendar
     }
 }
