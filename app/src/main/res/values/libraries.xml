@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_SugarORM"></string>
+    <string name="library_SugarORM_author">Satya Narayan</string>
+    <string name="library_SugarORM_authorWebsite">http://www.satyanarayan.in</string>
+    <string name="library_SugarORM_libraryName">Sugar ORM</string>
+    <string name="library_SugarORM_libraryDescription">Insanely easy way to work with Android databases.</string>
+    <string name="library_SugarORM_libraryVersion">1.4</string>
+    <string name="library_SugarORM_libraryWebsite">https://github.com/satyan/sugar</string>
+    <string name="library_SugarORM_isOpenSource">true</string>
+
+    <string name="define_CircularImageView"></string>
+    <string name="library_CircularImageView_author">Pkmmte Xeleon</string>
+    <string name="library_CircularImageView_authorWebsite">http://www.pkmmte.com</string>
+    <string name="library_CircularImageView_libraryName">CircularImageView</string>
+    <string name="library_CircularImageView_libraryDescription">Custom view for circular images in Android while maintaining the best draw performance</string>
+    <string name="library_CircularImageView_libraryVersion">1.1</string>
+    <string name="library_CircularImageView_libraryWebsite">https://github.com/Pkmmte/CircularImageView</string>
+    <string name="library_CircularImageView_isOpenSource">true</string>
+
+    <string name="define_AndroidBetterpickers"></string>
+    <string name="library_AndroidBetterpickers_author">Derek Brameyer</string>
+    <string name="library_AndroidBetterpickers_authorWebsite">https://code-troopers.com/</string>
+    <string name="library_AndroidBetterpickers_libraryName">android-betterpickers</string>
+    <string name="library_AndroidBetterpickers_libraryDescription">DialogFragments modeled after the AOSP Clock and Calendar apps to improve UX for picking time, date, numbers, and other things.</string>
+    <string name="library_AndroidBetterpickers_libraryVersion">2.2.2</string>
+    <string name="library_AndroidBetterpickers_libraryWebsite">https://github.com/code-troopers/android-betterpickers</string>
+    <string name="library_AndroidBetterpickers_isOpenSource">true</string>
+
+    <string name="define_HelloCharts"></string>
+    <string name="library_HelloCharts_author">Leszek Wach</string>
+    <string name="library_HelloCharts_authorWebsite">https://github.com/lecho</string>
+    <string name="library_HelloCharts_libraryName">HelloCharts</string>
+    <string name="library_HelloCharts_libraryDescription">Charting library for Android compatible with API 8+(Android 2.2). Works best when hardware acceleration is available, so API 14+(Android 4.0) is recommended. Apache License 2.0.</string>
+    <string name="library_HelloCharts_libraryVersion">1.5.8</string>
+    <string name="library_HelloCharts_libraryWebsite">https://github.com/lecho/hellocharts-android</string>
+    <string name="library_HelloCharts_isOpenSource">true</string>
+</resources>
