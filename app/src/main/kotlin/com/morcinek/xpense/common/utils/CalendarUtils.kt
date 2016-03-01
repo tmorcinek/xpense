@@ -30,6 +30,14 @@ val Calendar.dayOfYear: Int
 val Calendar.weekOfYear: Int
     get() = get(Calendar.WEEK_OF_YEAR)
 
+var Calendar.dayOfWeek: Int
+    get() = get(Calendar.DAY_OF_WEEK)
+    set(value) = set(Calendar.DAY_OF_WEEK, value)
+
+var Calendar.dayOfMonth: Int
+    get() = get(Calendar.DAY_OF_MONTH)
+    set(value) = set(Calendar.DAY_OF_MONTH, value)
+
 fun Calendar.isSameMonth(otherDate: Calendar) = year == otherDate.year && month == otherDate.month
 
 fun Calendar.isSameDay(otherDate: Calendar) = year == otherDate.year && dayOfYear == otherDate.dayOfYear
@@ -39,6 +47,8 @@ fun Calendar.isSameWeek(otherDate: Calendar) = year == otherDate.year && weekOfY
 fun Calendar.plusDays(number: Int) = add(Calendar.DAY_OF_MONTH, number)
 
 fun Calendar.minusDays(number: Int) = add(Calendar.DAY_OF_MONTH, -number)
+
+fun Calendar.minusWeeks(number: Int) = add(Calendar.WEEK_OF_YEAR, -number)
 
 fun Calendar.minusMonth(number: Int) = add(Calendar.MONTH, -number)
 

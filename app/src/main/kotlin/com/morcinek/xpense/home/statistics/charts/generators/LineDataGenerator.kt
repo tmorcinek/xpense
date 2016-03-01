@@ -37,8 +37,8 @@ internal class LineDataGenerator(val range: Iterable<Int>, val extractor: (Calen
 
     private fun pointValues(expenses: List<Expense>): ArrayList<PointValue> {
         val values = arrayListOf<PointValue>()
-        iteratePeriod(expenses, range, extractor) { index, day, value ->
-            values.add(PointValue(day.toFloat(), value))
+        iteratePeriod(expenses, range, extractor) { index, period, value ->
+            values.add(PointValue(period.toFloat(), value))
         }
         return values
     }

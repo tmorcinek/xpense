@@ -20,12 +20,11 @@ class MonthChartFragment : AbstractChartFragment() {
     override val title = R.string.stats_month_chart_label
 
     override val filter = { expense: Expense ->
-        expense.date.month in range
+        expense.date >= periodObjectFactory.firstDayOf4MonthsAgo
     }
 
     private val range by lazy {
-        val month = periodObjectFactory.today.month
-        (month - 3)..month
+        periodObjectFactory.last4Months
     }
 
     private val extractor: (Calendar) -> Int = { it.month }

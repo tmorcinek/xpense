@@ -19,12 +19,11 @@ class WeekChartFragment : AbstractChartFragment() {
     override val title = R.string.stats_week_chart_label
 
     override val filter = { expense: Expense ->
-        expense.date.weekOfYear in range
+        expense.date >= periodObjectFactory.firstDayOf5WeeksAgo
     }
 
     private val range by lazy {
-        val weekOfYear = periodObjectFactory.today.weekOfYear
-        (weekOfYear - 4)..weekOfYear
+        periodObjectFactory.last5Weeks
     }
 
     private val extractor: (Calendar) -> Int = { it.weekOfYear }
