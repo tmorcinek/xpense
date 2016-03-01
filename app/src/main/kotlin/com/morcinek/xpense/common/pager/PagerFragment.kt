@@ -13,7 +13,7 @@ open class PagerFragment : BaseFragment() {
 
     override fun getLayoutResourceId() = R.layout.pager
 
-    protected fun setupTabs() {
+    open protected fun setupTabs() {
         tabs.setupWithViewPager(viewPager);
     }
 

@@ -1,6 +1,7 @@
 package com.morcinek.xpense.home.statistics
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.view.View
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.pager.PagerFragment
@@ -18,6 +19,11 @@ class StatsFragment : PagerFragment() {
 
         setupViewPager()
         setupTabs()
+    }
+
+    override fun setupTabs() {
+        super.setupTabs()
+        tabs.tabMode = TabLayout.MODE_FIXED
     }
 
     private fun setupViewPager() {
