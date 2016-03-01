@@ -1,7 +1,6 @@
 package com.morcinek.xpense.home.statistics.charts
 
 import com.morcinek.xpense.common.utils.dayOfYear
-import com.morcinek.xpense.common.utils.weekOfYear
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
 import lecho.lib.hellocharts.model.AbstractChartData
@@ -20,14 +19,6 @@ inline fun iterateDay(expenses: List<Expense>, range: Iterable<Calendar>, functi
     for ((index, day) in range.withIndex()) {
         val value = dayGroups[day.dayOfYear]?.toFloat() ?: 0f
         function(index, day, value)
-    }
-}
-
-inline fun iterateWeek(expenses: List<Expense>, range: Iterable<Int>, function: (Int, Int, Float) -> Unit) {
-    val dayGroups = expenses.groupBy { it.date.weekOfYear }.mapValues { it.value.sumByDouble { it.value } }
-    for ((index, week) in range.withIndex()) {
-        val value = dayGroups[week]?.toFloat() ?: 0f
-        function(index, week, value)
     }
 }
 

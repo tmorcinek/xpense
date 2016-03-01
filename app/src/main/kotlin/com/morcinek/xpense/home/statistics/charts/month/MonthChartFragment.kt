@@ -8,8 +8,9 @@ import com.morcinek.xpense.home.statistics.charts.AbstractChartFragment
 import com.morcinek.xpense.home.statistics.charts.ChartDataGenerator
 import com.morcinek.xpense.home.statistics.charts.generators.CategoriesDataGenerator
 import com.morcinek.xpense.home.statistics.charts.generators.ColumnDataGenerator
-import com.morcinek.xpense.home.statistics.charts.week.LineDataGenerator
+import com.morcinek.xpense.home.statistics.charts.generators.LineDataGenerator
 import java.text.DateFormatSymbols
+import java.util.*
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
@@ -27,12 +28,14 @@ class MonthChartFragment : AbstractChartFragment() {
         (month - 3)..month
     }
 
-    private val dateFormatSymbols = DateFormatSymbols()
+    private val extractor: (Calendar) -> Int = { it.month }
+
+    private val printer: (Int) -> String = { DateFormatSymbols().months[(it + 12) % 12] }
 
     override val chartDataGenerators: Map<Int, ChartDataGenerator> by lazy {
         mapOf(
-                R.id.lineChart to LineDataGenerator(range),
-                R.id.columnChart to ColumnDataGenerator(range, { it.month }, { dateFormatSymbols.months[(it + 12) % 12] }, getColor(R.color.accent)),
+                R.id.lineChart to LineDataGenerator(range, extractor, printer),
+                R.id.columnChart to ColumnDataGenerator(range, extractor, printer, getColor(R.color.accent)),
                 R.id.categoriesChart to CategoriesDataGenerator()
         )
     }
