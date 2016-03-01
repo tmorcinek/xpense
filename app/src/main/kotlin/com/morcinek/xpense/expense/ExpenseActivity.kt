@@ -7,6 +7,7 @@ import android.view.View
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.morcinek.xpense.Application
+import com.morcinek.xpense.BuildConfig
 import com.morcinek.xpense.R
 import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
@@ -112,6 +113,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
                 .setPlusMinusVisibility(View.GONE)
                 .setLabelText(expenseManager.currentProject.currency)
                 .setCurrentNumberAsInteger(item.value)
+                .setMaxNumber(BuildConfig.MAX_AMOUNT_VALUE)
                 .addNumberPickerDialogHandler { reference, number, decimal, isNegative, fullNumber ->
                     item.value = fullNumber
                     expenseAdapter.notifyDataItemChanged(AMOUNT_ITEM)

@@ -11,9 +11,5 @@ class NavigationTextFormatter {
 
     fun formatTitle(project: Project) = if (project.location.isBlank()) project.name else "${project.name}, ${project.location}"
 
-    fun formatSubtitle(text: String, value: Double, currencySymbol: String) = if (value.isInteger()) {
-        BuildConfig.NAV_SUBTITLE_FORMAT_NO_DECIMAL.format(text, value, currencySymbol)
-    } else {
-        BuildConfig.NAV_SUBTITLE_FORMAT.format(text, value, currencySymbol)
-    }
+    fun formatSubtitle(text: String, value: Double, currencySymbol: String) = "${text}, ${CurrencyFormatter().format(value, currencySymbol)}"
 }

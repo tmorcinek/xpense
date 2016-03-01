@@ -26,10 +26,8 @@ android {
         variant.buildConfigField 'String', 'SHORT_DATE_FORMAT', '"dd\\nMMM"'
         variant.buildConfigField 'String', 'DATE_FORMAT', '"dd/MM/yyyy"'
         variant.buildConfigField 'String', 'DAY_FORMAT', '"dd/MM"'
-        variant.buildConfigField 'String', 'CURRENCY_FORMAT', '"%.2f %s"'
-        variant.buildConfigField 'String', 'CURRENCY_FORMAT_NO_DECIMAL', '"%.0f %s"'
-        variant.buildConfigField 'String', 'NAV_SUBTITLE_FORMAT', '"%s, %.2f %s"'
-        variant.buildConfigField 'String', 'NAV_SUBTITLE_FORMAT_NO_DECIMAL', '"%s, %.0f %s"'
+        variant.buildConfigField 'String', 'CURRENCY_FORMAT', '"###,###.00"'
+        variant.buildConfigField 'int', 'MAX_AMOUNT_VALUE', '10000000'
     }
 }
 
