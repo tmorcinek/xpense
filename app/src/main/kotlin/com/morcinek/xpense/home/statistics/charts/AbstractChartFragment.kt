@@ -45,6 +45,8 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
 
     override fun getLayoutResourceId() = R.layout.days_charts
 
+    override val menuResourceId = R.menu.chart
+
     protected val selectedCategories: ArrayList<Category> by lazy {
         val selectedCategories = arrayListOf<Category>()
         selectedCategories.addAll(defaultCategories())
@@ -62,7 +64,6 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
         super.onViewCreated(view, savedInstanceState)
         (activity.application as Application).component.inject(this)
 
-        setHasOptionsMenu(true)
         setupRecyclerView()
         generateChartData(expenses())
     }
@@ -95,11 +96,6 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         generateChartData(expenses())
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.chart, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

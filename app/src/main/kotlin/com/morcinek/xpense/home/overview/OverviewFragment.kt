@@ -41,6 +41,8 @@ class OverviewFragment : BaseFragment() {
 
     override fun getLayoutResourceId() = R.layout.overview
 
+    override val menuResourceId = R.menu.overview
+
     lateinit var periodObject: PeriodObject
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -48,7 +50,6 @@ class OverviewFragment : BaseFragment() {
         (activity.application as Application).component.inject(this)
 
         setTitle(R.string.overview_label)
-        setHasOptionsMenu(true)
 
         setupPeriodObject()
         setupRecyclerView()
@@ -113,11 +114,6 @@ class OverviewFragment : BaseFragment() {
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.overview, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
