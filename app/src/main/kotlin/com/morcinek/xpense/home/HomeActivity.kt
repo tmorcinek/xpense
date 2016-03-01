@@ -59,7 +59,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
     }
 
     private fun setupInitialFragment() {
-        homeContentController.switchFragment(StatsFragment())
+        homeContentController.switchFragment(OverviewFragment())
         navigationView.setCheckedItem(R.id.overview)
     }
 
