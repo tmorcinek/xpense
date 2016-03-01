@@ -15,15 +15,15 @@ import com.morcinek.xpense.home.statistics.charts.week.LineDataGenerator
  */
 class MonthChartFragment : AbstractChartFragment() {
 
-    override val title = R.string.stats_week_chart_label
+    override val title = R.string.stats_month_chart_label
 
     override val filter = { expense: Expense ->
-        expense.date in periodObjectFactory.last4Months
+        expense.date.month in range
     }
 
     private val range by lazy {
         val month = periodObjectFactory.today.month
-        month - 4..month
+        (month - 4)..month
     }
 
     override val chartDataGenerators: Map<Int, ChartDataGenerator> by lazy {

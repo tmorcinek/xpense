@@ -40,8 +40,6 @@ fun Calendar.plusDays(number: Int) = add(Calendar.DAY_OF_MONTH, number)
 
 fun Calendar.minusDays(number: Int) = add(Calendar.DAY_OF_MONTH, -number)
 
-fun Calendar.minusWeeks(number: Int) = add(Calendar.WEEK_OF_YEAR, -number)
-
 fun Calendar.minusMonth(number: Int) = add(Calendar.MONTH, -number)
 
 fun Calendar.resetTime() {

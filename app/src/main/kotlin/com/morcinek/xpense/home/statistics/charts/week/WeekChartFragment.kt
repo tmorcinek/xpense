@@ -16,12 +16,12 @@ class WeekChartFragment : AbstractChartFragment() {
     override val title = R.string.stats_week_chart_label
 
     override val filter = { expense: Expense ->
-        expense.date in periodObjectFactory.last5Weeks
+        expense.date.weekOfYear in range
     }
 
     private val range by lazy {
         val weekOfYear = periodObjectFactory.today.weekOfYear
-        weekOfYear - 5..weekOfYear
+        (weekOfYear - 4)..weekOfYear
     }
 
     override val chartDataGenerators: Map<Int, ChartDataGenerator> by lazy {

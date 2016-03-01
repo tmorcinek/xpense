@@ -61,6 +61,7 @@
 
     <string name="stats_days_chart_label">By Day</string>
     <string name="stats_week_chart_label">By Week</string>
+    <string name="stats_month_chart_label">By Month</string>
 
 
 </resources>
