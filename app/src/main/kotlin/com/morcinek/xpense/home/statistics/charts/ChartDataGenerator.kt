@@ -30,3 +30,11 @@ inline fun iterateWeek(expenses: List<Expense>, range: Iterable<Int>, function: 
         function(index, week, value)
     }
 }
+
+inline fun iteratePeriod(expenses: List<Expense>, range: Iterable<Int>, extractor: (Calendar) -> Int, function: (Int, Int, Float) -> Unit) {
+    val dayGroups = expenses.groupBy { extractor(it.date) }.mapValues { it.value.sumByDouble { it.value } }
+    for ((index, period) in range.withIndex()) {
+        val value = dayGroups[period]?.toFloat() ?: 0f
+        function(index, period, value)
+    }
+}
