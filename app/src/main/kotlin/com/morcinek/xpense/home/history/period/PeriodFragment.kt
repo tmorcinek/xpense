@@ -77,7 +77,6 @@ class PeriodFragment : BaseFragment() , PagerAdapter.Page {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutAnimation = LayoutAnimationController(createLayoutAnimation())
-        recyclerView.addItemDecoration(DividerItemDecoration(activity, R.drawable.item_divider, showLast = true))
     }
 
     private fun createLayoutAnimation() = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left)
@@ -85,12 +84,7 @@ class PeriodFragment : BaseFragment() , PagerAdapter.Page {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            val expenses = expenses()
-            if (!expenses.equals(periodAdapter.getItems())) {
-                val action = data!!.getSerializableExtra<CollectionAction>()!!
-                val expense = data.getParcelableExtra<Expense>()
-                periodAdapter.updateList(expenses, expense, action)
-            }
+            periodAdapter.updateList(expenses(), data!!.getParcelableExtra())
         }
     }
 }

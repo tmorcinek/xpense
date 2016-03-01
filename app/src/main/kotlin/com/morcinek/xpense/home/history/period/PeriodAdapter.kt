@@ -18,14 +18,23 @@ import com.morcinek.xpense.data.CollectionAction
  */
 class PeriodAdapter(context: Context) : AbstractRecyclerViewAdapter<Expense, PeriodAdapter.ViewHolder>(context) {
 
-    fun getItems(): List<Expense> = items
-
-    fun updateList(expenses: List<Expense>, expense: Expense, collectionAction: CollectionAction) {
-        when (collectionAction) {
-            CollectionAction.UPDATED -> notifyItemChanged(items.indexOf(expense))
-            CollectionAction.DELETED -> notifyItemRemoved(items.indexOf(expense))
-            CollectionAction.CREATED -> notifyItemInserted(expenses.indexOf(expense))
+    fun updateList(expenses: List<Expense>, expense: Expense) {
+        val previousIndex = items.indexOf(expense)
+        val currentIndex = expenses.indexOf(expense)
+        if (currentIndex < 0 && previousIndex >= 0) {
+            notifyItemRemoved(previousIndex)
+            notifyItemChanged(previousIndex + 1)
+        } else if (currentIndex >= 0 && previousIndex < 0) {
+            notifyItemInserted(currentIndex)
+            notifyItemChanged(currentIndex + 1)
+        } else {
+            notifyItemMoved(Math.min(previousIndex, currentIndex), Math.max(previousIndex, currentIndex))
+            notifyItemChanged(previousIndex)
+            notifyItemChanged(previousIndex + 1)
+            notifyItemChanged(currentIndex)
+            notifyItemChanged(currentIndex + 1)
         }
+
         items.clear()
         items.addAll(expenses)
     }
