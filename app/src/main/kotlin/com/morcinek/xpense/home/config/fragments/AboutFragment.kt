@@ -13,10 +13,14 @@ import com.morcinek.xpense.common.utils.setTitle
  */
 class AboutFragment : PreferenceFragment() {
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setTitle(R.string.about_label)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.about);
-        setTitle(R.string.about_label)
 
         findPreference(getString(R.string.version_preference_key)).summary = BuildConfig.VERSION_NAME
         findPreference(getString(R.string.libraries_preference_key)).setOnPreferenceClickListener({
