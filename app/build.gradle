@@ -51,7 +51,6 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
     compile 'com.code-troopers.betterpickers:library:2.2.2'
-    compile 'com.pkmmte.view:circularimageview:1.1'
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
     compile('com.mikepenz:aboutlibraries:5.5.7@aar') {
         transitive = true
