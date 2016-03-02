@@ -13,17 +13,31 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     tools:showIn="@layout/home">
 
-    <com.pkmmte.view.CircularImageView
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/image_height"
         android:layout_height="@dimen/image_height"
+        android:background="@drawable/profile_oval"
         android:cropToPadding="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/profile_logo"
-        app:border="true"
-        app:border_color="@color/text_white"
-        app:border_width="1dp"
-        app:shadow="true" />
+        app:srcCompat="@drawable/empty_profile"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/header"
+        style="@style/NavBarText"
+        android:layout_toEndOf="@id/imageView"
+        android:layout_toRightOf="@id/imageView"
+        android:text="@string/app_name"
+        android:textSize="36sp" />
+
+    <TextView
+        style="@style/NavBarText"
+        android:layout_below="@id/header"
+        android:layout_toEndOf="@id/imageView"
+        android:layout_toRightOf="@id/imageView"
+        android:text="@string/app_description"
+        android:textSize="11sp" />
 
     <TextView
         android:id="@+id/subtitle"

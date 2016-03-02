@@ -1,19 +1,18 @@
 package com.morcinek.xpense.home.overview
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.formatters.CurrencyFormatter
+import com.morcinek.xpense.common.fragments.BaseFragment
 import com.morcinek.xpense.common.recyclerview.DividerItemDecoration
 import com.morcinek.xpense.common.utils.dimenSum
 import com.morcinek.xpense.common.utils.setLayoutHeight
@@ -59,7 +58,9 @@ class OverviewFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        updateUI()
+        if (resultCode == Activity.RESULT_OK) {
+            updateUI()
+        }
     }
 
     private fun updateUI() {

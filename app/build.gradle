@@ -11,6 +11,10 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        generatedDensities = []
+    }
+    aaptOptions {
+        additionalParameters "--no-version-vectors"
     }
     buildTypes {
         release {
@@ -33,8 +37,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:design:23.2.0'
     compile 'com.google.android.gms:play-services-location:8.4.0'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -49,7 +53,7 @@ dependencies {
     compile 'com.code-troopers.betterpickers:library:2.2.2'
     compile 'com.pkmmte.view:circularimageview:1.1'
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
-    compile('com.mikepenz:aboutlibraries:5.0.9@aar') {
+    compile('com.mikepenz:aboutlibraries:5.5.7@aar') {
         transitive = true
     }
 
