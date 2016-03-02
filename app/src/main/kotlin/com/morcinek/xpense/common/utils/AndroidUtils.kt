@@ -22,7 +22,7 @@ import org.jetbrains.anko.dimen
  */
 
 fun Activity.finishOk() {
-    setResult(AppCompatActivity.RESULT_OK, getIntent())
+    setResult(Activity.RESULT_OK, intent)
     finish()
 }
 

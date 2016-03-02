@@ -2,6 +2,7 @@ package com.morcinek.xpense.create
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -28,6 +29,16 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
     protected val editItem: T? by lazy { if (isEditMode) restoreItem(intent.extras)!! else null }
 
     protected open val canDelete: Boolean = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.partial_fade_out)
+    }
+
+    private fun successFinish() {
+        finishOk()
+        overridePendingTransition(R.anim.partial_fade_in, R.anim.slide_out_bottom)
+    }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -88,7 +99,7 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
             }
             R.id.action_done -> {
                 onDoneItemSelected()
-                finishOk()
+                successFinish()
                 return true
             }
             R.id.action_delete -> {
@@ -104,7 +115,7 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
         alert(R.string.item_delete_message) {
             positiveButton(R.string.yes) {
                 onDeleteItemSelected()
-                finishOk()
+                successFinish()
             }
             negativeButton(R.string.no)
         }.show()

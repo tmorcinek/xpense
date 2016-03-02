@@ -20,7 +20,6 @@ import com.morcinek.xpense.data.CollectionAction
 import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.expense.ExpenseManager
-import com.morcinek.xpense.expense.category.CategoriesPickerDialogAdapter
 import com.morcinek.xpense.home.category.create.CreateCategoryActivity
 import kotlinx.android.synthetic.main.overview.*
 import javax.inject.Inject
