@@ -10,7 +10,9 @@ import com.morcinek.xpense.common.utils.startActivityForResult
 import com.morcinek.xpense.home.HomeActivity
 import com.morcinek.xpense.project.ProjectActivity
 import com.morcinek.xpense.splash.data.Initializer
-import org.jetbrains.anko.*
+import org.jetbrains.anko.async
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 import javax.inject.Named
 

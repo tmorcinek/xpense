@@ -17,11 +17,8 @@
         android:id="@+id/imageView"
         android:layout_width="@dimen/image_height"
         android:layout_height="@dimen/image_height"
-        android:background="@drawable/profile_oval"
-        android:cropToPadding="true"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/empty_profile"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        style="@style/LogoImageView" />
 
     <TextView
         android:id="@+id/header"
