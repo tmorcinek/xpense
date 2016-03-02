@@ -10,11 +10,11 @@ class CategoryInitializer() : Initializer {
 
     override fun initialize() {
         var initialCategories = listOf(
-                Category("Food and Drinks", 0xFFeeeeee.toInt()),
-                Category("Accommodation", 0xFFff0000.toInt()),
-                Category("Health", 0xFFffc0cb.toInt()),
-                Category("Transportation", 0xFF0000ff.toInt()),
-                Category("Leisure", 0xFF008080.toInt())
+                Category("Food and Drinks", 0xFFffa500.toInt()),
+                Category("Accommodation", 0xFF800000.toInt()),
+                Category("Health", 0xFF088da5.toInt()),
+                Category("Transportation", 0xFF800080.toInt()),
+                Category("Leisure", 0xFF008000.toInt())
         )
         initialCategories.forEach {
             SugarRecord.saveInTx(initialCategories)
