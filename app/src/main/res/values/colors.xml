@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#3F51B5</color>
-    <color name="primary_dark">#303F9F</color>
-    <color name="accent">#FF4081</color>
-    <color name="accent_dark">#E14771</color>
+    <color name="primary">#1B325F</color>
+    <color name="primary_dark">#152C4E</color>
+    <color name="accent">#F26C4F</color>
+    <color name="accent_dark">#CF6D50</color>
     <color name="accent_disabled">#a7989d</color>
+
+    <color name="nav_bar_start">#9CC4E4</color>
+    <color name="nav_bar_center">#3A89C9</color>
+    <color name="nav_bar_end">#3A89C9</color>
 
     <color name="background">#FFFFFF</color>
     <color name="background_shadow">#BFFFFFFF</color>
-    <color name="background_gray">#D6D6D6</color>
+    <color name="background_gray">#E9F2F9</color>
     <color name="toolbar_shadow">#30FFFFFF</color>
 
     <color name="list_item">#FAFAFA</color>
@@ -29,6 +33,4 @@
     <color name="shadow">#66000000</color>
 
     <color name="value">#377706</color>
-
-    <color name="warning_text">#FC0F1D</color>
 </resources>

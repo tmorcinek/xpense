@@ -14,7 +14,7 @@
             android:title="@string/history_label" />
         <item
             android:id="@+id/statistics"
-            android:icon="@drawable/ic_stats_black"
+            android:icon="@drawable/ic_chart_black"
             android:title="@string/menu_statistics" />
     </group>
 
