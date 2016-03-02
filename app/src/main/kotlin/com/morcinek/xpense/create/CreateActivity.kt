@@ -2,7 +2,6 @@ package com.morcinek.xpense.create
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
