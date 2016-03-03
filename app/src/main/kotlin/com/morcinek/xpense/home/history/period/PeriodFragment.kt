@@ -66,7 +66,7 @@ class PeriodFragment : BaseFragment() , PagerAdapter.Page {
         periodAdapter = PeriodAdapter(activity)
         periodAdapter.setList(expenses)
         periodAdapter.setItemClickListener {
-            activity.startActivityFromFragment<ExpenseActivity>(this, it)
+            activity.startActivityFromFragment<ExpenseActivity>(parentFragment, it)
         }
     }
 
