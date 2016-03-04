@@ -4,7 +4,9 @@ import com.morcinek.xpense.data.category.CategoryManager
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.project.Project
 import com.morcinek.xpense.data.project.ProjectManager
+import com.morcinek.xpense.splash.data.mock.FebruaryData
 import com.morcinek.xpense.splash.data.mock.JanuaryData
+import com.morcinek.xpense.splash.data.mock.MarchData
 import com.orm.SugarRecord
 
 /**
@@ -16,7 +18,7 @@ class MockExpenseInitializer(val projectManager: ProjectManager, val categoryMan
         val project = Project("Chiang Mai", "Chiang Mai", "‎฿")
         projectManager.addProject(project)
         var expenses = arrayListOf<Expense>()
-        listOf(JanuaryData(categoryManager)).forEach {
+        listOf(JanuaryData(categoryManager), FebruaryData(categoryManager), MarchData(categoryManager)).forEach {
             expenses.addAll(it.expenses())
         }
         expenses.forEach {
