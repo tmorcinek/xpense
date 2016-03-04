@@ -14,7 +14,9 @@ class CategoryInitializer() : Initializer {
                 Category("Accommodation", 0xFF800000.toInt()),
                 Category("Health", 0xFF088da5.toInt()),
                 Category("Transportation", 0xFF800080.toInt()),
-                Category("Leisure", 0xFF008000.toInt())
+                Category("Leisure", 0xFF008000.toInt()),
+                Category("Parties", 0xFFffd700.toInt()),
+                Category("Books", 0xFF66cdaa.toInt())
         )
         initialCategories.forEach {
             SugarRecord.saveInTx(initialCategories)
