@@ -30,6 +30,7 @@ import javax.inject.Inject
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
 class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+
     @Inject
     lateinit var navigationExpenseManager: NavigationExpenseManager
 

@@ -15,6 +15,7 @@ import com.morcinek.xpense.data.project.ProjectManager
 import com.morcinek.xpense.home.navigation.NavigationExpenseManager
 import com.morcinek.xpense.splash.data.CategoryInitializer
 import com.morcinek.xpense.splash.data.Initializer
+import com.morcinek.xpense.splash.data.MockExpenseInitializer
 import com.morcinek.xpense.splash.data.NoteInitializer
 import dagger.Module
 import dagger.Provides
@@ -78,8 +79,8 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Named("initializers")
-    fun provideInitializers(): Array<Initializer> {
-        return arrayOf(CategoryInitializer(), NoteInitializer())
+    fun provideInitializers(projectManager: ProjectManager, categoryManager: CategoryManager): Array<Initializer> {
+        return arrayOf(CategoryInitializer(), NoteInitializer(), MockExpenseInitializer(projectManager, categoryManager))
     }
 
     @Provides
