@@ -1,17 +1,13 @@
-Xpense
-================
-
-Expense Manager for Android written in Kotlin.
-
-Google Play
--------
-
-Try out the sample application on [Google Play][6].
-
 <a href="https://play.google.com/store/apps/details?id=com.morcinek.xpense">
   <img alt="BetterPickers Samples on Google Play"
          src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" width="140" />
 </a>
+
+
+Xpense
+================
+
+Expense Manager for Android written in Kotlin.
 
 
 License
