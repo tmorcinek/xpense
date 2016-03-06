@@ -23,9 +23,9 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     protected abstract val validator: Validator<T>
 
-    protected val isEditMode by lazy { intent.extras != null }
+    protected val isEditMode by lazy { editItem != null }
 
-    protected val editItem: T? by lazy { if (isEditMode) restoreItem(intent.extras)!! else null }
+    protected val editItem: T? by lazy { if (intent.extras != null) restoreItem(intent.extras) else null }
 
     protected open val canDelete: Boolean = true
 

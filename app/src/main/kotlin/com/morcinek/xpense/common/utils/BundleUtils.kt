@@ -24,6 +24,7 @@ fun <T : Serializable> Intent.putSerializableExtra(value: T) = putExtra(value.ja
 
 inline fun <reified T : Parcelable> Intent.getParcelableExtra() = getParcelableExtra<T>(T::class.java.name)
 inline fun <reified T : Serializable> Intent.getSerializableExtra() = getSerializableExtra(T::class.java.name) as T?
+fun Intent.getStringExtra() = getStringExtra(String::class.java.name)
 
 inline fun <reified T : Activity> Context.startActivity(vararg params: Any) {
     val arrayOfPairs = params.map { Pair(it.javaClass.name, it) }.toTypedArray()

@@ -6,10 +6,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.inputmethod.EditorInfo
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.utils.getParcelable
-import com.morcinek.xpense.common.utils.getTrimString
-import com.morcinek.xpense.common.utils.hideSoftInput
-import com.morcinek.xpense.common.utils.setTextWithSelection
+import com.morcinek.xpense.common.utils.*
 import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.category.Category
@@ -54,8 +51,13 @@ class CreateCategoryActivity : CreateActivity<Category>() {
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
+        setupName()
         super.onPostCreate(savedInstanceState)
         setupAdapter()
+    }
+
+    private fun setupName() {
+        item = Category(intent.getStringExtra() ?: "")
     }
 
     private fun setupAdapter() {

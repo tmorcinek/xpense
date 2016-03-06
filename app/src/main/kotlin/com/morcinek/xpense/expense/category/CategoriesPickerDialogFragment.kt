@@ -54,7 +54,7 @@ class CategoriesPickerDialogFragment : TextPickerDialogFragment<Category>() {
     private fun setupButton() {
         button.setImageResource(R.drawable.ic_action_new)
         button.setOnClickListener({
-            activity.startActivityFromFragment<CreateCategoryActivity>(this, Category(editText.getTrimString()))
+            activity.startActivityFromFragment<CreateCategoryActivity>(this, editText.getTrimString())
         })
     }
 
