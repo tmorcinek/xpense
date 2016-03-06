@@ -30,6 +30,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+        debug {
+            applicationIdSuffix ".debug"
+        }
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
