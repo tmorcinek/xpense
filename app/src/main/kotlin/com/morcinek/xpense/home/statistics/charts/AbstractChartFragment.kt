@@ -117,7 +117,7 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
                     setupSelectedCategories(listView)
                     generateChartData(expenses())
                 } else {
-                    context.showSnackbar(view, R.string.no_categories_selected)
+                    context.showSnackbar(view!!, R.string.no_categories_selected)
                 }
             }
             negativeButton {}

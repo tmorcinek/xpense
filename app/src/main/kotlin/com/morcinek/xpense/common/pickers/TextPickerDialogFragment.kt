@@ -19,7 +19,7 @@ import org.jetbrains.anko.textChangedListener
  */
 abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClickListener<T> {
 
-    protected abstract val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder>
+    protected abstract val adapter: AbstractRecyclerViewAdapter<T, out RecyclerView.ViewHolder>
 
     var onItemSetListener: ((T) -> Unit)? = null
 

@@ -18,7 +18,7 @@ import java.util.*
  */
 class CurrencyPickerDialogFragment : TextPickerDialogFragment<String>() {
 
-    override val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder> by lazy {
+    override val adapter: AbstractRecyclerViewAdapter<String, out RecyclerView.ViewHolder> by lazy {
         NoteAdapter(context)
     }
 

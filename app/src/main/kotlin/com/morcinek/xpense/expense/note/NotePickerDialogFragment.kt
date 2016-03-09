@@ -23,7 +23,7 @@ class NotePickerDialogFragment : TextPickerDialogFragment<String>() {
     @Inject
     lateinit var noteManager: NoteManager
 
-    override val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder> by lazy {
+    override val adapter: AbstractRecyclerViewAdapter<String, out RecyclerView.ViewHolder> by lazy {
         NoteAdapter(context)
     }
 

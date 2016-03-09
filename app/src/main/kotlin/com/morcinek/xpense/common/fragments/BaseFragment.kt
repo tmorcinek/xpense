@@ -15,9 +15,9 @@ abstract class BaseFragment : Fragment() {
 
     open protected val menuResourceId: Int = R.menu.empty
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup,
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getLayoutResourceId(), container, false)
+        return inflater!!.inflate(getLayoutResourceId(), container, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

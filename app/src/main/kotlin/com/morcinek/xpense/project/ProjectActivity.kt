@@ -91,7 +91,7 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
     }
 
 
-    private fun handleLocationButton(view: View?) {
+    private fun handleLocationButton(view: View) {
         try {
             val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).setFilter(autocompleteFilter()).build(this)
             startActivityForResult(intent, 0)

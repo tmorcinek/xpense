@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity
  */
 
 fun Fragment.setTitle(resourceId: Int) {
-    (activity as AppCompatActivity).supportActionBar.setTitle(resourceId)
+    (activity as AppCompatActivity).supportActionBar!!.setTitle(resourceId)
 }
 
 fun android.support.v4.app.Fragment.setTitle(resourceId: Int) {
-    (activity as AppCompatActivity).supportActionBar.setTitle(resourceId)
+    (activity as AppCompatActivity).supportActionBar!!.setTitle(resourceId)
 }

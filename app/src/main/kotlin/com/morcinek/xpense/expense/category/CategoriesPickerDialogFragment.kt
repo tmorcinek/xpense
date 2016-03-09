@@ -26,7 +26,7 @@ class CategoriesPickerDialogFragment : TextPickerDialogFragment<Category>() {
     @Inject
     lateinit var categoryManager: CategoryManager
 
-    override val adapter: AbstractRecyclerViewAdapter<out Any, out RecyclerView.ViewHolder> by lazy {
+    override val adapter: AbstractRecyclerViewAdapter<Category, out RecyclerView.ViewHolder> by lazy {
         CategoriesPickerDialogAdapter(context)
     }
 
