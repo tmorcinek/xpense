@@ -2,6 +2,7 @@ package com.morcinek.xpense.home.statistics.charts
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -96,6 +97,7 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         generateChartData(expenses())
+        ActivityCompat.invalidateOptionsMenu(activity)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -106,6 +108,11 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        menu!!.findItem(R.id.action_filter).isVisible = !selectedCategories.isEmpty()
+        super.onPrepareOptionsMenu(menu)
     }
 
     private fun showCategoriesDialog() {
