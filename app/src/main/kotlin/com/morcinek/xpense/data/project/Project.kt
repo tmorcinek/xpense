@@ -24,7 +24,7 @@ class Project(var name: String = "", var location: String = "", var currency: St
     override fun describeContents() = 0
 
     companion object {
-        val CREATOR = createParcel {
+        @JvmField final val CREATOR = createParcel {
             Project(it.readString(), it.readString(), it.readString(), it.readValue(null) as Long?)
         }
     }

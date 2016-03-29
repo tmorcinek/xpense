@@ -38,7 +38,7 @@ class Expense(var value: Double = 0.0, var category: Category? = null, var note:
     override fun describeContents() = 0
 
     companion object {
-        val CREATOR = createParcel {
+        @JvmField final val CREATOR = createParcel {
             Expense(it.readDouble(), it.readParcelable(Category.CREATOR), it.readString(), it.readCalendar(), it.readValue(null) as Long?)
         }
     }

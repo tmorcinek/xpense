@@ -28,7 +28,7 @@ class Category(var name: String = "", var color: Int? = null, id: Long? = null) 
     override fun describeContents() = 0
 
     companion object {
-        val CREATOR = createParcel {
+        @JvmField final val CREATOR = createParcel {
             Category(it.readString(), it.readValue(null) as Int?, it.readValue(null) as Long?)
         }
     }
