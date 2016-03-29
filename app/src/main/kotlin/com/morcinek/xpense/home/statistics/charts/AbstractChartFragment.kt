@@ -49,9 +49,7 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
     override val menuResourceId = R.menu.chart
 
     protected val selectedCategories: ArrayList<Category> by lazy {
-        val selectedCategories = arrayListOf<Category>()
-        selectedCategories.addAll(defaultCategories())
-        selectedCategories
+        arrayListOf(defaultCategories())
     }
 
     private fun defaultCategories(): List<Category> {
@@ -96,6 +94,7 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        setupSelectedCategories(defaultCategories())
         generateChartData(expenses())
         ActivityCompat.invalidateOptionsMenu(activity)
     }
@@ -121,7 +120,7 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
             customView(listView)
             positiveButton {
                 if (listView.hasCheckedItems()) {
-                    setupSelectedCategories(listView)
+                    setupSelectedCategories(listView.getCheckedItems<Category>())
                     generateChartData(expenses())
                 } else {
                     context.showSnackbar(view!!, R.string.no_categories_selected)
@@ -139,8 +138,8 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
         return listView
     }
 
-    private fun setupSelectedCategories(listView: ListView) {
+    private fun setupSelectedCategories(categories: List<Category>) {
         selectedCategories.clear()
-        selectedCategories.addAll(listView.getCheckedItems())
+        selectedCategories.addAll(categories)
     }
 }
