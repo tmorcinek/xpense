@@ -18,20 +18,20 @@ class Application : Application() {
     lateinit var component: ApplicationComponent
 
     val tracker: Tracker by lazy {
-        val analytics = GoogleAnalytics.getInstance(this);
-        analytics.newTracker(R.xml.global_tracker);
+        GoogleAnalytics.getInstance(this).newTracker(R.xml.global_tracker);
     }
 
     override fun onCreate() {
         super.onCreate()
-        this.component = DaggerApplicationComponent.builder()
-                .androidModule(AndroidModule(this))
-                .managersModule(ManagersModule())
-                .build()
-        SugarContext.init(this);
-
+        component = createApplicationComponent()
         tracker.enableExceptionReporting(true)
+        SugarContext.init(this);
     }
+
+    private fun createApplicationComponent() = DaggerApplicationComponent.builder()
+            .androidModule(AndroidModule(this))
+            .managersModule(ManagersModule())
+            .build()
 
     override fun onTerminate() {
         super.onTerminate()
