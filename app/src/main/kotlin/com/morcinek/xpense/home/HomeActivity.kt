@@ -8,8 +8,10 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
+import com.morcinek.xpense.common.helpers.ExecutionHelper
 import com.morcinek.xpense.common.utils.startActivity
 import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.expense.ExpenseActivity
@@ -24,16 +26,21 @@ import com.morcinek.xpense.home.statistics.StatsFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
  * Copyright 2015 Tomasz Morcinek. All rights reserved.
  */
 class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+
     @Inject
     lateinit var navigationExpenseManager: NavigationExpenseManager
 
-    val homeContentController: HomeContentController = HomeContentController(this)
+    private val homeContentController: HomeContentController = HomeContentController(this)
+
+    private val exitHelper = ExecutionHelper({ super.onBackPressed() }, { toast(R.string.app_exit_message) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,7 +104,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            exitHelper.execute()
         }
     }
 
@@ -113,6 +120,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         when (item.itemId) {
             R.id.overview, R.id.history, R.id.statistics, R.id.categories -> drawer.closeDrawer(GravityCompat.START)
         }
+        exitHelper.reset()
         return true
     }
 }
