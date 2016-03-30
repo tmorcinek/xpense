@@ -8,10 +8,9 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.morcinek.xpense.Application
 import com.morcinek.xpense.R
-import com.morcinek.xpense.common.helpers.ExecutionHelper
+import com.morcinek.xpense.common.helpers.ExitHelper
 import com.morcinek.xpense.common.utils.startActivity
 import com.morcinek.xpense.common.utils.startActivityFromFragment
 import com.morcinek.xpense.expense.ExpenseActivity
@@ -26,8 +25,6 @@ import com.morcinek.xpense.home.statistics.StatsFragment
 import kotlinx.android.synthetic.main.home.*
 import kotlinx.android.synthetic.main.home_content.*
 import kotlinx.android.synthetic.main.navigation_header.view.*
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -40,7 +37,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
 
     private val homeContentController: HomeContentController = HomeContentController(this)
 
-    private val exitHelper = ExecutionHelper({ super.onBackPressed() }, { toast(R.string.app_exit_message) })
+    private val exitHelper = ExitHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,11 +101,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
-            exitHelper.execute()
+            if (exitHelper.canExit()) {
+                super.onBackPressed()
+            }
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        exitHelper.reset()
         when (item.itemId) {
             R.id.overview -> homeContentController.switchFragment(OverviewFragment())
             R.id.history -> homeContentController.switchFragment(HistoryFragment())
@@ -120,7 +120,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         when (item.itemId) {
             R.id.overview, R.id.history, R.id.statistics, R.id.categories -> drawer.closeDrawer(GravityCompat.START)
         }
-        exitHelper.reset()
         return true
     }
 }
