@@ -1,6 +1,8 @@
 package com.morcinek.xpense
 
 import android.app.Application
+import com.google.android.gms.analytics.GoogleAnalytics
+import com.google.android.gms.analytics.Tracker
 import com.morcinek.xpense.dagger.ApplicationComponent
 import com.morcinek.xpense.dagger.DaggerApplicationComponent
 import com.morcinek.xpense.dagger.modules.AndroidModule
@@ -15,6 +17,11 @@ class Application : Application() {
 
     lateinit var component: ApplicationComponent
 
+    val tracker: Tracker by lazy {
+        val analytics = GoogleAnalytics.getInstance(this);
+        analytics.newTracker(R.xml.global_tracker);
+    }
+
     override fun onCreate() {
         super.onCreate()
         this.component = DaggerApplicationComponent.builder()
@@ -22,6 +29,8 @@ class Application : Application() {
                 .managersModule(ManagersModule())
                 .build()
         SugarContext.init(this);
+
+        tracker.enableExceptionReporting(true)
     }
 
     override fun onTerminate() {
