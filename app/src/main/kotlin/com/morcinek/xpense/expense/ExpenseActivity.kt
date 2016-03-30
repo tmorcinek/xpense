@@ -16,6 +16,7 @@ import com.morcinek.xpense.common.utils.getParcelable
 import com.morcinek.xpense.common.utils.show
 import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
+import com.morcinek.xpense.data.category.Category
 import com.morcinek.xpense.data.expense.Expense
 import com.morcinek.xpense.data.expense.ExpenseManager
 import com.morcinek.xpense.data.note.NoteManager
@@ -126,7 +127,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         val textPickerFragment = CategoriesPickerDialogFragment()
         textPickerFragment.selectedItem = item.category
         textPickerFragment.onItemSetListener = {
-            item.category = it
+            item.category = it as Category
             expenseAdapter.notifyDataItemChanged(CATEGORY_ITEM)
             invalidateItem()
         }
@@ -137,7 +138,7 @@ class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.O
         val textPickerFragment = NotePickerDialogFragment()
         textPickerFragment.selectedItem = item.note
         textPickerFragment.onItemSetListener = {
-            item.note = it
+            item.note = it as String
             expenseAdapter.notifyDataItemChanged(NOTE_ITEM)
         }
         textPickerFragment.show(supportFragmentManager)

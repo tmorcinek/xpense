@@ -15,6 +15,7 @@ import com.morcinek.xpense.create.CreateActivity
 import com.morcinek.xpense.create.Validator
 import com.morcinek.xpense.data.project.Project
 import com.morcinek.xpense.data.project.ProjectManager
+import com.morcinek.xpense.project.currency.CurrencyPickerDialogFragment
 import kotlinx.android.synthetic.main.button_item.view.*
 import kotlinx.android.synthetic.main.project.*
 import org.jetbrains.anko.imageResource
@@ -85,7 +86,7 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
     private fun handleCurrencyButton() {
         val textPickerFragment = CurrencyPickerDialogFragment()
         textPickerFragment.onItemSetListener = {
-            currencyButton.subtitle.setText(it)
+            currencyButton.subtitle.setText(it as String)
         }
         textPickerFragment.show(supportFragmentManager)
     }

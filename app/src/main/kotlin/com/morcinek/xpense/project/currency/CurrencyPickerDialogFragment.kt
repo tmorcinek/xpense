@@ -1,4 +1,4 @@
-package com.morcinek.xpense.project
+package com.morcinek.xpense.project.currency
 
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -8,7 +8,7 @@ import com.morcinek.xpense.common.adapter.AbstractRecyclerViewAdapter
 import com.morcinek.xpense.common.pickers.TextPickerDialogFragment
 import com.morcinek.xpense.common.utils.getTrimString
 import com.morcinek.xpense.common.utils.hideSoftInput
-import com.morcinek.xpense.expense.note.NoteAdapter
+import com.morcinek.xpense.project.currency.CurrencyAdapter
 import kotlinx.android.synthetic.main.text_picker.*
 import org.jetbrains.anko.textChangedListener
 import java.util.*
@@ -16,11 +16,13 @@ import java.util.*
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CurrencyPickerDialogFragment : TextPickerDialogFragment<String>() {
+class CurrencyPickerDialogFragment : TextPickerDialogFragment<Currency>() {
 
-    override val adapter: AbstractRecyclerViewAdapter<String, out RecyclerView.ViewHolder> by lazy {
-        NoteAdapter(context)
+    override val adapter: AbstractRecyclerViewAdapter<Currency, out RecyclerView.ViewHolder> by lazy {
+        CurrencyAdapter(context)
     }
+
+    override fun extractString(item: Currency) = "${item.displayName} ${item.currencyCode}"
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,7 +34,7 @@ class CurrencyPickerDialogFragment : TextPickerDialogFragment<String>() {
     }
 
     private fun setupItems() {
-        items = Currency.getAvailableCurrencies().map { it.symbol }
+        items = Currency.getAvailableCurrencies().toList()
         adapter.setList(items)
     }
 
@@ -40,7 +42,7 @@ class CurrencyPickerDialogFragment : TextPickerDialogFragment<String>() {
         button.isEnabled = false
         button.setImageResource(R.drawable.ic_action_accept)
         button.setOnClickListener({
-            onItemClicked(editText.getTrimString())
+            setupCurrencySymbol(editText.getTrimString())
         })
     }
 
@@ -53,8 +55,12 @@ class CurrencyPickerDialogFragment : TextPickerDialogFragment<String>() {
         }
     }
 
-    override fun onItemClicked(item: String) {
-        onItemSetListener?.invoke(item)
+    override fun onItemClicked(item: Currency) {
+        setupCurrencySymbol(item.symbol)
+    }
+
+    private fun setupCurrencySymbol(symbol: String) {
+        onItemSetListener?.invoke(symbol)
         activity.hideSoftInput(editText)
         dialog.dismiss()
     }

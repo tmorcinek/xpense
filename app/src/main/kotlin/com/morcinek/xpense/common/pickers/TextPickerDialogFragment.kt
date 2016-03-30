@@ -21,7 +21,9 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
 
     protected abstract val adapter: AbstractRecyclerViewAdapter<T, out RecyclerView.ViewHolder>
 
-    var onItemSetListener: ((T) -> Unit)? = null
+    open protected fun extractString(item: T): String = item.toString()
+
+    var  onItemSetListener: ((Any) -> Unit)? = null
 
     lateinit var items: List<T>
 
@@ -61,7 +63,7 @@ abstract class TextPickerDialogFragment<T : Any> : DialogFragment(), OnItemClick
     private fun setupEditText() {
         editText.textChangedListener {
             onTextChanged { charSequence, start, before, count ->
-                adapter.setList(items.filter { it.toString().contains(charSequence!!, true) })
+                adapter.setList(items.filter { extractString(it).contains(charSequence!!, true) })
             }
         }
     }
