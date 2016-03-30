@@ -34,7 +34,7 @@
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:background="?attr/colorPrimary"
+                        android:background="@color/nav_bar_end"
                         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
                 </android.support.design.widget.AppBarLayout>
@@ -42,15 +42,13 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/primary"
+                    android:background="@color/nav_bar_end"
                     android:paddingBottom="@dimen/title_margin"
                     android:paddingEnd="@dimen/view_margin"
                     android:paddingLeft="@dimen/title_margin_left"
                     android:paddingRight="@dimen/view_margin"
                     android:paddingStart="@dimen/title_margin_left"
-                    android:paddingTop="@dimen/view_margin"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="@integer/max_title_length">
+                    android:paddingTop="@dimen/view_margin">
 
                     <EditText
                         android:id="@+id/nameEditText"
