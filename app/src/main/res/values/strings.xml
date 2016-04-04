@@ -57,7 +57,6 @@
     <string name="action_period">Time Range</string>
     <string name="action_filter">Filter Categories</string>
 
-    <string name="no_categories_selected">At least one Category needs to be selected</string>
     <string name="stats_all_expenses_header">All expenses</string>
     <string name="stats_categories_header">By Category</string>
 

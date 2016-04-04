@@ -6,7 +6,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.ListView
@@ -26,6 +25,8 @@ import lecho.lib.hellocharts.model.LineChartData
 import lecho.lib.hellocharts.view.ColumnChartView
 import lecho.lib.hellocharts.view.LineChartView
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.enabled
+import org.jetbrains.anko.onItemClick
 import java.util.*
 import javax.inject.Inject
 
@@ -116,18 +117,17 @@ abstract class AbstractChartFragment : BaseFragment(), PagerAdapter.Page {
 
     private fun showCategoriesDialog() {
         val listView = createListView()
-        context.alert() {
+        val dialog = context.alert() {
             customView(listView)
             positiveButton {
-                if (listView.hasCheckedItems()) {
-                    setupSelectedCategories(listView.getCheckedItems<Category>())
-                    generateChartData(expenses())
-                } else {
-                    context.showSnackbar(view!!, R.string.no_categories_selected)
-                }
+                setupSelectedCategories(listView.getCheckedItems<Category>())
+                generateChartData(expenses())
             }
             negativeButton {}
-        }.show()
+        }.builder.show()
+        listView.onItemClick { adapterView, view, position, id ->
+            dialog.positiveButton.enabled = listView.hasCheckedItems()
+        }
     }
 
     private fun createListView(): ListView {
