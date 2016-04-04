@@ -21,6 +21,10 @@ import javax.inject.Inject
  */
 class CreateCategoryActivity : CreateActivity<Category>() {
 
+    override val labelEdit = R.string.category_label_edit
+
+    override val labelNew = R.string.category_label_new
+
     @Inject
     lateinit var categoryManager: CategoryManager
 

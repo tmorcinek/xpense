@@ -31,6 +31,10 @@ import javax.inject.Inject
  */
 class ExpenseActivity : CreateActivity<Expense>(), AbstractRecyclerViewAdapter.OnItemClickListener<Int> {
 
+    override val labelEdit = R.string.expense_label_edit
+
+    override val labelNew = R.string.expense_label_new
+
     override var item: Expense
         get() = expenseAdapter.expense
         set(value) {

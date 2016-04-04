@@ -15,14 +15,14 @@
         <item
             android:id="@+id/statistics"
             android:icon="@drawable/ic_chart_black"
-            android:title="@string/menu_statistics" />
+            android:title="@string/statistics_label" />
     </group>
 
     <group android:id="@+id/create_group" android:checkableBehavior="single">
         <item
             android:id="@+id/categories"
             android:icon="@drawable/ic_add_circle_black"
-            android:title="@string/menu_categories" />
+            android:title="@string/categories_label" />
     </group>
 
     <group android:id="@+id/config_group" android:checkableBehavior="none">

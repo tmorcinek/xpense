@@ -29,6 +29,10 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
 
     protected open val canDelete: Boolean = true
 
+    protected abstract val labelEdit: Int
+
+    protected abstract val labelNew: Int
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.partial_fade_out)
@@ -47,10 +51,8 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
     }
 
     private fun setupTitle() {
-        title = getString(activityLabel(), item.javaClass.simpleName)
+        setTitle(if (isEditMode) labelEdit else labelNew)
     }
-
-    private fun activityLabel() = if (isEditMode) R.string.activity_label_edit else R.string.activity_label_new
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)

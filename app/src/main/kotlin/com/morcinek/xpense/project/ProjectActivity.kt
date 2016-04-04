@@ -28,6 +28,10 @@ import javax.inject.Inject
  */
 class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
 
+    override val labelEdit = R.string.project_label_edit
+
+    override val labelNew = R.string.project_label_new
+
     @Inject
     lateinit var projectManager: ProjectManager
 
