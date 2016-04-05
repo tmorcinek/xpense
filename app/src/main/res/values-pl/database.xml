@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="categories">
+        <item>Jedzenie i Picie</item>
+        <item>Czynsz</item>
+        <item>Zdrowie</item>
+        <item>Transport</item>
+        <item>Wypoczynek</item>
+        <item>Rozrywka</item>
+        <item>Książki</item>
+    </string-array>
+    
+    <string-array name="notes" tools:ignore="InconsistentArrays">
+        <item>Kolacja</item>
+        <item>Śniadanie</item>
+        <item>Obiad</item>
+        <item>Czynsz</item>
+        <item>Paliwo</item>
+        <item>Telefon</item>
+        <item>Papierosy</item>
+        <item>Taksówka</item>
+        <item>Bilet Autobusowy</item>
+        <item>TV</item>
+        <item>Książka</item>
+        <item>Kawa</item>
+        <item>Piwo</item>
+    </string-array>
+</resources>

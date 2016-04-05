@@ -78,8 +78,8 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Named("initializers")
-    fun provideInitializers(): Array<Initializer> {
-        return arrayOf(CategoryInitializer(), NoteInitializer())
+    fun provideInitializers(colorManager: ColorManager): Array<Initializer> {
+        return arrayOf(CategoryInitializer(application, colorManager), NoteInitializer(application))
     }
 
     @Provides

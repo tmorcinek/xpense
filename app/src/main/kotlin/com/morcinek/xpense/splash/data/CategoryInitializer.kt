@@ -1,25 +1,19 @@
 package com.morcinek.xpense.splash.data
 
+import android.content.Context
+import com.morcinek.xpense.R
 import com.morcinek.xpense.data.category.Category
+import com.morcinek.xpense.data.category.ColorManager
 import com.orm.SugarRecord
 
 /**
  * Copyright 2016 Tomasz Morcinek. All rights reserved.
  */
-class CategoryInitializer() : Initializer {
+class CategoryInitializer(val context: Context, val colorManager: ColorManager) : Initializer {
 
     override fun initialize() {
-        var initialCategories = listOf(
-                Category("Food and Drinks", 0xFFffa500.toInt()),
-                Category("Accommodation", 0xFF800000.toInt()),
-                Category("Health", 0xFF088da5.toInt()),
-                Category("Transportation", 0xFF800080.toInt()),
-                Category("Leisure", 0xFF008000.toInt()),
-                Category("Parties", 0xFFffd700.toInt()),
-                Category("Books", 0xFF66cdaa.toInt())
-        )
-        initialCategories.forEach {
-            SugarRecord.saveInTx(initialCategories)
+        context.resources.getStringArray(R.array.categories).forEachIndexed { index, name ->
+            SugarRecord.save(Category(name, colorManager.colors[index]))
         }
     }
 }

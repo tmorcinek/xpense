@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Xpense</string>
     <string name="app_description">Twój Manager Wydatków</string>
-    <string name="app_exit_message">Żeby wyjść kliknij 'Wstecz' jeszcze raz.</string>
+    <string name="app_exit_message">Żeby wyjść kliknij "Wstecz" jeszcze raz.</string>
 
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
 
-    <string name="done">Zatwierdź</string>
+    <string name="done">Gotowe</string>
     <string name="delete">Usuń</string>
 
     <string name="title_amount">Cena</string>
@@ -33,7 +33,7 @@
     <string name="project_currency_hint">Waluta</string>
     <string name="category_name_hint">Nazwa</string>
 
-    <string name="google_play_services_error">Jest problem z 'Google Play Services'</string>
+    <string name="google_play_services_error">Jest problem z "Google Play Services"</string>
 
     <string name="default_value_empty">""</string>
     <string name="default_value_none">Brak</string>
@@ -41,19 +41,19 @@
 
     <string name="settings_label">Ustawienia</string>
     <string name="about_label">Informacje</string>
-    <string name="overview_label">Przegląd</string>
+    <string name="overview_label">Podgląd</string>
     <string name="overview_title">Wydatki wg kategorii (%s)</string>
 
     <string name="history_label">Historia</string>
     <string name="statistics_label">Statystyki</string>
     <string name="period_today">Dzisiaj</string>
-    <string name="period_yesterday">Jutro</string>
-    <string name="period_this_week">Ten tygdzień</string>
+    <string name="period_yesterday">Wczoraj</string>
+    <string name="period_this_week">Obecny tydzień</string>
     <string name="period_last_week">Poprzedni tydzień</string>
     <string name="period_last_7_days">Ostatnie 7 dni</string>
     <string name="period_last_30_days">Ostatnie 30 dni</string>
-    <string name="period_last_month">Ostatni miesiąc</string>
-    <string name="period_this_month">Ten miesiąc</string>
+    <string name="period_last_month">Poprzedni miesiąc</string>
+    <string name="period_this_month">Obecny miesiąc</string>
     <string name="period_all">Wszystko</string>
 
     <string name="action_period">Rozpiętość czasowa</string>
