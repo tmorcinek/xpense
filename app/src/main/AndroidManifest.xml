@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" tools:node="remove" />
 
     <application
-        android:name="com.morcinek.xpense.Application"
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
