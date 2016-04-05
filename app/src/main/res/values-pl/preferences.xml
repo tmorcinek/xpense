@@ -1,0 +1,30 @@
+<resources>
+    <string name="version_preference_title">Wersja</string>
+
+    <string name="author_preference_title">Autor</string>
+
+    <string name="code_preference_title">Kod źródłowy</string>
+    <string name="code_preference_summary">Zobacz kod źródłowy na Github.</string>
+
+    <string name="rate_preference_title">Oceń aplikację</string>
+    <string name="rate_preference_summary">Oceń aplikację na Google Play.</string>
+
+    <string name="more_apps_preference_title">Więcej aplikacji</string>
+    <string name="more_apps_preference_summary">Zobacz więcej aplikacji autora.</string>
+
+    <string name="email_me_preference_title">Wyślij swoje uwagi</string>
+    <string name="email_me_preference_summary">Wyślij swoje uwagi odnośnie aplikacji do autora.</string>
+    <string name="email_me_preference_subject">[Xpense Android App] Uwagi</string>
+
+    <string name="share_preference_title">Poleć aplikację</string>
+    <string name="share_preference_summary">Poleć aplikację znajomym.</string>
+    <string name="share_preference_subject">Zaproszenie do aplikacji Xpense</string>
+    <string name="share_preference_body">Hey,\n\nZacząłem używać aplikacji Xpense.\n
+        To jest bardzo dobra aplikacja, stworzona po to żeby ułatwić ludziom zarządzanie swoimi pieniędzmi.\n
+        Możesz dodać wydatki, kategorie, i zobaczyć wiele statystyk dotyczących miesięcznych, tygodniowych i dziennych wydatków.\n\n
+        Pobież Xpense z: http://play.google.com/store/apps/details?id=com.morcinek.xpense</string>
+
+    <string name="libraries_preference_title">Bibioteki Open Source </string>
+    <string name="libraries_preference_summary">Użyte biblioteki Open Source w aplikacji.</string>
+
+</resources>
