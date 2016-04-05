@@ -52,6 +52,7 @@ android {
         variant.buildConfigField 'String', 'DATE_FORMAT', '"dd/MM/yyyy"'
         variant.buildConfigField 'String', 'DAY_FORMAT', '"dd/MM"'
         variant.buildConfigField 'String', 'CURRENCY_FORMAT', '"###,##0.00"'
+        variant.buildConfigField 'String', 'TODAY_FORMAT', '"d MMMM"'
         variant.buildConfigField 'int', 'MAX_AMOUNT_VALUE', '10000000'
     }
 }

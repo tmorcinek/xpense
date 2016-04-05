@@ -2,7 +2,8 @@ package com.morcinek.xpense.home.navigation
 
 import com.morcinek.xpense.common.formatters.NavigationTextFormatter
 import com.morcinek.xpense.common.utils.isSameMonth
-import com.morcinek.xpense.common.utils.monthName
+import com.morcinek.xpense.common.utils.toTodayFormat
+import com.morcinek.xpense.common.utils.plusDays
 import com.morcinek.xpense.data.expense.ExpenseManager
 import java.util.*
 
@@ -15,13 +16,14 @@ class NavigationExpenseManager(private val expenseManager: ExpenseManager) {
         get() = formatter.formatTitle(expenseManager.currentProject)
 
     val subtitle: String
-        get() = formatter.formatSubtitle(currentMonth(), totalAmount(), expenseManager.currentProject.currency)
+        get() = currentDate.toTodayFormat()
+
+    val amount: String
+        get() = formatter.formatAmount(totalAmount(), expenseManager.currency)
 
     private val currentDate = Calendar.getInstance()
 
     private val formatter = NavigationTextFormatter()
-
-    private fun currentMonth() = currentDate.monthName()
 
     private fun totalAmount() = expenseManager.getExpenses().filter { it.date.isSameMonth(currentDate) }.sumByDouble { it.value }
 }

@@ -1,7 +1,5 @@
 package com.morcinek.xpense.common.formatters
 
-import com.morcinek.xpense.BuildConfig
-import com.morcinek.xpense.common.utils.isInteger
 import com.morcinek.xpense.data.project.Project
 
 /**
@@ -11,5 +9,5 @@ class NavigationTextFormatter {
 
     fun formatTitle(project: Project) = if (project.location.isBlank()) project.name else "${project.name}, ${project.location}"
 
-    fun formatSubtitle(text: String, value: Double, currencySymbol: String) = "${text}, ${CurrencyFormatter().format(value, currencySymbol)}"
+    fun formatAmount(value: Double, currencySymbol: String) = "${CurrencyFormatter().format(value, currencySymbol)}"
 }

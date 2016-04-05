@@ -16,7 +16,7 @@ fun Calendar.toDateFormat() = toString(BuildConfig.DATE_FORMAT)
 
 fun Calendar.toDayFormat() = toString(BuildConfig.DAY_FORMAT)
 
-fun Calendar.monthName() = getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+fun Calendar.toTodayFormat() = toString(BuildConfig.TODAY_FORMAT)
 
 val Calendar.month: Int
     get() = get(Calendar.MONTH)

@@ -95,6 +95,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         val headerView = navigationView.getHeaderView(0)
         headerView.title.text = navigationExpenseManager.title
         headerView.subtitle.text = navigationExpenseManager.subtitle
+        headerView.amount.text = navigationExpenseManager.amount
     }
 
     override fun onBackPressed() {
