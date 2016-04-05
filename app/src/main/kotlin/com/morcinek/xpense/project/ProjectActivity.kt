@@ -56,7 +56,7 @@ class ProjectActivity : CreateActivity<Project>(), View.OnClickListener {
     }
 
     private fun setupProject() {
-        item = Project(getString(R.string.default_value_empty), getString(R.string.default_value_none), getString(R.string.default_value_currency))
+        item = Project(getString(R.string.default_value_empty), getString(R.string.default_value_empty), getString(R.string.default_value_currency))
     }
 
     private fun setupEditText() {
