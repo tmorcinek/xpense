@@ -13,8 +13,7 @@ class HomeContentController(private val activity: FragmentActivity) {
 
     val currentFragment: Fragment
         get() {
-            val fragments = fragmentManager.getFragments()
-            return fragments.get(fragmentManager.getBackStackEntryCount())
+            return fragmentManager.fragments.filterNotNull().last()
         }
 
     fun switchFragment(fragment: Fragment, addToBackStack: Boolean = false, tag: String = fragment.javaClass.name) {
