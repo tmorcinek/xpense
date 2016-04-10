@@ -38,6 +38,11 @@ abstract class CreateActivity<T : Parcelable> : AppCompatActivity() {
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.partial_fade_out)
     }
 
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.partial_fade_in, R.anim.shrink_fade_out_center)
+    }
+
     private fun successFinish() {
         finishOk()
         overridePendingTransition(R.anim.partial_fade_in, R.anim.slide_out_bottom)
