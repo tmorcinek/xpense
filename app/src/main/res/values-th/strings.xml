@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Xpense</string>
+    <string name="app_description">การจัดการค่าใช้จ่ายของคุณ</string>
+    <string name="app_exit_message">กดปุ่มอีกคั้งเพื่อออกจากการทำงาน</string>
+
+    <string name="yes">ตกลง</string>
+    <string name="no">ไม่</string>
+
+    <string name="empty">""</string>
+    <string name="done">บันทึก</string>
+    <string name="delete">ลบ</string>
+
+    <string name="title_amount">จำนวน</string>
+    <string name="title_category">ประเภท</string>
+    <string name="title_note">รายละเอียด</string>
+    <string name="title_date">วันที่</string>
+    <string name="title_currency">สกุลเงิน</string>
+
+    <string name="item_delete_message">คุณต้องการลบรายการนี้หรือไม่</string>
+
+    <string name="project_label_new">กระเป๋าตังค์ใหม่</string>
+    <string name="project_label_edit">แก้ไขกระเป๋าตังค์</string>
+
+    <string name="category_label_new">ประเภท</string>
+    <string name="category_label_edit">ประเภทใหม่</string>
+
+    <string name="expense_label_new">รายการค่าใช้จ่ายใหม่</string>
+    <string name="expense_label_edit">แก้ไขรายการค่าใช้จ่าย</string>
+
+    <string name="categories_label">ประเภท</string>
+
+    <string name="project_name_hint">หัวข้อ</string>
+    <string name="project_location_hint">สถานที่</string>
+    <string name="project_currency_hint">สกุลเงิน</string>
+    <string name="category_name_hint">ชื่อ</string>
+
+    <string name="google_play_services_error">เกิดปัญหาจากการให้บริการของกูเกิ้ลเพลย์</string>
+
+    <string name="default_value_empty">""</string>
+    <string name="default_value_currency">฿</string>
+
+    <string name="settings_label">ตั้งค่า</string>
+    <string name="about_label">เกี่ยวกับ</string>
+    <string name="overview_label">ภาพรวม</string>
+    <string name="overview_title">ค่าใช้จ่ายตามประเภท(%s)</string>
+
+    <string name="history_label">ประวัติ</string>
+    <string name="statistics_label">สถิติ</string>
+    <string name="statistics_week">สัปดาห์ %d</string>
+
+    <string name="period_today">วันนี้</string>
+    <string name="period_yesterday">เมื่อวาน</string>
+    <string name="period_this_week">สัปดาห์นี้</string>
+    <string name="period_last_week">สัปดาห์ที่แล้ว</string>
+    <string name="period_last_7_days">7 วันที่ผ่านมา </string>
+    <string name="period_last_30_days">30 วันที่ผ่านมา</string>
+    <string name="period_last_month">เดือนที่แล้ว</string>
+    <string name="period_this_month">เดือนนี้</string>
+    <string name="period_all">ทั้งหมด</string>
+
+    <string name="action_period">ระยะเวลา</string>
+    <string name="action_filter">ตัวกรองประเภท</string>
+
+    <string name="stats_all_expenses_header">ค่าใช้จ่ายทั้งหมด</string>
+    <string name="stats_categories_header">เรียงตามประเภท</string>
+
+    <string name="stats_days_chart_label">เรียงตามวัน</string>
+    <string name="stats_week_chart_label">เรียงตามสัปดาห์</string>
+    <string name="stats_month_chart_label">เรียงตามเดือน</string>
+
+</resources>

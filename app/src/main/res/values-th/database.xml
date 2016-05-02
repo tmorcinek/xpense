@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="categories">
+        <item>อาหารและเครื่องดื่ม</item>
+        <item>ที่พัก/น้ำ/ไฟ</item>
+        <item>สุขภาพ</item>
+        <item>ค่าเดินทาง</item>
+        <item>เพื่อการพักผ่อน</item>
+        <item>ค่าธรรมเนียม</item>
+        <item>ค่าใช้จ่ายเพื่อการเรียนรู้</item>
+        <item>อื่น ๆ</item>
+    </string-array>
+
+    <string-array name="notes" tools:ignore="InconsistentArrays">
+        <item>อาหารเช้า</item>
+        <item>อาการกลางวัน</item>
+        <item>อาหารเย็น</item>
+        <item>ค่าเช่า</item>
+        <item>น้ำมันรถ</item>
+        <item>ค่าโทรศัพท์</item>
+        <item>ค่าน้ำประปา</item>
+        <item>ค่าไฟ</item>
+        <item>อินเตอร์เน็ต</item>
+        <item>ค่าแท็กซี่</item>
+        <item>ค่าหนังสือ</item>
+        <item>ค่าอบรม</item>
+        <item>ค่าน้ำดื่ม</item>
+        <item>เสริมสวย</item>
+        <item>เสื้อผ้า</item>
+    </string-array>
+</resources>
