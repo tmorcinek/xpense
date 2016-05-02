@@ -45,6 +45,8 @@
 
     <string name="history_label">Historia</string>
     <string name="statistics_label">Statystyki</string>
+    <string name="statistics_week">Tydzień %d</string>
+
     <string name="period_today">Dzisiaj</string>
     <string name="period_yesterday">Wczoraj</string>
     <string name="period_this_week">Obecny tydzień</string>

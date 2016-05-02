@@ -28,7 +28,7 @@ class WeekChartFragment : AbstractChartFragment() {
 
     private val extractor: (Calendar) -> Int = { it.weekOfYear }
 
-    private val printer: (Int) -> String = { "Week ${it}" }
+    private val printer: (Int) -> String = { getString(R.string.statistics_week, it) }
 
     override val chartDataGenerators: Map<Int, ChartDataGenerator> by lazy {
         mapOf(
