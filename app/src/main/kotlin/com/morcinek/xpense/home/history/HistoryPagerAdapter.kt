@@ -34,9 +34,10 @@ class HistoryPagerAdapter(context: Context, fragmentManager: FragmentManager) : 
     }
 
     private fun createPeriodFragment(it: Period): PeriodFragment {
-        val periodFragment = PeriodFragment()
-        periodFragment.arguments = Bundle()
-        periodFragment.arguments.putSerializable(it)
-        return periodFragment
+        return PeriodFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(it)
+            }
+        }
     }
 }
