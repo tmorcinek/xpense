@@ -7,11 +7,11 @@ import android.content.SharedPreferences
  */
 
 fun SharedPreferences.putBoolean(preferenceKey: String, preferenceValue: Boolean) {
-    edit().putBoolean(preferenceKey, preferenceValue).apply();
+    edit().putBoolean(preferenceKey, preferenceValue).commit();
 }
 
 fun SharedPreferences.putLong(preferenceKey: String, preferenceValue: Long) {
-    edit().putLong(preferenceKey, preferenceValue).apply();
+    edit().putLong(preferenceKey, preferenceValue).commit()
 }
 
 fun SharedPreferences.getLong(preferenceKey: String): Long? {

@@ -24,8 +24,8 @@ class Application : Application() {
     override fun onCreate() {
         super.onCreate()
         component = createApplicationComponent()
-        tracker.enableExceptionReporting(true)
         SugarContext.init(this);
+        tracker.enableExceptionReporting(true)
     }
 
     private fun createApplicationComponent() = DaggerApplicationComponent.builder()
