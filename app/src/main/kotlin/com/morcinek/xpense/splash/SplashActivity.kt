@@ -31,11 +31,18 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash)
         (application as Application).component.inject(this)
+    }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
         async() {
-            initializeDatabase()
-            uiThread {
-                setupNextActivity()
+            try {
+                initializeDatabase()
+                uiThread {
+                    setupNextActivity()
+                }
+            } catch(e: Exception) {
+                finish()
             }
         }
     }

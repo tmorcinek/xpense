@@ -12,8 +12,9 @@ import com.orm.SugarRecord
 class CategoryInitializer(val context: Context, val colorManager: ColorManager) : Initializer {
 
     override fun initialize() {
-        context.resources.getStringArray(R.array.categories).forEachIndexed { index, name ->
-            SugarRecord.save(Category(name, colorManager.colors[index]))
+        val categories = context.resources.getStringArray(R.array.categories).mapIndexed { index, name ->
+            Category(name, colorManager.colors[index])
         }
+        SugarRecord.saveInTx(categories)
     }
 }

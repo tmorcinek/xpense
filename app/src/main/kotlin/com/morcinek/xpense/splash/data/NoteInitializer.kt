@@ -12,8 +12,7 @@ import com.orm.SugarRecord
 class NoteInitializer(val context: Context) : Initializer {
 
     override fun initialize() {
-        context.resources.getStringArray(R.array.notes).forEach {
-            SugarRecord.save(Note(it))
-        }
+        val notes = context.resources.getStringArray(R.array.notes).map { Note(it) }
+        SugarRecord.saveInTx(notes)
     }
 }
