@@ -17,8 +17,8 @@
 
     <string name="item_delete_message">Chcesz usunąć tę pozycję?</string>
 
-    <string name="project_label_new">Nowy Projekt</string>
-    <string name="project_label_edit">Edydja Projektu</string>
+    <string name="project_label_new">Nowy Portfel</string>
+    <string name="project_label_edit">Edydja Portfela</string>
 
     <string name="category_label_new">Nowa Kategoria</string>
     <string name="category_label_edit">Edycja Kategorii</string>
